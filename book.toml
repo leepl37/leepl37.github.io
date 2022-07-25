@@ -3,4 +3,4 @@ authors = ["leepl37"]
 language = "en"
 multilingual = false
 src = "src"
-title = "lets"
+title = "러스트 언어에 대한 지식 공유방"
