@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="example/example.html"><strong aria-hidden="true">1.</strong> Rust by example</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="example/hello/comment.html"><strong aria-hidden="true">1.1.</strong> Comments, 주석</a></li><li class="chapter-item expanded "><a href="example/hello/print.html"><strong aria-hidden="true">1.2.</strong> Formatted print, 출력에 관해</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="example/hello/debug_display.html"><strong aria-hidden="true">1.2.1.</strong> Debug & Display</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="example/example.html"><strong aria-hidden="true">1.</strong> Rust by example</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="example/hello/comment.html"><strong aria-hidden="true">1.1.</strong> Comments, 주석</a></li><li class="chapter-item expanded "><a href="example/hello/print.html"><strong aria-hidden="true">1.2.</strong> Formatted print, 출력에 관해</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="example/hello/debug_display.html"><strong aria-hidden="true">1.2.1.</strong> Debug & Display</a></li></ol></li><li class="chapter-item expanded "><a href="example/hello/testcase.html"><strong aria-hidden="true">1.3.</strong> TestCase: List(iter 개념과 Option 개념이 필요함)</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -205,7 +205,7 @@
 
         let a = &quot;ln이 없을 경우와 있을 경우.&quot;.to_string(); 
         let b = &quot;ln이 있을 경우와 없을 경우.&quot;.to_string();
-	print!(&quot;{a} :&quot;);
+        print!(&quot;{a} :&quot;);
         print!(&quot;한 줄 추가 없이 그대로 나열됨.\n&quot;); 
         println!(&quot;-----------------------------&quot;);
         println!(&quot;{b} :&quot;);
@@ -221,7 +221,7 @@
               third=&quot;선하고 어진 사람&quot;);    
    
    	
-	// : 를 이용해서 포맷하기.
+		// : 를 이용해서 포맷하기.
         println!(&quot;10 진수 {}&quot;,   69420);
         println!(&quot; 2 진수 {:b}&quot;, 69420);
         println!(&quot; 8 진수 {:o}&quot;, 69420);
@@ -242,6 +242,154 @@
 
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="debug--display"><a class="header" href="#debug--display">Debug &amp; Display</a></h1>
+<p>러스트 내에 <code>std</code> library 에 포함된 타입들은 자동으로 프린트 매서드가 구현되어있다. 
+이외의 다른 타입들은 <em>무조건</em> 구현해야만 프린트 할 수 있다. </p>
+<p>구현할 수 있는 방법은 기본적으로는 두가지가 존재한다.</p>
+<p>바로 Debug 와 Display 이다.</p>
+<h3 id="debug"><a class="header" href="#debug">Debug</a></h3>
+<p>그 중 Debug에 대해 먼저 알아보자.</p>
+<p><code>fmt::Debug trait</code>은 굉장히 사용자 편의성이 좋은 편이다. <code>derive</code> 를 선언하면 자동으로 <code>fmt::Debug</code> 를 구현한다. 
+ex) 자바의 애너테이션 개념과 비슷하다고 표현해도 무방할듯..</p>
+<p>예제와 같이 알아보자.</p>
+<p>참고 - Debug 사용 시, 프린트 매크로에는 항상 {:?} 또는 {:#?} 을 사용하셔야 합니다. </p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+
+
+// 기본 타입들은 프린트가 가능.
+let t = &quot;hello_world&quot;;
+let tt = 3; 
+
+println!(&quot;프린트 == {t}, {tt}  == 가능&quot;);
+
+//사용자 지정타입, 즉 std library 에서 제공되지 않음 -&gt; 프린트 불가.
+struct CanNotPrint(i32);
+
+//아래 코드는 주석을 풀면 에러가 납니다.
+//println!(&quot;{:?}&quot;, CanNotPrint(3));
+
+
+//Debug 선언
+#[derive(Debug)]
+struct CanPrintWithDebug(i32);
+
+println!(&quot;{:?}&quot;, CanPrintWithDebug(3));
+
+
+#[derive(Debug)]
+struct Person&lt;'a&gt; {
+	name: &amp;'a str,
+	age:u8
+}
+
+let tony = Person { name : &quot;과노&quot;, age : 34 };
+
+//{:?}, {:#?} 비교 
+println!(&quot;{:?}&quot;, tony);
+println!(&quot;{:#?}&quot;, tony);
+
+
+}
+
+</code></pre></pre>
+<h3 id="display"><a class="header" href="#display">Display</a></h3>
+<p>Display 에 대해 알아보자.</p>
+<p><code>Debug</code> 가 <code>derive</code> 를 통해 자동으로 프린트를 구현하였다면 <code>Display</code> 는 조금 더 손이 많이 간다. 즉 사용자가 직접 구현해야한다는 말이다. 다시 말하면 프린트하는 포맷을 내 입맛에 맛에 손 볼 수 있다. </p>
+<p>예제를 통해 알아보자.</p>
+<pre><pre class="playground"><code class="language-rust editable">  use std::fmt::Display;
+
+  struct PrintWithDisplay(i32);
+
+  impl Display for PrintWithDisplay {
+      // Display 를 구현함에 따라 Display 에 존재하는 default 함수를 가져와서 이를 구현한다.
+
+      /*
+       *다소 이해가 가지 부분들이 있으리라 생각됩니다만, 앞으로 나올 내용이니 너무 고민마시&gt;  고
+       * 추후 배울 내용을 미리 눈으로 익힌다는 느낌으로 보시는 게 좋을 듯 합니다.
+       */
+
+      fn fmt(&amp;self, f: &amp;mut std::fmt::Formatter&lt;'_&gt;) -&gt; std::fmt::Result {
+          write!(f, &quot;내가 원하는 입맛대로 출력하기. {}&quot;, self.0)
+      }
+  }
+
+  fn main() {
+      let t = PrintWithDisplay(3);     
+      // 단순히 {} 만 사용하여도 출력가능 -&gt; Display 구현했기 때문.
+      println!(&quot;{}&quot;, t);
+  }
+</code></pre></pre>
+<h3 id="비교"><a class="header" href="#비교">비교</a></h3>
+<pre><pre class="playground"><code class="language-rust editable">  use std::fmt::Display;
+
+
+  #[derive(Debug)]
+  struct DebugAndDisplay {
+      x: String,
+      y: String,
+  }
+
+
+  impl Display for DebugAndDisplay {
+      fn fmt(&amp;self, f: &amp;mut std::fmt::Formatter&lt;'_&gt;) -&gt; std::fmt::Result {
+          write!(f, &quot;내 기준에서 y가 먼저지! {} 그리고 {}&quot;, self.y, self.x)
+      }
+  }
+
+
+
+  fn main() {
+      let t = DebugAndDisplay{ x: &quot;다른 프로그래밍 언어...&quot;.to_string(), y: &quot;러스트&quot;.to_string() }; 
+
+      println!(&quot;Debug  : {:?}&quot;, t);
+      println!(&quot;Display : {}&quot;, t);
+  }
+
+</code></pre></pre>
+<h3 id="참고"><a class="header" href="#참고">참고</a></h3>
+<p><code>Vec&lt;T&gt;</code> 타입과 같은 경우는 <code>Display</code> 를 구현할 수가 없는데, <code>제네릭</code>의 경우는 어떠한 포맷으로 구현할지 타입마다 다르기 때문에 애매하다. 따라서 <code>Vec&lt;T&gt;</code> 는 <code>Display</code> 로 구현되지 않는다는 점을 알아두자. </p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="testcase-listiter-개념과-option-개념이-필요함"><a class="header" href="#testcase-listiter-개념과-option-개념이-필요함">TestCase: List(iter 개념과 Option 개념이 필요함)</a></h1>
+<p>그렇다면 배열이 있는 <code>struct</code> 일 경우, <code>fmt::Display</code> 로는 어떤 식으로 구현할까?</p>
+<pre><pre class="playground"><code class="language-rust editable">  use std::fmt::Display;
+
+
+  #[derive(Debug)]
+  struct ListVec(Vec&lt;i32&gt;);
+
+  impl ListVec {
+      fn new() -&gt; Self {
+          ListVec(vec![1,2,3,4,5,6,7])
+      }
+  }
+
+  impl Display for ListVec {
+
+      // iter() 는 for 문의 형태로 쓰인다는 점에 알아두자.
+      // 리턴 타입이 Result 인데, 이는 ? 를 사용할 수 있다는 의미이다. 
+      // 간단히 눈으로 익히고 뒤에 자세히 알아보자.
+
+      fn fmt(&amp;self, f: &amp;mut std::fmt::Formatter&lt;'_&gt;) -&gt; std::fmt::Result {
+	  
+          write!(f, &quot;list start &quot;);     
+          for (count, n) in self.0.iter().enumerate() { 
+              if count != (self.0.len() - 1) {
+	      	write!(f, &quot;{} -&gt; &quot;, n)?;
+	      }else{
+	      	write!(f, &quot;{}&quot;, n);
+	      }
+          }
+
+          write!(f, &quot; finished.&quot;)
+      }
+  }
+
+  fn main(){
+      println!(&quot;{}&quot;, ListVec::new());
+
+      println!(&quot;{:?}&quot;, ListVec::new());
+
+  }
+
+</code></pre></pre>
 
                     </main>
 
