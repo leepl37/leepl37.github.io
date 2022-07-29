@@ -44,3 +44,48 @@
   }
 
 ```
+
+다른 예제를 살펴보자.
+
+```rust
+
+  use std::fmt::Display;
+
+  struct City {
+       
+       // &'static 에 대해서 후반에 다룰 예정이니 String 포인터 개념이지만 스택에 올라간
+       // 데이터라고 생각하고 넘어가자.
+
+      name : &'static str,
+      lat : f32,
+      lon : f32
+  }
+
+  impl Display for City {
+
+      // 여기서 `f` 는 버퍼인데 간단하게 부하를 줄이기 위해 잠시 데이터를 저장하는 공간
+      // String 포맷으로 구현하되 이를 버퍼에 저장한다고 생각하자.
+      fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+
+          let location_of_latitude = if self.lat > 0.0 { 'N' } else { 'S' }; 
+
+          let location_of_longitude = if self.lon > 0.0 { 'E' } else { 'W' };
+
+          write!(f, "location of {} : {:.3}, {}, {:.3}, {}",
+                 self.name, self.lat, location_of_latitude,
+                 self.lon, location_of_longitude
+                 )
+      }
+  }
+
+
+
+  fn main() {
+
+      let t = City{ name: "Vancouver", lat: 49.25, lon: -123.1 };
+      println!("{t}");
+
+  }
+
+
+
