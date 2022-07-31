@@ -13,9 +13,7 @@
 		- [Arrays and Slices](./example/primitives/arrays_and_slices.md)
 
 	- [Custom Types](./example/customtype.md)
-	 	- [Structures](./example/customtype/structures.md)
-		- [Enum](./example/customtype/enum.md)
-			- [TestCase: linked-list](./example/customtype/testcase.md)
+		- [TestCase: linked-list](./example/customtype/testcase.md)
 		- [constants](./example/customtype/constants.md)
 
 
