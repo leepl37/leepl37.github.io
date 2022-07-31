@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Hello World 출력 - 러스트 언어에 대한 지식 공유방</title>
+        <title>Primitives, 원시타입 - 러스트 언어에 대한 지식 공유방</title>
 
 
         <!-- Custom HTML head -->
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../example/example.html"><strong aria-hidden="true">1.</strong> 러스트 예제로 알아보기</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../example/hello.html" class="active"><strong aria-hidden="true">1.1.</strong> Hello World 출력</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../example/hello/comment.html"><strong aria-hidden="true">1.1.1.</strong> Comments, 주석</a></li><li class="chapter-item expanded "><a href="../example/hello/print.html"><strong aria-hidden="true">1.1.2.</strong> Formatted print, 출력에 관해</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../example/hello/debug_display.html"><strong aria-hidden="true">1.1.2.1.</strong> Debug & Display</a></li></ol></li><li class="chapter-item expanded "><a href="../example/hello/testcase.html"><strong aria-hidden="true">1.1.3.</strong> TestCase: List(iter 개념과 Option 개념이 필요함)</a></li></ol></li><li class="chapter-item expanded "><a href="../example/primitives.html"><strong aria-hidden="true">1.2.</strong> Primitives, 원시타입</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../example/primitives/arrays_and_slices.html"><strong aria-hidden="true">1.2.1.</strong> Arrays and Slices</a></li></ol></li><li class="chapter-item expanded "><a href="../example/customtype.html"><strong aria-hidden="true">1.3.</strong> Custom Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../example/customtype/structures.html"><strong aria-hidden="true">1.3.1.</strong> Structures</a></li><li class="chapter-item expanded "><a href="../example/customtype/enum.html"><strong aria-hidden="true">1.3.2.</strong> Enum</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../example/customtype/testcase.html"><strong aria-hidden="true">1.3.2.1.</strong> TestCase: linked-list</a></li></ol></li><li class="chapter-item expanded "><a href="../example/customtype/constants.html"><strong aria-hidden="true">1.3.3.</strong> constants</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../example/example.html"><strong aria-hidden="true">1.</strong> 러스트 예제로 알아보기</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../example/hello.html"><strong aria-hidden="true">1.1.</strong> Hello World 출력</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../example/hello/comment.html"><strong aria-hidden="true">1.1.1.</strong> Comments, 주석</a></li><li class="chapter-item expanded "><a href="../example/hello/print.html"><strong aria-hidden="true">1.1.2.</strong> Formatted print, 출력에 관해</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../example/hello/debug_display.html"><strong aria-hidden="true">1.1.2.1.</strong> Debug & Display</a></li></ol></li><li class="chapter-item expanded "><a href="../example/hello/testcase.html"><strong aria-hidden="true">1.1.3.</strong> TestCase: List(iter 개념과 Option 개념이 필요함)</a></li></ol></li><li class="chapter-item expanded "><a href="../example/primitives.html" class="active"><strong aria-hidden="true">1.2.</strong> Primitives, 원시타입</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../example/primitives/arrays_and_slices.html"><strong aria-hidden="true">1.2.1.</strong> Arrays and Slices</a></li></ol></li><li class="chapter-item expanded "><a href="../example/customtype.html"><strong aria-hidden="true">1.3.</strong> Custom Types</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../example/customtype/structures.html"><strong aria-hidden="true">1.3.1.</strong> Structures</a></li><li class="chapter-item expanded "><a href="../example/customtype/enum.html"><strong aria-hidden="true">1.3.2.</strong> Enum</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../example/customtype/testcase.html"><strong aria-hidden="true">1.3.2.1.</strong> TestCase: linked-list</a></li></ol></li><li class="chapter-item expanded "><a href="../example/customtype/constants.html"><strong aria-hidden="true">1.3.3.</strong> constants</a></li></ol></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,37 +142,105 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="hello-world"><a class="header" href="#hello-world">Hello world</a></h1>
-<p>간단하게 출력 그리고 포맷팅 출력에 대해 알아보자.</p>
-<p>먼저 main.rs 파일을 만들어 직접 컴파일해서 출력하는 방법을 알아보자.</p>
-<pre><code class="language-bash">
-$vi main.rs 
-
-</code></pre>
+                        <h1 id="primitives-원시타입"><a class="header" href="#primitives-원시타입">Primitives, 원시타입</a></h1>
+<p>러스트 언어는 타입 지정이 우선시 되어야 한다. 항상 이를 염두하자.</p>
+<h3 id="scalar-types"><a class="header" href="#scalar-types">Scalar Types</a></h3>
+<ul>
+<li>
+<p>signed integers: <code>i8</code>, <code>i16</code>, <code>i32</code>, <code>i64</code>, <code>i128</code> and <code>isize</code> (pointer size)</p>
+</li>
+<li>
+<p>unsigned integers: <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code>, <code>u128</code> and <code>uisze</code>(pointer size)</p>
+</li>
+<li>
+<p>floating point: <code>f32</code>, <code>f64</code></p>
+</li>
+<li>
+<p><code>char</code> Unicode 인 <code>'a'</code>, <code>'α'</code> and <code>'∞'</code> (4 bytes each) </p>
+</li>
+<li>
+<p><code>bool</code> either <code>true</code> or <code>false</code></p>
+</li>
+<li>
+<p>and unit type <code>()</code>, empty typle 이라고 하는데 아래에서 알아보자.</p>
+</li>
+</ul>
+<p>튜플 타입 임에도 불구하고 컴파운드 타입으로 고려되지 않는 것은 하나의 타입으로 지정되어 있기 때문이다.</p>
+<h3 id="compound-types"><a class="header" href="#compound-types">Compound Types</a></h3>
+<ul>
+<li>
+<p>arrays like <code>[1,2,3]</code></p>
+</li>
+<li>
+<p>tuples like <code>(1, true)</code></p>
+</li>
+</ul>
+<p>타입 지정할 때 숫자는 suffix 로 지정할 수 있다.
+숫자는 default 타입이 존재하는데 Int 는 i32, float는 f64 가 있다.
+또한 러스트는 타입 infer 시스템을 가지고 있다.</p>
 <pre><pre class="playground"><code class="language-rust  editable">
 fn main() {
-	
-	println!(&quot;Hello World!&quot;);
 
-}
+      let _logical: bool = true;
+
+      let _a_float: f64 = 1.0; // Regular annotation
+
+      let _suffix_integer = 3i32; // Suffix annotation i32
+
+      let _default_float = 3.0; // default f64
+
+      let _default_integer = 7; // default i32                                                               
+      //주석을 풀면 에러남.
+      //println!(&quot;{default_integer}&quot;);
+
+      // 러스트는 기본적으로 변수가 immutable 이기 때문에 mut 를 변수 앞에 선언할 수 있다.
+
+      let mut can_change = &quot;나는 예전엔 어리석었다.&quot;.to_string(); 
+
+      println!(&quot;{can_change}&quot;);
+
+      can_change = &quot;현재는 무지에서 벗어났다&quot;.to_string();
+
+      println!(&quot;{can_change}&quot;);
+
+
+      //아래 코드는 주석을 풀면 에러가 난다. 같은 타입에서만 변화만 가능하다.
+      //사람이 제 아무리 노력해서 변화한다 한들 다람쥐나 고래가 될 수 없듯이
+      //can_change = 3;
+
+      }
 
 </code></pre></pre>
-<p><code>rustc</code> 로 컴파일하기.</p>
-<pre><code class="language-bash">
-$rustc hello.rs 
-./hello
+<h1 id="tuples"><a class="header" href="#tuples">Tuples</a></h1>
+<p>튜플 타입은 () 으로 지정한다. 
+(type1, type2, type3...) 과 같은 방식으로 선언할 수 있다.</p>
+<pre><pre class="playground"><code class="language-rust  editable">
+  fn reverse_tuple( pair : (i32, bool) ) -&gt; (bool, i32) {
+      let (reverse_bool, reverse_i32) = pair; i32, bool
+      (reverse_i32, reverse_bool)
+  }
 
-</code></pre>
+
+  fn main() {
+
+     let t = (33, true); (i32, bool)
+     let result_t = reverse_tuple(t); (bool, i32)
+
+     println!(&quot;{:?}&quot;, result_t);
+
+  }
+
+</code></pre></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../example/example.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../example/hello/testcase.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../example/hello/comment.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../example/primitives/arrays_and_slices.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -182,11 +250,11 @@ $rustc hello.rs
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../example/example.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../example/hello/testcase.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../example/hello/comment.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../example/primitives/arrays_and_slices.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
