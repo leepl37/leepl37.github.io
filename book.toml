@@ -4,3 +4,7 @@ language = "en"
 multilingual = false
 src = "src"
 title = "러스트 언어에 대한 지식 공유방"
+
+
+[output.html.playground]
+editable = true

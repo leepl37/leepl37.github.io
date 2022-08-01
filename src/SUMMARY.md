@@ -15,5 +15,6 @@
 	- [Custom Types](./example/customtype.md)
 		- [TestCase: linked-list](./example/customtype/testcase.md)
 		- [constants](./example/customtype/constants.md)
-
+	- [Variable Bindings,변수 바인딩](./example/variablebinding.md)
+	
 
