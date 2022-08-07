@@ -16,14 +16,27 @@
 		- [TestCase: linked-list](./example/customtype/testcase.md)
 		- [constants](./example/customtype/constants.md)
 	- [Variable Bindings,변수 바인딩](./example/variablebinding.md)
-	
 	- [Types](./example/types.md)
 		- [casting_and_literals](./example/types/casting_literals.md)
 		- [inference_and_aliasing](./example/types/inference_aliasing.md)
 	- [Conversion](./example/conversion/conversion.md)
 		- [From and Into, tryFrom and tryInto](./example/conversion/from_and_into.md)
 		- [To and from Strings](./example/conversion/to_and_from_strings)
-
- 
-
+	- [Expressions](./example/expressions.md)
+	- [Flow and Control](./example/flowAndControl/flow_and_control.md) 
+		- [for_and_iter](./example/flowAndControl/for_and_iter.md)
+		- [match](./example/flowAndControl/match.md)
+			- [pointers/ref](./example/flowAndControl/pointer_and_ref.md)
+			- [Guards/Binding](./example/flowAndControl/guards_and_binding.md)
+		- [if let / while let](./example/flowAndControl/if_let_and_while_let.md)
+	- [Functions](./example/functions/about_funtions.md)
+		- [Methods](./example/functions/methods.md)
+		- [Closures](./example/functions/closures/closures.md)
+			- [Capturing](./example/functions/closures/capturing.md)
+			- [As input parameters](./example/functions/closures/as_input_parameters.md)
+			- [As output parameters](./example/functions/closures/as_output_parameters.md)
+			- [Examples in std](./example/functions/closures/iterator_searching_thro_iter.md)
+			
 - [데이터 구조와 알고리즘](./dataStructureAndAlgorithms/intro.md)
+	- [Section 1](./dataStructureAndAlgorithms/section1.md)
+

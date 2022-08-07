@@ -1,1 +1,55 @@
 # To and from Strings
+
+### Converting to String 
+어떤 타입이든 String 타입으로 변환하는 것은 어렵지 않다. `fmt::Display` trait 에서 편하게 `toString` 함수를 제공하기 때문이다.
+
+```rust,editable
+
+use std::fmt::Display;
+
+struct PhoneNumList {
+    num : Vec<i32>,
+}
+
+impl Display for PhoneNumList {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "number list -- {:?}", self.num)
+    }   
+}
+
+
+fn main() {
+   
+    // 폰번호 맨 앞자리 0이 사라지는 이유 알아보기 
+    let list = PhoneNumList {
+        num: vec![01029166767, 01029166766]
+    };
+
+    println!("{}", list);
+
+
+
+}
+
+
+
+```
+
+
+### Parsing a String, 문자열 형변환
+러스트에선 문자열을 형변환 하는 것은 실제로는 까다로운데 String 문자열은 [u8] 형태로 구성되어 있기 때문이다.
+그래서인지 러스트에서는 `FromStr` trait 를 std::lib 에서 여러 타입에 제공하고 있다. 그래서 `primative` 타입들 중에 `FromStr` 을 구현한 타입들은 쉽게 형변환이 가능하다. 
+
+
+```rust, editable
+fn main() {
+    // 타입 지정이 필요함. 뭘로 형변환 해야할지 알지 못함.
+    let parsed:i32 = "5".parse().unwrap();
+    
+    // turbofish syntax, 유용하니 눈 여겨 봐두자.
+    let turbo_parsed = "10".parse::<i32>().unwrap();
+
+    println!("parse : {parsed}, turbofish : {turbo_parsed}");
+}
+
+```
