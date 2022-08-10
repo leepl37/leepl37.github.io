@@ -36,7 +36,7 @@
 			- [As input parameters](./example/functions/closures/as_input_parameters.md)
 			- [As output parameters](./example/functions/closures/as_output_parameters.md)
 			- [Examples in std](./example/functions/closures/iterator_searching_thro_iter.md)
-			
+	- [Modules](./example/modules/modules.md)	
 - [데이터 구조와 알고리즘](./dataStructureAndAlgorithms/intro.md)
 	- [Section 1](./dataStructureAndAlgorithms/section1.md)
 

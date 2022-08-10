@@ -1,6 +1,6 @@
 # Examples in std, standard Lib 에 존재하는 예제
 
-### Iterator::any, iter에 있는 any라는 associated 함수에 대해
+### Iterator::any, iter에 있는 any라는 함수에 대해
 
 any라는 함수는 해당 iter 객체에서 나온 element 가 예상한 어떤 value 값과 비교하여 맞으면 true 아니면 false 를 반환하는 함수이다.
 
@@ -35,4 +35,56 @@ fn main() {
 
 
 ```
+
+
+### Iterator::find, iter에 있는 find 라는 함수에 대해
+```rust,editable
+
+trait Iterator {
+    //해당 iter의 type 을 item 이라 지정한다.
+    type Item;
+
+    fn find<P>(&mut self, p: P) -> Option<Self::Item>
+    where
+        //find function 의 클로져는 iter 의 아이템을 & 로 받음.
+        P: FnMut(&Self::Item) -> bool;
+
+    fn any<F>(&mut self, f: F) -> bool
+    where
+        //any function 의 클로져는 iter 의 아이템을 & 없이 받음.
+        F: FnMut(Self::Item) -> bool;
+}
+
+fn main() {
+    let string_list = vec!["hi".to_string(), "bye".to_string()];
+    //iter 를 통해 |x| 는 &string 이 된다
+    let answer_any = string_list.iter().any(|x| x == "hi" );
+    println!("{}", answer_any);
+    let str_list = vec!["hi", "bye"];
+    // iter 를 통해 |x| &&str 가 되고  == str에 &를 붙이면 && 가 되므로 비교 가능
+    let str = str_list.iter().any(|x| x == &"hi");
+    println!("{}", str);
+    let num_list = vec![1,2,3,4,5];
+    // iter 를 통해 |x| &i32 가 되고 == i32 에 &를 붙이면 &i32 == &i32 되므로 비교 가능
+    let num = num_list.iter().any(|x| x == &3);
+    println!("{}", num);
+    // find fn 는 &를 추가한 item 값을 받는데 이유는 return 해야하기 때문이다.
+    // &&string 이 되므로 == &&str 이랑 비교한다.
+    let answer_find = string_list.iter().find(|&x| x == &"hi");
+    println!("{:?}", answer_find);
+    let str_list = vec!["hi", "bye"];
+    //iter() 를 통해 &str 가 되고 find 는 &를 추가한 item 을 받기에 &x 추가한다. 
+    let find_str_list = str_list.iter().find(|&x| x == &"hi");
+    println!("find_str_list : {:?}", find_str_list);
+    let fin_num_list = num_list.iter().find(|&x| x == &3);
+
+    // iter 을 통해 |x| 값은 각 각 &String, &&str, &i32 가 된다. 
+    // &str 와 i32 는 Copy type 이다. &x pattern 에 의해 destruct 된다.
+}
+
+```
+
+
+
+
 
