@@ -96,6 +96,7 @@ fn main() {
 
     let t = CBox::new("I will call this CBox");
 
+    println!("{:?}", t);
 }
 
 
