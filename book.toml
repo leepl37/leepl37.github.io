@@ -1,19 +1,16 @@
 [book]
-authors = ["leepl37"]
-language = "en"
-multilingual = false
 src = "src"
 title = "러스트 언어에 대한 지식 공유방"
-
-
+description = "rust by example 공식 홈페이지 번역 & 내 입맛에 맞게 주석" 
+author = "tony_lee"
 
 [output.html.playpen]
 editable = true
 editor = "ace"
-line-number = true
+line-numbers = true
 
 [output.html.fold]
-enable = true 
+enable = true
 
 [rust]
 edition = "2021"
