@@ -7,7 +7,6 @@ author = "tony_lee"
 [output.html.playpen]
 editable = true
 editor = "ace"
-line-numbers = true
 
 [output.html.fold]
 enable = true
