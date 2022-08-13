@@ -39,7 +39,9 @@
 	- [Modules](./example/modules/modules.md)	
 	- [Crates](./example/crates/crates.md)
 	- [Cargo](./example/cargo/cargo.md)
-
+	- [Attributes, 속성](./example/attributes/attributes.md)
+	- [Generics](./example/generics/generics.md)
+		- [Associated items & Phantom type parameters](./example/generics/generic_associated_phantom.md)
 
 - [데이터 구조와 알고리즘](./dataStructureAndAlgorithms/intro.md)
 	- [Section 1](./dataStructureAndAlgorithms/section1.md)
