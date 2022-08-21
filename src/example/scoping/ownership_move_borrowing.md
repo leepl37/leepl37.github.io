@@ -144,8 +144,64 @@ fn main() {
 
 
 
+### part 6 The ref pattern
+
+pattern matching 이나 `let` 바인딩을 이용해 destructuring 할 때, `ref`는 해당 필드를 참조값으로 가져올 수 있다.
+아래 예제를 살펴보자.
 
 
+```rust, editable
+
+#[derive(Clone, Copy)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let c = 'Q';
+
+    let ref ref_c1 = c;
+    let ref_c2 = &c;
+
+
+    println!("ref_c1 와 ref_c2 는 값이 같다.  {}", *ref_c2 == *ref_c1);
+
+    let point = Point { x: 3, y: 3 };
+
+    let _copy_of_x = {
+        let Point{ x : ref ref_to_x, y : _ } = point;
+    };
+
+    // mutable copy of point
+    let mut mutable_point = point;
+
+    {
+        let Point { x:_, y: ref mut mut_ref_to_y } = mutable_point;
+
+        *mut_ref_to_y = 30;
+    }
+
+    println!(" point is ( {}, {})", point.x, point.y );
+
+    println!(" mutable_point is ( {}, {})", mutable_point.x, mutable_point.y );
+
+
+    // 포인터를 포함하는 mutable 튜플
+    let mut mutable_tuple_with_pointer = (Box::new(5u32), 3u32);
+
+    {
+        let (_, ref mut val) = mutable_tuple_with_pointer;
+        *val = 30u32;
+
+    }
+
+    println!("mutable_tuple_with_pointer : ( {}, {} ) ", mutable_tuple_with_pointer.0, mutable_tuple_with_pointer.1);
+
+
+}
+
+```
 
 
 

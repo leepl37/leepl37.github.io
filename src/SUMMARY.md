@@ -44,6 +44,9 @@
 		- [Associated items & Phantom type parameters](./example/generics/generic_associated_phantom.md)
 	- [Scoping rules-오너쉽, 참조, 라이프타임](./example/scoping/scoping.md)
 		- [Ownership Move Borrowing](./example/scoping/ownership_move_borrowing.md)
+		- [Lifetimes](./example/scoping/lifetimes.md)
+	- [Traits](./example/traits.md)
+	- [macro](./example/macro.md)
 - [데이터 구조와 알고리즘](./dataStructureAndAlgorithms/intro.md)
 	- [Section 1](./dataStructureAndAlgorithms/section1.md)
 
