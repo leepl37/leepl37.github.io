@@ -49,4 +49,6 @@
 	- [macro](./example/macro.md)
 - [데이터 구조와 알고리즘](./dataStructureAndAlgorithms/intro.md)
 	- [Section 1](./dataStructureAndAlgorithms/section1.md)
+- [writing an OS in Rust](./rustOS/intro.md)
+	- [A Freestanding Rust Binary](./rustOS/freestandingRustBinary.md)
 
