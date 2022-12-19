@@ -10,14 +10,13 @@
 
 저의 작은 노력이 누군가에게 도움이 되길 바랍니다.
 
-by 꾸준히 러스트를 좋아하는 사람
+by 러스트를 좋아하는 사람
 
 #### 정리 예정 책.
 
 * Rust by example.
-* Hands-On - Data structure and algorithms with Rust .
 * Rust language book by Carol Nichols.
-* Rust in acion by McNamara.
+* Hands-On - Data structure and algorithms with Rust .
 * Rust for rustaceans by jon gjngest
 
 전체적인 내용에 대해 한번 정리 후에는 기본적인 문법 관련 내용들은 배제하고 제가 중요하다고 생각하는 부분에서

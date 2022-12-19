@@ -52,3 +52,7 @@
 - [writing an OS in Rust](./rustOS/intro.md)
 	- [A Freestanding Rust Binary](./rustOS/freestandingRustBinary.md)
 
+- [SP MANUAL](./spmanual/start.md)
+	- [ch1](./spmanual/chapter_1.md)
+		- [ch1-2](./spmanual/chapter_1-2.md)
+		- [ch1-2-3](./spmanual/chapter_1-2-3.md)
