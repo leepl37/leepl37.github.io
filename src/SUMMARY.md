@@ -47,12 +47,16 @@
 		- [Lifetimes](./example/scoping/lifetimes.md)
 	- [Traits](./example/traits.md)
 	- [macro](./example/macro.md)
+- [Rust 책 정리](./rust_book/intro.md)
+	- [Generics Types, Traits, and Lifetimes](./rust_book/generic_trait_lifetime.md)
+
 - [데이터 구조와 알고리즘](./dataStructureAndAlgorithms/intro.md)
 	- [Section 1](./dataStructureAndAlgorithms/section1.md)
+
 - [writing an OS in Rust](./rustOS/intro.md)
 	- [A Freestanding Rust Binary](./rustOS/freestandingRustBinary.md)
 
 - [SP MANUAL](./spmanual/start.md)
 	- [ch1](./spmanual/chapter_1.md)
-		- [ch1-2](./spmanual/chapter_1-2.md)
-		- [ch1-2-3](./spmanual/chapter_1-2-3.md)
+	- [ch2](./spmanual/chapter_2.md)
+	- [ch3](./spmanual/chapter_3.md)

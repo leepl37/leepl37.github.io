@@ -9,7 +9,6 @@
 
         <!-- Custom HTML head -->
         
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="rust by example 공식 홈페이지 번역 &amp; 내 입맛에 맞게 주석">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
@@ -35,13 +34,13 @@
     </head>
     <body>
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -57,7 +56,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -69,7 +68,7 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
@@ -82,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item affix "><a href="index.html">Introduction</a></li><li class="chapter-item "><a href="example/example.html"><strong aria-hidden="true">1.</strong> 러스트 예제로 알아보기</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/hello.html"><strong aria-hidden="true">1.1.</strong> Hello World 출력</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/hello/comment.html"><strong aria-hidden="true">1.1.1.</strong> Comments, 주석</a></li><li class="chapter-item "><a href="example/hello/print.html"><strong aria-hidden="true">1.1.2.</strong> Formatted print, 출력에 관해</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/hello/debug_display.html"><strong aria-hidden="true">1.1.2.1.</strong> Debug & Display</a></li></ol></li><li class="chapter-item "><a href="example/hello/testcase.html"><strong aria-hidden="true">1.1.3.</strong> TestCase: List(iter 개념과 Option 개념이 필요함)</a></li></ol></li><li class="chapter-item "><a href="example/primitives.html"><strong aria-hidden="true">1.2.</strong> Primitives, 원시타입</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/primitives/arrays_and_slices.html"><strong aria-hidden="true">1.2.1.</strong> Arrays and Slices</a></li></ol></li><li class="chapter-item "><a href="example/customtype.html"><strong aria-hidden="true">1.3.</strong> Custom Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/customtype/testcase.html"><strong aria-hidden="true">1.3.1.</strong> TestCase: linked-list</a></li><li class="chapter-item "><a href="example/customtype/constants.html"><strong aria-hidden="true">1.3.2.</strong> constants</a></li></ol></li><li class="chapter-item "><a href="example/variablebinding.html"><strong aria-hidden="true">1.4.</strong> Variable Bindings,변수 바인딩</a></li><li class="chapter-item "><a href="example/types.html"><strong aria-hidden="true">1.5.</strong> Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/types/casting_literals.html"><strong aria-hidden="true">1.5.1.</strong> casting_and_literals</a></li><li class="chapter-item "><a href="example/types/inference_aliasing.html"><strong aria-hidden="true">1.5.2.</strong> inference_and_aliasing</a></li></ol></li><li class="chapter-item "><a href="example/conversion/conversion.html"><strong aria-hidden="true">1.6.</strong> Conversion</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/conversion/from_and_into.html"><strong aria-hidden="true">1.6.1.</strong> From and Into, tryFrom and tryInto</a></li><li class="chapter-item "><a href="example/conversion/to_and_from_strings.html"><strong aria-hidden="true">1.6.2.</strong> To and from Strings</a></li></ol></li><li class="chapter-item "><a href="example/expressions.html"><strong aria-hidden="true">1.7.</strong> Expressions</a></li><li class="chapter-item "><a href="example/flowAndControl/flow_and_control.html"><strong aria-hidden="true">1.8.</strong> Flow and Control</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/flowAndControl/for_and_iter.html"><strong aria-hidden="true">1.8.1.</strong> for_and_iter</a></li><li class="chapter-item "><a href="example/flowAndControl/match.html"><strong aria-hidden="true">1.8.2.</strong> match</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/flowAndControl/pointer_and_ref.html"><strong aria-hidden="true">1.8.2.1.</strong> pointers/ref</a></li><li class="chapter-item "><a href="example/flowAndControl/guards_and_binding.html"><strong aria-hidden="true">1.8.2.2.</strong> Guards/Binding</a></li></ol></li><li class="chapter-item "><a href="example/flowAndControl/if_let_and_while_let.html"><strong aria-hidden="true">1.8.3.</strong> if let / while let</a></li></ol></li><li class="chapter-item "><a href="example/functions/about_funtions.html"><strong aria-hidden="true">1.9.</strong> Functions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/functions/methods.html"><strong aria-hidden="true">1.9.1.</strong> Methods</a></li><li class="chapter-item "><a href="example/functions/closures/closures.html"><strong aria-hidden="true">1.9.2.</strong> Closures</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/functions/closures/capturing.html"><strong aria-hidden="true">1.9.2.1.</strong> Capturing</a></li><li class="chapter-item "><a href="example/functions/closures/as_input_parameters.html"><strong aria-hidden="true">1.9.2.2.</strong> As input parameters</a></li><li class="chapter-item "><a href="example/functions/closures/as_output_parameters.html"><strong aria-hidden="true">1.9.2.3.</strong> As output parameters</a></li><li class="chapter-item "><a href="example/functions/closures/iterator_searching_thro_iter.html"><strong aria-hidden="true">1.9.2.4.</strong> Examples in std</a></li></ol></li></ol></li><li class="chapter-item "><a href="example/modules/modules.html"><strong aria-hidden="true">1.10.</strong> Modules</a></li><li class="chapter-item "><a href="example/crates/crates.html"><strong aria-hidden="true">1.11.</strong> Crates</a></li><li class="chapter-item "><a href="example/cargo/cargo.html"><strong aria-hidden="true">1.12.</strong> Cargo</a></li><li class="chapter-item "><a href="example/attributes/attributes.html"><strong aria-hidden="true">1.13.</strong> Attributes, 속성</a></li><li class="chapter-item "><a href="example/generics/generics.html"><strong aria-hidden="true">1.14.</strong> Generics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/generics/generic_associated_phantom.html"><strong aria-hidden="true">1.14.1.</strong> Associated items & Phantom type parameters</a></li></ol></li><li class="chapter-item "><a href="example/scoping/scoping.html"><strong aria-hidden="true">1.15.</strong> Scoping rules-오너쉽, 참조, 라이프타임</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/scoping/ownership_move_borrowing.html"><strong aria-hidden="true">1.15.1.</strong> Ownership Move Borrowing</a></li><li class="chapter-item "><a href="example/scoping/lifetimes.html"><strong aria-hidden="true">1.15.2.</strong> Lifetimes</a></li></ol></li><li class="chapter-item "><a href="example/traits.html"><strong aria-hidden="true">1.16.</strong> Traits</a></li><li class="chapter-item "><a href="example/macro.html"><strong aria-hidden="true">1.17.</strong> macro</a></li></ol></li><li class="chapter-item "><a href="dataStructureAndAlgorithms/intro.html"><strong aria-hidden="true">2.</strong> 데이터 구조와 알고리즘</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="dataStructureAndAlgorithms/section1.html"><strong aria-hidden="true">2.1.</strong> Section 1</a></li></ol></li><li class="chapter-item "><a href="rustOS/intro.html"><strong aria-hidden="true">3.</strong> writing an OS in Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="rustOS/freestandingRustBinary.html"><strong aria-hidden="true">3.1.</strong> A Freestanding Rust Binary</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item affix "><a href="index.html">Introduction</a></li><li class="chapter-item "><a href="example/example.html"><strong aria-hidden="true">1.</strong> 러스트 예제로 알아보기</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/hello.html"><strong aria-hidden="true">1.1.</strong> Hello World 출력</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/hello/comment.html"><strong aria-hidden="true">1.1.1.</strong> Comments, 주석</a></li><li class="chapter-item "><a href="example/hello/print.html"><strong aria-hidden="true">1.1.2.</strong> Formatted print, 출력에 관해</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/hello/debug_display.html"><strong aria-hidden="true">1.1.2.1.</strong> Debug & Display</a></li></ol></li><li class="chapter-item "><a href="example/hello/testcase.html"><strong aria-hidden="true">1.1.3.</strong> TestCase: List(iter 개념과 Option 개념이 필요함)</a></li></ol></li><li class="chapter-item "><a href="example/primitives.html"><strong aria-hidden="true">1.2.</strong> Primitives, 원시타입</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/primitives/arrays_and_slices.html"><strong aria-hidden="true">1.2.1.</strong> Arrays and Slices</a></li></ol></li><li class="chapter-item "><a href="example/customtype.html"><strong aria-hidden="true">1.3.</strong> Custom Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/customtype/testcase.html"><strong aria-hidden="true">1.3.1.</strong> TestCase: linked-list</a></li><li class="chapter-item "><a href="example/customtype/constants.html"><strong aria-hidden="true">1.3.2.</strong> constants</a></li></ol></li><li class="chapter-item "><a href="example/variablebinding.html"><strong aria-hidden="true">1.4.</strong> Variable Bindings,변수 바인딩</a></li><li class="chapter-item "><a href="example/types.html"><strong aria-hidden="true">1.5.</strong> Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/types/casting_literals.html"><strong aria-hidden="true">1.5.1.</strong> casting_and_literals</a></li><li class="chapter-item "><a href="example/types/inference_aliasing.html"><strong aria-hidden="true">1.5.2.</strong> inference_and_aliasing</a></li></ol></li><li class="chapter-item "><a href="example/conversion/conversion.html"><strong aria-hidden="true">1.6.</strong> Conversion</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/conversion/from_and_into.html"><strong aria-hidden="true">1.6.1.</strong> From and Into, tryFrom and tryInto</a></li><li class="chapter-item "><a href="example/conversion/to_and_from_strings.html"><strong aria-hidden="true">1.6.2.</strong> To and from Strings</a></li></ol></li><li class="chapter-item "><a href="example/expressions.html"><strong aria-hidden="true">1.7.</strong> Expressions</a></li><li class="chapter-item "><a href="example/flowAndControl/flow_and_control.html"><strong aria-hidden="true">1.8.</strong> Flow and Control</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/flowAndControl/for_and_iter.html"><strong aria-hidden="true">1.8.1.</strong> for_and_iter</a></li><li class="chapter-item "><a href="example/flowAndControl/match.html"><strong aria-hidden="true">1.8.2.</strong> match</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/flowAndControl/pointer_and_ref.html"><strong aria-hidden="true">1.8.2.1.</strong> pointers/ref</a></li><li class="chapter-item "><a href="example/flowAndControl/guards_and_binding.html"><strong aria-hidden="true">1.8.2.2.</strong> Guards/Binding</a></li></ol></li><li class="chapter-item "><a href="example/flowAndControl/if_let_and_while_let.html"><strong aria-hidden="true">1.8.3.</strong> if let / while let</a></li></ol></li><li class="chapter-item "><a href="example/functions/about_funtions.html"><strong aria-hidden="true">1.9.</strong> Functions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/functions/methods.html"><strong aria-hidden="true">1.9.1.</strong> Methods</a></li><li class="chapter-item "><a href="example/functions/closures/closures.html"><strong aria-hidden="true">1.9.2.</strong> Closures</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/functions/closures/capturing.html"><strong aria-hidden="true">1.9.2.1.</strong> Capturing</a></li><li class="chapter-item "><a href="example/functions/closures/as_input_parameters.html"><strong aria-hidden="true">1.9.2.2.</strong> As input parameters</a></li><li class="chapter-item "><a href="example/functions/closures/as_output_parameters.html"><strong aria-hidden="true">1.9.2.3.</strong> As output parameters</a></li><li class="chapter-item "><a href="example/functions/closures/iterator_searching_thro_iter.html"><strong aria-hidden="true">1.9.2.4.</strong> Examples in std</a></li></ol></li></ol></li><li class="chapter-item "><a href="example/modules/modules.html"><strong aria-hidden="true">1.10.</strong> Modules</a></li><li class="chapter-item "><a href="example/crates/crates.html"><strong aria-hidden="true">1.11.</strong> Crates</a></li><li class="chapter-item "><a href="example/cargo/cargo.html"><strong aria-hidden="true">1.12.</strong> Cargo</a></li><li class="chapter-item "><a href="example/attributes/attributes.html"><strong aria-hidden="true">1.13.</strong> Attributes, 속성</a></li><li class="chapter-item "><a href="example/generics/generics.html"><strong aria-hidden="true">1.14.</strong> Generics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/generics/generic_associated_phantom.html"><strong aria-hidden="true">1.14.1.</strong> Associated items & Phantom type parameters</a></li></ol></li><li class="chapter-item "><a href="example/scoping/scoping.html"><strong aria-hidden="true">1.15.</strong> Scoping rules-오너쉽, 참조, 라이프타임</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="example/scoping/ownership_move_borrowing.html"><strong aria-hidden="true">1.15.1.</strong> Ownership Move Borrowing</a></li><li class="chapter-item "><a href="example/scoping/lifetimes.html"><strong aria-hidden="true">1.15.2.</strong> Lifetimes</a></li></ol></li><li class="chapter-item "><a href="example/traits.html"><strong aria-hidden="true">1.16.</strong> Traits</a></li><li class="chapter-item "><a href="example/macro.html"><strong aria-hidden="true">1.17.</strong> macro</a></li></ol></li><li class="chapter-item "><a href="rust_book/intro.html"><strong aria-hidden="true">2.</strong> Rust 책 정리</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="rust_book/generic_trait_lifetime.html"><strong aria-hidden="true">2.1.</strong> Generics Types, Traits, and Lifetimes</a></li></ol></li><li class="chapter-item "><a href="dataStructureAndAlgorithms/intro.html"><strong aria-hidden="true">3.</strong> 데이터 구조와 알고리즘</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="dataStructureAndAlgorithms/section1.html"><strong aria-hidden="true">3.1.</strong> Section 1</a></li></ol></li><li class="chapter-item "><a href="rustOS/intro.html"><strong aria-hidden="true">4.</strong> writing an OS in Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="rustOS/freestandingRustBinary.html"><strong aria-hidden="true">4.1.</strong> A Freestanding Rust Binary</a></li></ol></li><li class="chapter-item "><a href="spmanual/start.html"><strong aria-hidden="true">5.</strong> SP MANUAL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="spmanual/chapter_1.html"><strong aria-hidden="true">5.1.</strong> ch1</a></li><li class="chapter-item "><a href="spmanual/chapter_2.html"><strong aria-hidden="true">5.2.</strong> ch2</a></li><li class="chapter-item "><a href="spmanual/chapter_3.html"><strong aria-hidden="true">5.3.</strong> ch3</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -100,7 +99,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -133,7 +132,7 @@
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -150,13 +149,12 @@
 <p>제 생각에 지식이란 자기 머릿 속에 있는 정리된 것들 이라는 생각이 들었습니다.
 그래서 제가 지금까지 봐 온 러스트 관련 서적들에 대해 다시 읽으며 정리할 생각입니다.</p>
 <p>저의 작은 노력이 누군가에게 도움이 되길 바랍니다.</p>
-<p>by 꾸준히 러스트를 좋아하는 사람</p>
+<p>by 러서터 </p>
 <h4 id="정리-예정-책"><a class="header" href="#정리-예정-책">정리 예정 책.</a></h4>
 <ul>
 <li>Rust by example.</li>
-<li>Hands-On - Data structure and algorithms with Rust .</li>
 <li>Rust language book by Carol Nichols.</li>
-<li>Rust in acion by McNamara.</li>
+<li>Hands-On - Data structure and algorithms with Rust .</li>
 <li>Rust for rustaceans by jon gjngest</li>
 </ul>
 <p>전체적인 내용에 대해 한번 정리 후에는 기본적인 문법 관련 내용들은 배제하고 제가 중요하다고 생각하는 부분에서
@@ -181,7 +179,6 @@ fn main() {
 	println!(&quot;Hello World!&quot;);
 
 }
-
 </code></pre></pre>
 <p><code>rustc</code> 로 컴파일하기.</p>
 <pre><code class="language-bash">
@@ -216,7 +213,6 @@ $rustc hello.rs
          println!(&quot;{} {} &quot;, b, a)	
 
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="formatted-print-형식에-맞춰-출력하기"><a class="header" href="#formatted-print-형식에-맞춰-출력하기">Formatted print, 형식에 맞춰 출력하기.</a></h1>
 <p>러스트에서 print 는 macros 로 짜여져있다. 후반에 macro 에 대해 자세히 다룰 예정이다. 
@@ -270,7 +266,6 @@ $rustc hello.rs
 
 }
 
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="debug--display"><a class="header" href="#debug--display">Debug &amp; Display</a></h1>
 <p>러스트 내에 <code>std</code> library 에 포함된 타입들은 자동으로 프린트 매서드가 구현되어있다. 
@@ -320,7 +315,6 @@ println!(&quot;{:#?}&quot;, tony);
 
 
 }
-
 </code></pre></pre>
 <h3 id="display"><a class="header" href="#display">Display</a></h3>
 <p>Display 에 대해 알아보자.</p>
@@ -347,8 +341,7 @@ println!(&quot;{:#?}&quot;, tony);
       let t = PrintWithDisplay(3);     
       // 단순히 {} 만 사용하여도 출력가능 -&gt; Display 구현했기 때문.
       println!(&quot;{}&quot;, t);
-  }
-</code></pre></pre>
+  }</code></pre></pre>
 <h3 id="비교"><a class="header" href="#비교">비교</a></h3>
 <pre><pre class="playground"><code class="language-rust editable edition2021">  use std::fmt::Display;
 
@@ -374,7 +367,6 @@ println!(&quot;{:#?}&quot;, tony);
       println!(&quot;Debug  : {:?}&quot;, t);
       println!(&quot;Display : {}&quot;, t);
   }
-
 </code></pre></pre>
 <h3 id="참고"><a class="header" href="#참고">참고</a></h3>
 <p><code>Vec&lt;T&gt;</code> 타입과 같은 경우는 <code>Display</code> 를 구현할 수가 없는데, <code>제네릭</code>의 경우는 어떠한 포맷으로 구현할지 타입마다 다르기 때문에 애매하다. 따라서 <code>Vec&lt;T&gt;</code> 는 <code>Display</code> 로 구현되지 않는다는 점을 알아두자. </p>
@@ -419,7 +411,6 @@ println!(&quot;{:#?}&quot;, tony);
       println!(&quot;{:?}&quot;, ListVec::new());
 
   }
-
 </code></pre></pre>
 <p>다른 예제를 살펴보자.</p>
 <pre><pre class="playground"><code class="language-rust edition2021">
@@ -460,7 +451,6 @@ println!(&quot;{:#?}&quot;, tony);
       println!(&quot;{t}&quot;);
 
   }
-
 
 
 </code></pre></pre>
@@ -531,7 +521,6 @@ fn main() {
       //can_change = 3;
 
       }
-
 </code></pre></pre>
 <h1 id="tuples"><a class="header" href="#tuples">Tuples</a></h1>
 <p>튜플 타입은 () 으로 지정한다. 
@@ -551,7 +540,6 @@ fn main() {
      println!(&quot;{:?}&quot;, result_t);
 
   }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="arrays-and-slices"><a class="header" href="#arrays-and-slices">Arrays and Slices</a></h1>
 <h3 id="arrays"><a class="header" href="#arrays">Arrays</a></h3>
@@ -569,8 +557,7 @@ fn main() {
 	//배열 안에 데이터 접근
 	println!(&quot;{}&quot;, arrays[0]);
 
-}
-</code></pre></pre>
+}</code></pre></pre>
 <h3 id="slices"><a class="header" href="#slices">Slices</a></h3>
 <ul>
 <li><code>Slices</code> 는 <code>arrays</code> 와 비슷하지만 길이를 컴파일 타임에 알 수 없다. </li>
@@ -586,8 +573,7 @@ fn main() {
 
 let world = &amp;hello_world[6..11]; 
 
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <img src="example/primitives/string_slice.svg" alt="drawing" width="300">
 <div style="break-before: page; page-break-before: always;"></div><h1 id="custom-types"><a class="header" href="#custom-types">Custom Types</a></h1>
 <p>커스텀 타입에는 <code>struct</code> 와 <code>enum</code> 그리고 Constants가 있다.</p>
@@ -612,8 +598,7 @@ struct Point {
 struct Unit;
 
 
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <h3 id="enums"><a class="header" href="#enums">Enums</a></h3>
 <p><code>enum</code> 키워드로 생성할 수 있다.</p>
 <p>*선언된 enum 안에 필드는 struct과 동일하게 여러 타입들이 선언될 수 있다.
@@ -630,8 +615,7 @@ type short = verylongverboseEnum;
 
 fn main(){
 	let x = short::A;
-}
-</code></pre></pre>
+}</code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="testcase-linked-list"><a class="header" href="#testcase-linked-list">TestCase: linked-list</a></h1>
 <p>흔히들 사용하는 간단한 링크드 리스트 배열을 구현해보자. 
 내용이 어렵기 때문에 설명은 간략하게 할 것이며 눈으로 익히는 정도만 해도 충분하다. </p>
@@ -698,7 +682,6 @@ fn main() {
     let print = new_list.stringify();
     println!(&quot;{}&quot;, print);
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="constants"><a class="header" href="#constants">constants</a></h1>
 <p>러스트에는 두 종류의 불 변수가 존재한다. </p>
@@ -726,7 +709,6 @@ fn main() {
 
 }
 
-
 </code></pre></pre>
 <p><code>static</code> 개념에 대해서는 추후에 자세하게 다룰 예정이다. 눈으로 이런 문법이 있다 정도면
 익히고 넘어가면 된다. </p>
@@ -748,8 +730,7 @@ fn main() {
 	let mut name = &quot;hello&quot;;
 	name = &quot;world&quot;;
 	println!(&quot;{name}&quot;);
-}
-</code></pre></pre>
+}</code></pre></pre>
 <h3 id="scope-and-shadowing"><a class="header" href="#scope-and-shadowing">Scope and Shadowing</a></h3>
 <p>러스트에서 Scope 영역은 해당 변수의 드랍 여부를 나타내는 중요한 지표이다. 
 (드랍이라는 것은 더 이상 참조가 불가능하며 바로는 아니지만 메모리에 제거 된다는 말이다.)</p>
@@ -780,8 +761,7 @@ fn main() {
 	}
 	// 같은 이름으로 선언하였지만 드랍되어 쓰일 수 없다.
 	println!(&quot;{shadow}&quot;);
-}
-</code></pre></pre>
+}</code></pre></pre>
 <h3 id="declare-first-변수-선언과-초기화"><a class="header" href="#declare-first-변수-선언과-초기화">Declare first, 변수 선언과 초기화</a></h3>
 <p>러스트는 변수를 선언하고 그 후에 초기화 하는 것이 가능하다. 그러나 초기화하지 않고 사용하는 것은 컴파일 에러를 나타낸다.</p>
 <pre><pre class="playground"><code class="language-rust editable edition2021">
@@ -800,7 +780,6 @@ fn main() {
 	//let a_declare;
 	//println!(&quot;{a_declare}&quot;);
 }
-
 </code></pre></pre>
 <h3 id="freezing"><a class="header" href="#freezing">Freezing</a></h3>
 <p>데이터가 mut 하게 선언되었다가 다시 immut 로 선언되면 이것을 freez 라고 한다. 
@@ -825,7 +804,6 @@ fn main() {
 
 	println!(&quot;{number}&quot;);
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="types"><a class="header" href="#types">Types</a></h1>
 <p>러스트 타입 매커니즘</p>
@@ -873,7 +851,6 @@ fn main() {
     }
 
 }
-
 </code></pre></pre>
 <pre><pre class="playground"><code class="language-rust editable edition2021">
 fn main() {
@@ -892,8 +869,7 @@ fn main() {
     println!(&quot;size of `z` in bytes: {}&quot;, std::mem::size_of_val(&amp;z));
     println!(&quot;size of `i` in bytes: {}&quot;, std::mem::size_of_val(&amp;i));
     println!(&quot;size of `f` in bytes: {}&quot;, std::mem::size_of_val(&amp;f));
-}
-</code></pre></pre>
+}</code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="inference_and_aliasing"><a class="header" href="#inference_and_aliasing">inference_and_aliasing</a></h1>
 <h3 id="inference-타입-추론"><a class="header" href="#inference-타입-추론">Inference 타입 추론</a></h3>
 <p>러스트에 존재하는 타입 추론 엔진은 특별한 타입이나 상황을 제외하고는 직접 타입을 지정하지 않아도 된다.</p>
@@ -923,7 +899,6 @@ fn main() {
 
 	
 }
-
 </code></pre></pre>
 <h3 id="aliasing"><a class="header" href="#aliasing">Aliasing</a></h3>
 <p>linux를 조금이라도 써본 사용자라면 alias 가 얼마나 유용한지 알 수 있다. 러스트에서도 비슷한 맥락으로 사용된다. 
@@ -937,7 +912,6 @@ fn main() {
 	let nanosec : NanoSecond = 5;
 
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="conversion"><a class="header" href="#conversion">Conversion</a></h1>
 <p>앞서 배웠듯이 원시 타입은 casting 을 통해 타입 변환이 가능하다.
@@ -992,7 +966,6 @@ fn main() {
    println!(&quot;{:?}&quot;, answer);
 }
 
-
 </code></pre></pre>
 <h1 id="tryfrom-and-tryinto"><a class="header" href="#tryfrom-and-tryinto">TryFrom and TryInto</a></h1>
 <p>from and into 와 비슷한데, 리턴 값이 Err 일 수 있는 상황에서 유용하다. Result&lt;&gt; 타입은 추후에 자세히 다룬다. 
@@ -1031,7 +1004,6 @@ fn main() {
     let an2 = Gwano::try_from(n_check);
     println!(&quot;{:?}&quot;, an2);
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="to-and-from-strings"><a class="header" href="#to-and-from-strings">To and from Strings</a></h1>
 <h3 id="converting-to-string"><a class="header" href="#converting-to-string">Converting to String</a></h3>
@@ -1064,7 +1036,6 @@ fn main() {
 }
 
 
-
 </code></pre></pre>
 <h3 id="parsing-a-string-문자열-형변환"><a class="header" href="#parsing-a-string-문자열-형변환">Parsing a String, 문자열 형변환</a></h3>
 <p>러스트에선 문자열을 형변환 하는 것은 실제로는 까다로운데 String 문자열은 [u8] 형태로 구성되어 있기 때문이다.
@@ -1078,7 +1049,6 @@ fn main() {
 
     println!(&quot;parse : {parsed}, turbofish : {turbo_parsed}&quot;);
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="expressions"><a class="header" href="#expressions">Expressions</a></h1>
 <p>개인적으로 개념을 제대로 암기 후 이해하고 있는 것이 가장 중요하다고 생각한다.
@@ -1111,7 +1081,6 @@ fn main() {
 	}; 
 
 }
-
 </code></pre></pre>
 <p>꽤나 복잡하게 설명하고 복잡한듯 보이지만 익숙해지면 아주 쉽다. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="flow-and-control"><a class="header" href="#flow-and-control">Flow and Control</a></h1>
@@ -1144,7 +1113,6 @@ fn main() {
     println!(&quot;return value : {return_value}&quot;)
 }
 
-
 </code></pre></pre>
 <ul>
 <li>loop </li>
@@ -1170,8 +1138,7 @@ fn main() {
 			break;
 		} 
 	}
-}
-</code></pre></pre>
+}</code></pre></pre>
 <ul>
 <li>while </li>
 </ul>
@@ -1190,7 +1157,6 @@ fn main() {
 	}
 
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="for-and-iterators"><a class="header" href="#for-and-iterators">for and iterators</a></h1>
 <p>for문과 iterators에 대해 알아보자.</p>
@@ -1208,8 +1174,7 @@ fn main() {
 
 	} 
 
-}
-</code></pre></pre>
+}</code></pre></pre>
 <h3 id="iterators"><a class="header" href="#iterators">Iterators</a></h3>
 <p>iterators 형은 for문 형태로 적용이 가능한 포맷을 말한다. 다시 말하면 loop 문이 가능하다. 
 또한 러스트에는 iter 종류가 3가지 존재한다. </p>
@@ -1234,8 +1199,7 @@ fn main() {
             }
         }
     }
-}
-</code></pre></pre>
+}</code></pre></pre>
 <h4 id="iter_mut"><a class="header" href="#iter_mut">iter_mut()</a></h4>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main(){
 
@@ -1255,8 +1219,7 @@ fn main() {
     }
     println!(&quot;{:?}&quot;, name2);
 
-}
-</code></pre></pre>
+}</code></pre></pre>
 <h4 id="into_iter"><a class="header" href="#into_iter">into_iter()</a></h4>
 <pre><pre class="playground"><code class="language-rust edition2021">
 fn main() {
@@ -1273,7 +1236,6 @@ fn main() {
     //move, consume 되었기 때문에 더 이상 사용이 불가능하다.
     //println!(&quot;{:?}&quot;, name3);
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="match"><a class="header" href="#match">match</a></h1>
 <p>러스트에서는 C <code>switch</code> 와 비슷한 개념으로 패턴 매치를 제공하는데 기본적인 테크닉을 익히면 아주 유용하게 사용할 수 있다.</p>
@@ -1287,7 +1249,6 @@ fn main() {
 		_ =&gt; println!(&quot;nothing&quot;)
 	}
 }
-
 </code></pre></pre>
 <p>match Destructure 에 대해 알아보자.</p>
 <h3 id="destructuring"><a class="header" href="#destructuring">Destructuring</a></h3>
@@ -1304,7 +1265,6 @@ fn main() {
 		_ =&gt; println!(&quot;I dont care what first number is ..&quot;),
 	}
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="pointersref"><a class="header" href="#pointersref">pointers/ref</a></h1>
 <p>포인터와 참조 개념을 알아보자. </p>
@@ -1357,7 +1317,6 @@ fn main() {
     }
 
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="guardsbinding"><a class="header" href="#guardsbinding">Guards/Binding</a></h1>
 <h3 id="guards"><a class="header" href="#guards">Guards</a></h3>
@@ -1376,7 +1335,6 @@ fn main() {
 	}
 
 }
-
 </code></pre></pre>
 <h3 id="binding"><a class="header" href="#binding">Binding</a></h3>
 <p>말 그대로 변수에 특정 value 를 @ 을 통해 바인딩 할 수 있다.</p>
@@ -1397,7 +1355,6 @@ fn main() {
 
 	}
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="if-let--while-let"><a class="header" href="#if-let--while-let">if let / while let</a></h1>
 <p>match 보다 간결하게 쓸 수 있다.</p>
@@ -1418,7 +1375,6 @@ fn main() {
 		println!(&quot;none&quot;);
 	}
 }
-
 </code></pre></pre>
 <pre><pre class="playground"><code class="language-rust editable edition2021">
 fn main() {
@@ -1435,8 +1391,7 @@ fn main() {
         }
 
     }
-}
-</code></pre></pre>
+}</code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
 <ul>
 <li>러스트에서 function,함수는 <code>fn</code> 키워드로 선언하며 함수 안에 변수는 타입 지정이 필수이다.</li>
@@ -1473,8 +1428,7 @@ fn main() {
 
 	println!(&quot;return_value_at_num1 : {}&quot;, return_value_at_num1(num1));
 
-}
-</code></pre></pre>
+}</code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="methods"><a class="header" href="#methods">Methods</a></h1>
 <h3 id="associated-functions--methods"><a class="header" href="#associated-functions--methods">Associated functions &amp; Methods</a></h3>
 <p>러스트에서 Associated fn 과 Methods 라고 불리는 함수가 존재한다. 
@@ -1523,8 +1477,7 @@ fn main() {
 	// 이미 move 된 후 drop 되었기 때문에 해당 인스턴스는 메모리에서 없어짐.
      // println!(&quot;can't call this {:?}&quot;, point);
 
-}
-</code></pre></pre>
+}</code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="closures"><a class="header" href="#closures">Closures</a></h1>
 <p>클로져에 대해 알아보는 시간이다. 클로져는 무엇일까? 모던 언어에서는 클로져를 종종 볼 수 있다.
 먼저 예제를 통해 클로져를 알아보자.</p>
@@ -1612,7 +1565,6 @@ fn main() {
     //println!(&quot;{:?}&quot;, haystack);
     println!(&quot;{}&quot;, contains(&amp;4));
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="as-input-parameters"><a class="header" href="#as-input-parameters">As input parameters</a></h1>
 <p>그렇다면 <code>Closure</code> 을 input parameter 로 받을 때에는 타입 지정을 어떻게 해야할까?
@@ -1689,7 +1641,6 @@ fn main() {
     //아래 주석을 풀면 컴파일 에러가 난다.
     // println!(&quot;{z}&quot;);
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="as-output-parameters"><a class="header" href="#as-output-parameters">As output parameters</a></h1>
 <p>인풋 타입으로 클로져를 파라미터로 사용하는 것이 가능한 것 처럼 아웃풋 파라미터로도 사용이 가능하다.
@@ -1729,8 +1680,7 @@ fn main() {
 
     let fnonce_function = create_fnonce();
     fnonce_function();
-}
-</code></pre></pre>
+}</code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="examples-in-std-standard-lib-에-존재하는-예제"><a class="header" href="#examples-in-std-standard-lib-에-존재하는-예제">Examples in std, standard Lib 에 존재하는 예제</a></h1>
 <h3 id="iteratorany-iter에-있는-any라는-함수에-대해"><a class="header" href="#iteratorany-iter에-있는-any라는-함수에-대해">Iterator::any, iter에 있는 any라는 함수에 대해</a></h3>
 <p>any라는 함수는 해당 iter 객체에서 나온 element 가 예상한 어떤 value 값과 비교하여 맞으면 true 아니면 false 를 반환하는 함수이다.</p>
@@ -1760,7 +1710,6 @@ fn main() {
 
     println!(&quot;{answer}&quot;);
 }
-
 
 </code></pre></pre>
 <h3 id="iteratorfind-iter에-있는-find-라는-함수에-대해"><a class="header" href="#iteratorfind-iter에-있는-find-라는-함수에-대해">Iterator::find, iter에 있는 find 라는 함수에 대해</a></h3>
@@ -1806,7 +1755,6 @@ fn main() {
     // iter 을 통해 |x| 값은 각 각 &amp;String, &amp;&amp;str, &amp;i32 가 된다. 
     // &amp;str 와 i32 는 Copy type 이다. &amp;x pattern 에 의해 destruct 된다.
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="modules-모듈"><a class="header" href="#modules-모듈">Modules 모듈</a></h1>
 <p>모듈이란 function, structs, traits, <code>impl</code> 블록 또는 다른 모듈 을 포함한 영역을 설명한다.코드의 영역을 나누거나 할 때 쓰인다. </p>
@@ -1857,7 +1805,6 @@ fn main() {
     my_mod::will_call_private_fn();
     my_mod::can_call_nested_fn_can_nested_private_fn();
 }
-
 </code></pre></pre>
 <p>mod 이라고 선언하는 것이 하나의 파일을 만들어 그 안에 작성하는 것과 거의 동일한 역할을 한다. ex)
 test.rs 라는 파일 안에 pub hello fn 을 구현하고 현재 파일 내에서 mod test; 하면 해당
@@ -1898,7 +1845,6 @@ fn main() {
     println!(&quot;{:?}&quot;, t);
 }
 
-
 </code></pre></pre>
 <h3 id="super-and-self"><a class="header" href="#super-and-self">super and self</a></h3>
 <ul>
@@ -1922,8 +1868,7 @@ fn main() {
 	println!(&quot; rary function &quot;);
 }
 
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>shell 에서 라이브러리 타입으로 컴파일한다. 
 lib은 default, prefix name 이고 뒤에 붙는 것이 우리가 생성한 파일 이름이다. </p>
 <ul>
@@ -1944,7 +1889,6 @@ fn main() {
 	rary::public_fn();
 
 }
-
 </code></pre></pre>
 <pre><code class="language-shell">
 $ rustc main.rs --extern rary=library.rlib --edition=2021 &amp;&amp; ./main
@@ -2086,7 +2030,6 @@ fn main() {
 	}
 
 }
-
 </code></pre></pre>
 <h3 id="custom"><a class="header" href="#custom">Custom</a></h3>
 <p>target_os 와 같은 몇몇은 rustc 에 의해 제공된다. 하지만 입맛대로 생성하여 조건을 맞출 수 있다.</p>
@@ -2100,7 +2043,6 @@ fn my_custom_condition() {
 fn main() {
 	my_custom_condition();
 }
-
 </code></pre></pre>
 <p><code>cargo r</code> 하면 컴파일 에러가 나온다. 해당 컨디션을 컴파일러에게 미리 말해주어야 한다.</p>
 <pre><code class="language-shell">$ rustc --cfg custom_my_condition main.rs ** ./main 
@@ -2141,7 +2083,6 @@ fn main() {
        let gen4 = SGen { random : &quot;Hi&quot;};
         println!(&quot;{:?}&quot;, &amp;gen4);
 }
-
 </code></pre></pre>
 <h3 id="traits"><a class="header" href="#traits">Traits</a></h3>
 <p>trait 도 제네릭으로 활용할 수 있다. <code>Drop</code> <code>trait</code> 를 통해 알아보자.</p>
@@ -2175,7 +2116,6 @@ fn main() {
     n.double_drop(e);
     // println!(&quot;{:?}&quot;, n);
 }
-
 
 </code></pre></pre>
 <h3 id="bounds"><a class="header" href="#bounds">Bounds</a></h3>
@@ -2233,7 +2173,6 @@ fn main() {
 
 
 }
-
 </code></pre></pre>
 <p>예제를 통해 자세히 알아보자.</p>
 <pre><pre class="playground"><code class="language-rust editable edition2021">
@@ -2308,7 +2247,6 @@ fn main() {
     let tri_area = get_area(&amp;tri);
     println!(&quot;{:?}&quot;, tri_area);
 }
-
 </code></pre></pre>
 <h4 id="testcase-empty-bounds"><a class="header" href="#testcase-empty-bounds">Testcase: empty bounds</a></h4>
 <p>trait 에 함수가 없어도 유용하게 쓰일 수 있다. 예로 Copy 와 Eq trait 이 그러하다.</p>
@@ -2348,7 +2286,6 @@ fn main() {
 	// 호출 가능    
     println!(&quot;{:?}&quot;, ownership(&amp;k));
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="associated-items--phantom-type-parameters"><a class="header" href="#associated-items--phantom-type-parameters">Associated items &amp; Phantom type parameters</a></h1>
 <p>말 그대로 Associated item 을 제네릭 타입과 결합하여 어떻게 활용할 수 있는지 알아보자.</p>
@@ -2362,8 +2299,7 @@ fn main() {
 }
 
 
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>해당 trait 를 impl 할 떄 예제이다.</p>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -2380,8 +2316,7 @@ fn diff&lt;A, B, C&gt;(con : &amp;C) -&gt; i32
    
    }
 
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>이러한 문제를 해결해보자.
 바로 trait 안에 타입을 선언하는 것이다. 예제를 통해 알아보자.</p>
 <pre><code class="language-initrust editable">
@@ -2481,7 +2416,6 @@ fn main() {
     // println!(&quot; struct 1 == struct 2 비교할 수가 없다. 이 둘의 타입이 다르기 때문 : {}&quot;, _struct1 == _struct2);
 }
 
-
 </code></pre></pre>
 <h3 id="testcase--unit-clarification"><a class="header" href="#testcase--unit-clarification">TestCase : Unit clarification</a></h3>
 <p>팬텀타입에 관해 활용 케이스를 알아보자.</p>
@@ -2536,7 +2470,6 @@ fn main() {
 
 
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="scoping-rules오너쉽-참조-라이프타임"><a class="header" href="#scoping-rules오너쉽-참조-라이프타임">Scoping rules(오너쉽, 참조, 라이프타임)</a></h1>
 <p>Scoping rules - ownership 과 borrowing 그리고 lifetimes 에서 중요한 역할을 한다. </p>
@@ -2582,7 +2515,6 @@ fn main() {
 
 
 }
-
 </code></pre></pre>
 <h3 id="part-2-destructor"><a class="header" href="#part-2-destructor">part 2 Destructor</a></h3>
 <p>스코프를 벗어날 때 호출되는 destructor 는 러스트가 제공하는 <code>Drop</code> trait 에 의해 실행된다.
@@ -2603,7 +2535,6 @@ fn main() {
 
 }
 
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="ownership-move-borrowing"><a class="header" href="#ownership-move-borrowing">Ownership, Move, Borrowing</a></h1>
 <h3 id="part-1-오너쉽-그리고-이동-ownership-and-moves"><a class="header" href="#part-1-오너쉽-그리고-이동-ownership-and-moves">part 1 오너쉽 그리고 이동 (Ownership and moves)</a></h3>
@@ -2622,8 +2553,7 @@ y는 x 변수 안으로, 함수에서 x는 foo라는 함수 안으로 이동.</p
 
  let mut mut_box = immut_box;
 
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <h3 id="part-3-부분-이동partial-moves"><a class="header" href="#part-3-부분-이동partial-moves">part 3 부분 이동(Partial moves)</a></h3>
 <p>변수를 destructuring 할 때, <code>by-move</code>, <code>by-reference</code> 패턴 바인딩이 동시에 가능하다. 
 다만 이렇게 할 때, 부분적으로 변수가 이동하게 된다. 즉 변수의 한 부분이 이동할 때 다른 한 부분은 변수에 머물게 된다. 
@@ -2650,7 +2580,6 @@ fn main() {
      println!(&quot;{:?}&quot;, person.age);
      // println!(&quot;{:?}&quot;, person); // 전체 객체로는 사용이 불가능
 }
-
 </code></pre></pre>
 <h3 id="part-4-빌림-borrowing"><a class="header" href="#part-4-빌림-borrowing">part 4 빌림 (Borrowing)</a></h3>
 <p>대부분 데이터에 접근할 때 오너쉽을 가져와서 사용하지 않는다. 이때 러스트에서는 빌림 메커니즘을 이용한다(borrowing mechanism). 
@@ -2683,7 +2612,6 @@ fn main() {
      // 온전한 값으로 다시 사용 가능.
     eat_box_i32(boxed_i32);
    }
-
 </code></pre></pre>
 <h3 id="part-5-변환-mutability"><a class="header" href="#part-5-변환-mutability">part 5 변환 (Mutability)</a></h3>
 <p>변환 데이터 (Mutable data) 는 <code>&amp;mut T</code> 를 이용하여 mutably borrowed 가 가능하다. 이를 <em>mutable reference</em> 라 하며 참조값에 대해 읽기/쓰기 접근이 가능하다. 반대로 <code>&amp;T</code> 는 immutably borrowed 가 가능하며 <em>immutable reference</em> 하며 참조값에 대해 읽기 접근만 가능하다. </p>
@@ -2719,7 +2647,6 @@ fn main() {
     new_edition(&amp;mut immutabook);
 
 }
-
 </code></pre></pre>
 <h3 id="part-6-the-ref-pattern"><a class="header" href="#part-6-the-ref-pattern">part 6 The ref pattern</a></h3>
 <p>pattern matching 이나 <code>let</code> 바인딩을 이용해 destructuring 할 때, <code>ref</code>는 해당 필드를 참조값으로 가져올 수 있다.
@@ -2773,7 +2700,6 @@ fn main() {
 
 
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="lifetimes"><a class="header" href="#lifetimes">Lifetimes</a></h1>
 <h3 id="part-1-라이프타임"><a class="header" href="#part-1-라이프타임">part 1 라이프타임</a></h3>
@@ -2796,8 +2722,7 @@ fn main() {
      println!(&quot;borrow2 : {}, 라이프 타임 끝 &quot;, borrow2);
  }
 
- }  // 라이프타임 i 끝.
-</code></pre></pre>
+ }  // 라이프타임 i 끝.</code></pre></pre>
 <h3 id="part-2-explicit-annotation-명확한-선언"><a class="header" href="#part-2-explicit-annotation-명확한-선언">part 2 Explicit annotation, 명확한 선언</a></h3>
 <p>참조한 값에 라이프타임 선언이 필요하다.
 생략이 가능한 부분이 많은데, 생략이 불가능한 부분에서 사용한다.</p>
@@ -2805,8 +2730,7 @@ fn main() {
 </span><span class="boring">fn main() {
 </span> foo&lt;'a&gt;
 // foo 는 라이프타임 파라미터 `'a` 를 갖는다.
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <ul>
 <li>클로져에서 라이프타임을 사용할 때 제네릭과 동일한 방법으로 표기한다.</li>
 <li>foo&lt;'a&gt; 에서 foo는 <code>'a</code>  보다 라이프타임이 짧다.</li>
@@ -2820,8 +2744,7 @@ fn main() {
          // let lifetime_valie: &amp;'a i32= &amp;t;
          // t 는 함수에 지정된 라이프타임보다 더 일찍 드랍되기 때문에 사용이 불가능하다.
      }
- }
-</code></pre></pre>
+ }</code></pre></pre>
 <h3 id="part3-functions"><a class="header" href="#part3-functions">part3 Functions</a></h3>
 <ul>
 <li>함수에서 사용된 참조값은 지정된 라이프타임 값이 존재해야 한다. 단 생략 가능한 경우는 제외.</li>
@@ -2843,8 +2766,7 @@ fn main() {
 
      println!(&quot;{}&quot;, result);
 
- }
-</code></pre></pre>
+ }</code></pre></pre>
 <h3 id="part4-bounds"><a class="header" href="#part4-bounds">part4 Bounds</a></h3>
 <ul>
 <li><code>T: 'a</code> : All references in <code>T</code> must outlive life time `a. </li>
@@ -2875,8 +2797,7 @@ fn main() {
 
      print_ref(&amp;t);
      print(&amp;t);
- }
-</code></pre></pre>
+ }</code></pre></pre>
 <h3 id="part-5-coercion"><a class="header" href="#part-5-coercion">part 5 Coercion</a></h3>
 <ul>
 <li>A longer lifetime can be coerced into a shorter one. </li>
@@ -2900,7 +2821,6 @@ fn main() {
 
      println!(&quot;{}&quot;, choose_first(&amp;a, &amp;b));
  }
-
 </code></pre></pre>
 <h3 id="part-6-static"><a class="header" href="#part-6-static">part 6 Static</a></h3>
 <ul>
@@ -2911,8 +2831,7 @@ fn main() {
 </span> let s: &amp;'static str = &quot;hello tony&quot;;
 
  fn generic&lt;T&gt;(x: T) where T: 'static {}
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <p>위의 두 코드의 차이점을 알아보자.</p>
 <h4 id="reference-lifetime"><a class="header" href="#reference-lifetime">Reference lifetime</a></h4>
 <p><code>'static</code> 이라고 표시된 데이터는 프로그램이 실행될 동안 항상 존재한다. 물론 coercion 규칙도 적용되어 shorter 라이프타임으로도 쓰일 수 있다.<br />
@@ -2929,8 +2848,7 @@ fn main() {
 fn coerce_static&lt;'a&gt;(_: &amp;'a i32) -&gt; &amp;'a i32 {
     &amp;NUM 
 }
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <h4 id="trait-bound"><a class="header" href="#trait-bound">Trait bound</a></h4>
 <p>트레이트 바운드에서 <code>T: 'static</code> 의 뜻은 <code>static</code> 이 아닌 레퍼런스는 허용하지 않는다는 뜻이다.<br />
 즉 특정 데이터에서 참조값을 준 데이터는 허용되지 않고 <code>static</code> 이거 owned data 여야 한다. </p>
@@ -2945,8 +2863,7 @@ fn print_it(input : impl Debug + 'static ) {
 
 }
 
-<span class="boring">}
-</span></code></pre></pre>
+<span class="boring">}</span></code></pre></pre>
 <h3 id="part-7-elision"><a class="header" href="#part-7-elision">part 7 Elision</a></h3>
 <p>라이프타임 룰은 꽤나 규칙적이고 자주 볼 수 있기 때문에 borrow checker 에서 생략 가능 하도록
 허용한다. 이를 elision 이라 한다. </p>
@@ -3037,7 +2954,6 @@ struct Tony {
      println!(&quot;{:?}&quot;, get_struct_name(t).get_name());
      println!(&quot;{:?}&quot;, get_struct_name(h).get_name());
  }
-
 </code></pre></pre>
 <h3 id="part3-operator-overloading"><a class="header" href="#part3-operator-overloading">part3 Operator Overloading</a></h3>
 <p><code>연산자</code> 는 <code>trait</code> 을 통해 Overloading이 가능하다.</p>
@@ -3073,8 +2989,7 @@ impl Add&lt;Foo&gt; for Bar {
      let tt = Foo + Bar;
      println!(&quot;{:?}&quot;, tt);
      println!(&quot;{:?}&quot;, t);
- }
-</code></pre></pre>
+ }</code></pre></pre>
 <h3 id="part4-drop"><a class="header" href="#part4-drop">part4 Drop</a></h3>
 <p><code>Drop</code> trait 는 <code>drop</code> 함수만을 가지고 있으며 해당 객체가 <code>scope</code> 에서 벗어날 때 자동으로
 실행되는 함수이다. <code>Drop</code> 을 사용하는 이유는 해당 자원을 Free 시키기 위함이다.
@@ -3108,8 +3023,7 @@ struct Droppable {
      }
 
      drop(a); // 직접 드랍하기.
- }
-</code></pre></pre>
+ }</code></pre></pre>
 <h3 id="part5-iterators"><a class="header" href="#part5-iterators">part5 Iterators</a></h3>
 <p>iter Trait 를 구현하기 위해서는 <code>next</code> 요소만 구현하면 된다.
 또는 arrays 나 ranges 의 경우는 자동으로 구현됨.</p>
@@ -3141,8 +3055,7 @@ impl Iterator for Fibonacci {
          println!(&quot;&gt; {}&quot;, i);
      }
 
- }
-</code></pre></pre>
+ }</code></pre></pre>
 <h3 id="part6-impl-trait"><a class="header" href="#part6-impl-trait">part6 impl Trait</a></h3>
 <p><code>impl Trait</code> 은 보통 아래 두 가지 방법으로 쓰일 수 있다.</p>
 <ul>
@@ -3153,8 +3066,7 @@ impl Iterator for Fibonacci {
 <pre><pre class="playground"><code class="language-rust editable edition2021">
 fn parse_csv_documnet&lt;R: std::io::BufRead&gt;(src : R) {}
 
-fn parse_csv_documnet_using_impl(src : impl std::io::BufRead) {}
-</code></pre></pre>
+fn parse_csv_documnet_using_impl(src : impl std::io::BufRead) {}</code></pre></pre>
 <h4 id="리턴-타입으로-쓰일-경우"><a class="header" href="#리턴-타입으로-쓰일-경우">리턴 타입으로 쓰일 경우</a></h4>
 <pre><pre class="playground"><code class="language-rust editable edition2021">
 use std::iter;
@@ -3204,8 +3116,7 @@ use std::vec::IntoIter;
      let singles = vec![-3, -2, 2, 3];
      let doubles = double_positives(&amp;singles);
      assert_eq!(doubles.collect::&lt;Vec&lt;i32&gt;&gt;(), vec![4, 6]);
- }
-</code></pre></pre>
+ }</code></pre></pre>
 <h3 id="part6-supertraits"><a class="header" href="#part6-supertraits">part6 Supertraits</a></h3>
 <p>러스트에는 &quot;inheritance&quot; 가 존재하지 않지만 <code>trait</code> 에 또 다른 <code>trait</code> 을 구현할 수 있다.</p>
 <pre><pre class="playground"><code class="language-rust edtiable edition2021">
@@ -3267,7 +3178,6 @@ use std::vec::IntoIter;
      let who = comp_sci_student_greeting(&amp;A);
      println!(&quot;{}&quot;, who);
  }
-
 </code></pre></pre>
 <h3 id="part7-disambiguating-overlapping-traits"><a class="header" href="#part7-disambiguating-overlapping-traits">part7 Disambiguating overlapping traits</a></h3>
 <p>만일 두 개의 <code>trait</code> 을 impl 하였는데 동일한 이름이 존재한다면 어떻게 할 것인가?
@@ -3311,9 +3221,217 @@ fn main() {
     let t = UsernameWidget::get(&amp;form);
 
 }
-
 </code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="macro"><a class="header" href="#macro">macro</a></h1>
+<h3 id="part-1-macro_rules"><a class="header" href="#part-1-macro_rules">part 1 macro_rules!</a></h3>
+<p>러스트에 매크로 시스템은 메타프로그래밍이 가능하다. 함수와 비슷하지만 끝에 <code>!</code> (bang) 이 붙는다.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+fn main() {
+     
+     // macro_rules! 매크로이름 {
+     //  생성된 함수 =&gt; statement
+     // }
+
+     macro_rules! say_hi {
+         () =&gt; {
+             println!(&quot;hello&quot;);
+         };
+     }
+
+     say_hi!();
+ }</code></pre></pre>
+<h3 id="part2-designators"><a class="header" href="#part2-designators">part2 Designators</a></h3>
+<ul>
+<li>매크로의 인수는 <code>$</code> 로 표현한다.
+Designator 종류
+<code>block</code>, <code>expr</code>, <code>ident</code>, <code>item</code>, <code>literal</code>(literal constants), <code>pat</code>(pattern), <code>path</code>, <code>stmt</code>(statement), <code>tt</code>(token tree), <code>ty</code>(type), <code>vis</code>(visibility qualifier)</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust edition2021">
+fn main() {
+     macro_rules! create_fn {
+         // ident 라는 designator 를 사용하고 함수 $fn_name 을 생성한다.
+         ($fn_name : ident) =&gt; {
+             fn $fn_name() {
+                 println!(&quot;I make fn name {:?}&quot;, stringify!($fn_name));
+             }
+         };
+     }
+
+     create_fn!(gwano);
+
+     gwano();
+
+
+     macro_rules! print_result {
+         // expr 라는 designator 를 사용
+         ($expression:expr) =&gt; {
+             println!(&quot;{:?} = {:?}&quot;,
+                     stringify!($expression),
+                     $expression);
+         };
+     }
+
+     print_result!(2 + 2);
+
+ }</code></pre></pre>
+<h3 id="part3-overload"><a class="header" href="#part3-overload">part3 Overload</a></h3>
+<p>매크로는 다른 조합의 인수도 오버로드를 통해 받아들일 수 있다.
+<code>match</code> 와 비슷하게 동작한다.</p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+macro_rules! test {
+     ($left:expr; and $right:expr) =&gt; {
+         println!(&quot;{:?} and {:?} is {:?}&quot;,
+                 stringify!($left),
+                 stringify!($right),
+                 $left &amp;&amp; $right) // bool
+     };
+     // 새로운 단락에서 (arm) 세미콜론을 붙여줘야 한다.
+     ($left:expr; or $right:expr) =&gt; {
+         println!(&quot;{:?} or {:??} is {:?}&quot;,
+                  stringify!($left),
+                  stringify!($right),
+                  $left || $right) // bool
+     }
+ }
+
+ fn main() {
+     test!(1i32 + 1 == 2; and 2i32 + 0 == 2); // bool type만 비교 가능
+     test!(5i32 + 5 == 10; and 10i32 + 5 == 15); //bool type만 비교 가능
+ }
+
+</code></pre></pre>
+<h3 id="part4-repeat"><a class="header" href="#part4-repeat">part4 Repeat</a></h3>
+<ul>
+<li><code>+</code> 인수로 사용하는데, 이는 적어도 한번은 반복하겠다는 의미이다.</li>
+<li><code>*</code> 아예 반복을 하지 않거나 여러 번 하겠다는 뜻.</li>
+<li><code>$(...), +</code> 로 감싸진 인수는 이에 맞는 단락에 매치되고 <code>,</code> 로 다음 인수를 분류한다.</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust edition2021">
+ macro_rules! find_min {
+     ($x:expr) =&gt; ($x); // A Case
+
+     ($x:expr, $($y:expr),+) =&gt; (  // B, C Case
+
+         std::cmp::min($x, find_min!($($y),+))
+         )
+     }
+
+ fn main() {
+         println!(&quot;{}&quot;, find_min!(1)); // A Case
+
+         println!(&quot;{}&quot;, find_min!(1 + 2, 2)); // B Case
+         // 3, 2 =&gt; min(3, 2) =&gt; 2
+         println!(&quot;{}&quot;, find_min!(5, 2 * 3, 4)); // C Case
+         // 5, (6, 4) =&gt; min(6, 4) =&gt; 4 =&gt; min(5, 4) =&gt; 4
+ }
+
+</code></pre></pre>
+<h3 id="part5-dont-repeat-yourself"><a class="header" href="#part5-dont-repeat-yourself">part5 Don't Repeat Yourself</a></h3>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span>
+<span class="boring">fn main() {
+</span>use std::ops::{Add, Mul, Sub};
+
+ macro_rules! assert_equal_len {
+     // The `tt` (token tree) designator is used for
+     // operators and tokens.
+     ($a:expr, $b:expr, $func:ident, $op:tt) =&gt; {
+         assert!($a.len() == $b.len(),
+                 &quot;{:?}: dimension mismatch: {:?} {:?} {:?}&quot;,
+                stringify!($func),
+                 ($a.len(),),
+                 stringify!($op),
+                 ($b.len(),));
+     };
+ }
+
+ macro_rules! op {
+     ($func:ident, $bound:ident, $op:tt, $method:ident) =&gt; {
+         fn $func&lt;T: $bound&lt;T, Output=T&gt; + Copy&gt;(xs: &amp;mut Vec&lt;T&gt;, ys: &amp;Vec&lt;T&gt;) {
+             assert_equal_len!(xs, ys, $func, $op);
+
+             for (x, y) in xs.iter_mut().zip(ys.iter()) {
+                 *x = $bound::$method(*x, *y);
+                 // *x = x.$method(*y);
+             }
+         }
+     };
+ }
+
+ // Implement `add_assign`, `mul_assign`, and `sub_assign` functions.
+ op!(add_assign, Add, +=, add);
+ op!(mul_assign, Mul, *=, mul);
+ op!(sub_assign, Sub, -=, sub);
+
+ mod test {
+     use std::iter;
+     macro_rules! test {
+         ($func:ident, $x:expr, $y:expr, $z:expr) =&gt; {
+             #[test]
+             fn $func() {
+                 for size in 0usize..10 {
+                     let mut x: Vec&lt;_&gt; = iter::repeat($x).take(size).collect();
+                     let y: Vec&lt;_&gt; = iter::repeat($y).take(size).collect();
+                     let z: Vec&lt;_&gt; = iter::repeat($z).take(size).collect();
+
+                     super::$func(&amp;mut x, &amp;y);
+
+                     assert_eq!(x, z);
+                 }
+             }
+         };
+     }
+
+     // Test `add_assign`, `mul_assign`, and `sub_assign`.
+     test!(add_assign, 1u32, 2u32, 3u32);
+     test!(mul_assign, 2u32, 3u32, 6u32);
+     test!(sub_assign, 3u32, 2u32, 1u32);
+ }
+<span class="boring">}</span></code></pre></pre>
+<h3 id="part-6-domain-specific-languagesdsls"><a class="header" href="#part-6-domain-specific-languagesdsls">part 6 Domain Specific Languages(DSLs)</a></h3>
+<p>러스트에 속해 있는 embedded 된 macro 언어라고 생각하자. </p>
+<pre><pre class="playground"><code class="language-rust edition2021">
+
+ macro_rules! cal {
+     (eval $e:expr) =&gt; {
+         {
+             let val: usize = $e; // 타입을 integer 로 제한한다. 
+             println!(&quot;{} = {}&quot;, stringify!{$e}, val);
+         }
+     };
+ }
+
+
+ fn main(){
+
+     cal! {
+         eval 1 + 2
+     }
+
+     cal! {
+         eval 1 + 3 
+     }
+ }
+
+</code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="rust-책-정리"><a class="header" href="#rust-책-정리">Rust 책 정리</a></h1>
+<p>개인적으로 러스트 공식 홈페이지에 있는 책이 가장 좋다고 생각한다. 
+공식 페이지에 올라온 것은 그만큼 신경을 많이 썼다는 것이다. 또한 다른 언어 공식 홈페이지에 있는 책과 견주어 봐도
+이만큼 잘 설명이 되어 있는 것은 보지 못하였다.</p>
+<p>간략하게 필요한 내용만을 정리할 예정이다.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="generics-types-traits-and-lifetimes"><a class="header" href="#generics-types-traits-and-lifetimes">Generics Types, Traits, and Lifetimes</a></h1>
+<p>generic과 trait 그리고 lifetimes 을 한번에 묶어서 설명하는데 이유는 간단하다.</p>
+<p>trait 바운드라는 제약을 걸어 generic 타입의 행위를 제한할 수 있다.</p>
+<p>이때 lifetime 은 실은 generic 타입으로 선언할 수 있으며 선언된 lifetime은 각 각의 값과 관계되어</p>
+<p>lifetime을 표시한다고 볼 수 있다.</p>
+<p>먼저 제네릭 타입의 이용과 선언 방법에 대해 알아보자.</p>
+<pre><code class="language-rs">
+fn main() {
+  println!(&quot;hello&quot;);
+}
+
+
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="러스트-데이터-구조와-알고리즘"><a class="header" href="#러스트-데이터-구조와-알고리즘">러스트 데이터 구조와 알고리즘</a></h1>
 <h3 id="chapters"><a class="header" href="#chapters">Chapters</a></h3>
 <p>section 1</p>
@@ -3382,7 +3500,6 @@ fn main() {
     }
 }
 
-
 </code></pre></pre>
 <pre><pre class="playground"><code class="language-rust edition2021">pub struct Stepper {
     curr: i32,
@@ -3432,7 +3549,6 @@ fn main() {
         }
     }
 }
-
 </code></pre></pre>
 <!-- ### Stack Data Strutrue in Rust  -->
 <!---->
@@ -3475,7 +3591,6 @@ fn main() {
     // but if we implements Clone trait, we can copy String into another section of memory
 
 }
-
 </code></pre></pre>
 <pre><pre class="playground"><code class="language-rust edition2021">
 // 하지만 derive 라는 컴포넌트 자바에 @하고 Service 등 하는 것과 비슷하다. 
@@ -3519,10 +3634,519 @@ fn main() {
    		    // copy trait 와 clone trait 의 차이점이 존재. -- copy 는 호출할 필요 없음.  
     println!(&quot;{:?}&quot;, pnt);
     
+}</code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="writing-an-os-in-rust"><a class="header" href="#writing-an-os-in-rust">writing an OS in Rust</a></h1>
+<p>small operating system 을 구현해보자 . </p>
+<p>출처 Philipp Oppermann's blog [https://os.phil-opp.com/]</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="a-freestanding-rust-binary"><a class="header" href="#a-freestanding-rust-binary">A Freestanding Rust Binary</a></h1>
+<p>먼저 러스트 OS 를 구현하기 위해서는 executable 한 파일을 만들되 어떤 standard library와도 연결되지 않아야 한다. </p>
+<p>이러한 파일을 Freestanding 혹은 bare-metal 이라고 한다. </p>
+<h4 id="introduction"><a class="header" href="#introduction">Introduction</a></h4>
+<p>커널을 만들기 위해서는 어떠한 시스템의 요소들에게도 의존하지 않아야 한다. (쓰레드, 파일, 힙 메모리, 네트워크, 출력 또는 하드웨어 등)</p>
+<p>다행히 이터레이터, 클로져, 패턴 매칭, 옵션, Result, 스트링 포맷팅, 오너쉽 시스템은 사용할 수 있는데 이러한 특징들만 사용해도 메모리 안정성과 알 수 없이 일어나는 문제들에 대해 많이 해결할 수 있다. </p>
+<h4 id="disabling-the-standard-library"><a class="header" href="#disabling-the-standard-library">Disabling the Standard library</a></h4>
+<p>stdlib 의존 제거 하기.</p>
+<pre><code class="language-shell">
+cargo new blog_os --bin --edition 2018
+
+</code></pre>
+<p>executable 파일을 만들기 위해 cargo 를 통하여 프로젝트를 만든다. </p>
+<pre><pre class="playground"><code class="language-rust edition2021">#![no_std]
+
+fn main() {
+    println!(&quot;can not print this&quot;);
 }
 </code></pre></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="writing-an-os-in-rust"><a class="header" href="#writing-an-os-in-rust">writing an OS in Rust</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="a-freestanding-rust-binary"><a class="header" href="#a-freestanding-rust-binary">A Freestanding Rust Binary</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h3 id="sp-운영자-메뉴얼"><a class="header" href="#sp-운영자-메뉴얼">[SP 운영자 메뉴얼]</a></h3>
+<ul>
+<li>주제 : 모바일 신분증 SP 운영자 메뉴얼</li>
+<li>버전 : v2.0</li>
+<li>일자 : 2022-12-15</li>
+<li>작성 : 라온시큐어 민기주</li>
+</ul>
+<h3 id="변경-이력"><a class="header" href="#변경-이력">[변경 이력]</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>버전</th><th>내용</th><th>일자</th><th>작성자</th></tr></thead><tbody>
+<tr><td>1.0</td><td>최초수정</td><td>2021-11-23</td><td>LG CNS 컨소시엄</td></tr>
+<tr><td>2.0</td><td>재수정</td><td>2022-12-15</td><td>라온시큐어 민기주</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h3 id="1-개요"><a class="header" href="#1-개요">1. 개요</a></h3>
+<p>본 문서는 모바일 신분증을 이용한 서비스를 제공하고자 하는 SP(Service Provider)에게 다음의 정보를 제공함을 목적으로 한다.</p>
+<ul>
+<li>모바일 신분증 검증 서비스 개요</li>
+<li>연계 절차</li>
+<li>SP가 준비해야 할 항목</li>
+<li>모바일 신분증 수행단 제공정보 및 기타</li>
+</ul>
+<h3 id="11-용어"><a class="header" href="#11-용어">1.1. 용어</a></h3>
+<ul>
+<li>mDL
+<ul>
+<li>Mobile Driver License의 약어</li>
+<li>모바일 운전면허증 모바일 신분증</li>
+</ul>
+</li>
+<li>모바일로 발급한 국가 신분증
+<ul>
+<li>현재는 모바일 운전면허증(mDL)만 있음 신분증앱</li>
+</ul>
+</li>
+<li>신분증앱
+<ul>
+<li>&quot;모바일 신분증 앱&quot;의 줄임말 </li>
+</ul>
+</li>
+<li>블록체인 계정
+<ul>
+<li>블록체인 노드 상에서 참여자를 식별하기 위한 계정</li>
+<li>스마트 컨트랙트 호출을 위해 필요 </li>
+</ul>
+</li>
+<li>서비스 코드
+<ul>
+<li>Holder가 제출한 VP를 검증하기 위해 블록체인에 등록한 서비스 구분자</li>
+<li>매칭 정보: Verifier의 블록체인 계정, VC type, 검증할 개인정보 리스트 등 </li>
+</ul>
+</li>
+<li>CLI (Command Line Interface)
+<ul>
+<li>명령창에서 실행 가능한 툴</li>
+<li>Wallet 및 DID 생성 DID (Decentralized ID) 탈중앙화된 신원</li>
+</ul>
+</li>
+<li>DID (Decentralized ID) 
+<ul>
+<li>탈중앙화된 신원</li>
+</ul>
+</li>
+<li>DID Document (DID 문서)
+<ul>
+<li>DID의 요소로서 블록체인에 등록되어 누구나 조회 가능한 문서</li>
+<li>DID 소유자의 id (예 - did:kr:mobileid:1234567890) 및 공개키 등이 저장됨 </li>
+<li>W3C의 Decentralized Identifier v.1.0을 준수</li>
+</ul>
+</li>
+<li>Holder
+<ul>
+<li>Issuer가 발급한 VC를 소유하는 주체</li>
+</ul>
+</li>
+<li>Issuer
+<ul>
+<li>VC를 발급하는 주체</li>
+</ul>
+</li>
+<li>Verififer
+<ul>
+<li>Holder가 제출한 VP를 검증하는 검증자</li>
+<li>일반적으로 서비스를 제공하는 SP(Service Provider)가 verifier 역할을 수행함</li>
+</ul>
+</li>
+<li>VC (Verifiable Credential)
+<ul>
+<li>Issuer(발급자)가 holder의 요청에 의해 holder의 개인정보를 증명 가능한 형태로 발급한 문서 W3C의 Verifiable Credential Data Model v.1.0을 준수</li>
+</ul>
+</li>
+<li>VP (Verifiable Presentation)
+<ul>
+<li>Holder가 서비스를 제공받거나 기타 용도로 VC를 verifier에게 제출하기 위해 작성하고 서명한 문서 </li>
+<li>여러 발급자의 여러 VC를 하나의 VP에 담을 수도 있음</li>
+</ul>
+</li>
+<li>Wallet
+<ul>
+<li>개인키를 담고 있는 파일 형태의 암호화 지갑</li>
+<li>DID의 개인키를 보관하고 있어 SDK 연동시 반드시 필요</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-모바일-신분증-검증-서비스"><a class="header" href="#12-모바일-신분증-검증-서비스">1.2. 모바일 신분증 검증 서비스</a></h3>
+<h3 id="121-이용-가능한-신분증"><a class="header" href="#121-이용-가능한-신분증">1.2.1. 이용 가능한 신분증</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>신분증</th><th>발급처</th><th>효력</th></tr></thead><tbody>
+<tr><td>운전면허증</td><td>경찰청(도로교통공단)</td><td>- 대면 신원확인 <br> - 대면/비대면 자격확인, 성인여부확인 등 운전면허증 상 정보제공</td></tr>
+</tbody></table>
+</div>
+<ul>
+<li>대면 신원확인
+<ul>
+<li>Holder가 창구에 방문하거나 키오스크를 이용하는 등 검증자와 대면하는 경우</li>
+<li>이 경우에는 이름, 주민등록번호 등을 제출하여 신원을 확인하는 기능으로 이용 가능</li>
+<li>은행 홈페이지에 비회원 로그인 등 비대면 상황에서의 신원확인으로는 <span style="color:red">이용 불가함</span></li>
+</ul>
+</li>
+<li>대면/비대면 자격확인
+<ul>
+<li>신원확인 이외의 운전면허 자격확인, 성인확인, 성별확인, 주소지 확인 등은 대면/비대면 모두 이용 가능</li>
+</ul>
+</li>
+</ul>
+<h3 id="122-인터페이스--송신모드"><a class="header" href="#122-인터페이스--송신모드">1.2.2. 인터페이스 &amp; 송신모드</a></h3>
+<p>SP는 Holder에게 어떤 인터페이스와 송신모드로 VP를 제출받을지 미리 결정하여야 한다. 아래 표는 시범사업에서 선택 가능
+한 인터페이스와 송신모드 목록이다.</p>
+<p><img src="spmanual/./img/QR-MPM direct mode.png" alt="mpm" /> </p>
+<p>인터페이스</p>
+<div class="table-wrapper"><table><thead><tr><th>인터페이스</th><th>설명</th><th>비고</th></tr></thead><tbody>
+<tr><td>QR-MPM</td><td>SP가 QR을 제시하고 holder가 촬영</td><td></td></tr>
+<tr><td>App2pp</td><td>Holder의 동일 스마트폰에 신분증앱과 SP용 서비스 앱간 직접 통신</td><td></td></tr>
+<tr><td>QR-CPM</td><td>Holder가 QR을 제시하고 SP가 촬영</td><td>전자출입명부와 같은 방식</td></tr>
+</tbody></table>
+</div>
+<p>송신모드</p>
+<div class="table-wrapper"><table><thead><tr><th><strong>모드</strong></th><th><strong>설명</strong></th><th><strong>비고</strong></th></tr></thead><tbody>
+<tr><td><strong>direct</strong></td><td>verifier서버에 VP 직접 제출</td><td></td></tr>
+<tr><td><strong>indirect</strong></td><td><strong>App2App</strong> : 서비스앱으로 VP 제출</td><td></td></tr>
+<tr><td><strong>proxy</strong></td><td>QR-CPM 이거나, verifier서버와의 통신이 불가하여 중계서버를 이용하고자 하는 경우</td><td>웹소켓 연결</td></tr>
+</tbody></table>
+</div>
+<h3 id="123-수집정보claim"><a class="header" href="#123-수집정보claim">1.2.3. 수집정보(Claim)</a></h3>
+<h4 id="1231-claim-리스트"><a class="header" href="#1231-claim-리스트">1.2.3.1 Claim 리스트</a></h4>
+<p>SP는Holder에게 다음의 정보(Claim)를 VP로 제출하도록 요청할 수 있다.</p>
+<p><strong>[운전면허증VC]</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>코드</th><th>이름</th><th>타입</th><th>예시</th></tr></thead><tbody>
+<tr><td>name</td><td>이름</td><td>string</td><td>&quot;홍길동&quot;</td></tr>
+<tr><td>ihidnum</td><td>주민등록번호</td><td>string</td><td>&quot;8601021111111&quot;</td></tr>
+<tr><td>address</td><td>주소</td><td>string</td><td>&quot;서울특별시종로구 XX대로 103&quot;</td></tr>
+<tr><td>birth</td><td>생년월일</td><td>string</td><td>&quot;860102&quot;</td></tr>
+<tr><td>dlno</td><td>운전면허증번호</td><td>string</td><td>&quot;10-20-123456-11&quot;</td></tr>
+<tr><td>asort</td><td>면허종별</td><td>(구분자사용)</td><td>string</td></tr>
+<tr><td>inspctbegend</td><td>적성검사시작,종료일자(구분자사용)</td><td>string</td><td>&quot;20220101,20221231&quot;</td></tr>
+<tr><td>issude</td><td>발급일자</td><td>string</td><td>&quot;20141010&quot;</td></tr>
+<tr><td>locpanm</td><td>지방경찰청명의</td><td>string</td><td>&quot;서울경찰청장&quot;</td></tr>
+<tr><td>passwordsn</td><td>암호일련번호</td><td>string</td><td>&quot;A1XY28&quot;</td></tr>
+<tr><td>inorgdonnyn</td><td>장기기증여부(구분사용)</td><td>string</td><td>&quot;Y&quot;</td></tr>
+<tr><td>dlphotoimage</td><td>운전면허증사진이미지</td><td>hexstring</td><td>&quot;2f396a...6b3d&quot;</td></tr>
+<tr><td>lcnscndcdnm</td><td>면허조건명(구분자사용)</td><td>string</td><td>&quot;A,D&quot;</td></tr>
+</tbody></table>
+</div>
+<p><strong>[영지식VC]</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>코드</th><th>이름</th><th>설명</th></tr></thead><tbody>
+<tr><td>zkpaddr</td><td>영지식주소(시/군/구/동)</td><td>상세주소</td></tr>
+<tr><td>zkpsex</td><td>영지식</td><td>성별</td></tr>
+<tr><td>zkpasort</td><td>영지식</td><td>면허종별(구분자사용)</td></tr>
+<tr><td>zkpbirth</td><td>영지식</td><td>생년월일</td></tr>
+</tbody></table>
+</div>
+<h3 id="1232-제출-방식"><a class="header" href="#1232-제출-방식">1.2.3.2. 제출 방식</a></h3>
+<p>서비스신청서에 제출받을 claim을 선택하여 기재한다. VP 제출 방식은 다음 2가지가 있다.
+※일반 VC와 영지식 VC를 섞어서 제출할 수 없음</p>
+<ul>
+<li>일반VP
+<ul>
+<li>운전면허증VC에서 제출받을 claim을 선택</li>
+</ul>
+</li>
+<li>Holder의DID와 서명이 포함되므로 제출자 식별이 가능</li>
+<li>영지식VP
+<ul>
+<li>영지식VC에서 제출받을 claim을 선택</li>
+<li>Holder정보가 전혀 포함되지 않아 제출자 식별이 불가능</li>
+<li>예를들어, &quot;영지식 생년월일(zkpbirth)&quot;을 제출받을 경우 SP가 제시한 기준일보다 이전에 태어났는지 파악 가능</li>
+</ul>
+</li>
+</ul>
+<h3 id="1233-서비스-코드"><a class="header" href="#1233-서비스-코드">1.2.3.3. 서비스 코드</a></h3>
+<p>SP는 서비스 별로 제출받을 claim을 지정하여 1개 이상의 서비스 신청이 가능하다. 예를 들어,</p>
+<ul>
+<li>서비스#1
+<ul>
+<li>이름: 신원확인 서비스</li>
+<li>Claims: 이름, 주민등록번호, 주소, 운전면허증사진이미지</li>
+</ul>
+</li>
+<li>서비스#2
+<ul>
+<li>이름: 운전면허 자격확인 서비스</li>
+<li>Claims: 이름, 운전면허증번호, 면허종별, 발급일자, 암호일련번호 </li>
+</ul>
+</li>
+</ul>
+<p>※ 단, 주민등록번호를 제출받으려면 해당 SP는 주민등록번호 수집이 가능한 기관이어야 함</p>
+<h3 id="124-인증방식"><a class="header" href="#124-인증방식">1.2.4. 인증방식</a></h3>
+<p>Holder는 SP에게 VP를 제출하기 위해 제출동의 및 인증을 수행하여야 한다. 인증에는 다음의 방식이 있다.</p>
+<div class="table-wrapper"><table><thead><tr><th>인증방식</th><th>설명</th><th>비고</th></tr></thead><tbody>
+<tr><td>PIN</td><td>비밀번호 인증</td><td></td></tr>
+<tr><td>BIO</td><td>생체인증: 지문(Android),FaceID(iOS)</td><td>운영체제에 따라 다름</td></tr>
+<tr><td>FACE</td><td>안면인식</td><td>운전면허증의 사진과 비교</td></tr>
+</tbody></table>
+</div>
+<p>인증방식은 1개 이상 다중선택이 가능하며, 서비스코드 별로 인증방식을 지정하여야 한다.</p>
+<div style="break-before: page; page-break-before: always;"></div><h3 id="2-준비-사항"><a class="header" href="#2-준비-사항">2. 준비 사항</a></h3>
+<h3 id="21-수행단-제공-서버-정보"><a class="header" href="#21-수행단-제공-서버-정보">2.1. 수행단 제공 서버 정보</a></h3>
+<p>서비스 제공에 필요한 서버는 다음과 같다.</p>
+<div class="table-wrapper"><table><thead><tr><th>서버</th><th>IP</th><th>포트</th><th>설명</th></tr></thead><tbody>
+<tr><td>(개발)읽기노드</td><td>103.4.48.153</td><td>18888</td><td>SSL 미적용</td></tr>
+<tr><td>(개발)중계서버</td><td>103.4.48.154</td><td>9090</td><td>SSL 미적용, WebSocket 연결</td></tr>
+</tbody></table>
+</div>
+<p><span style="color:red">SP서버에서 접속이 가능하도록 방화벽 설정을 미리 해 두어야 한다. </span></p>
+<h3 id="211-읽기노드-접속-확인"><a class="header" href="#211-읽기노드-접속-확인">2.1.1. 읽기노드 접속 확인</a></h3>
+<h4 id="2111-curl-이용"><a class="header" href="#2111-curl-이용">2.1.1.1. curl 이용</a></h4>
+<pre><code class="language-console">1 | $ curl -v http://103.4.48.153:18888/v1/chain/get_info 
+2 | * Trying 103.4.48.153...
+3 | * TCP_NODELAY set
+4 | * Connected to 103.4.48.153 (103.4.48.153) port 18888 (#0) 
+5 | &gt; GET /v1/chain/get_info HTTP/1.1
+6 | &gt; Host: 103.4.48.153:18888
+7 | &gt; User-Agent: curl/7.55.1
+8 | &gt; Accept: */*
+9 | &gt; 
+10| &lt; HTTP/1.1 200 OK 
+11| &lt; Access-Control-Allow-Headers: * 
+12| &lt; Access-Control-Allow-Origin: * 
+13| &lt; Connection: close 
+14| &lt; Content-Length: 793 
+15| &lt; Content-type: application/json 
+16| &lt; Server: WebSocket++/0.7.0
+17| &lt; 
+18| {&quot;server_version&quot;:&quot;0d87dff8&quot;,&quot;chain_id&quot;:&quot;101ece14e68c7a5c47565f352bfe4633457f71b4452c
+ddd81f5c11b221cccddb&quot;,&quot;head_block_num&quot;:4801403,&quot;last_irreversible_block_num&quot;:4801362, &quot;last_irreversible_block_id&quot;:&quot;00494352907a0ce8525167f500be7bf64df8b3db6f8996d903080a0 165f6eca2&quot;,&quot;head_block_id&quot;:&quot;0049437bbe3f10cea9b1c65bad14c2895dd422369a0079c5190758500 09560b3&quot;,&quot;head_block_time&quot;:&quot;2021-11-23T07:57:56.000&quot;,&quot;head_block_producer&quot;:&quot;producer1 &quot;,&quot;virtual_block_cpu_limit&quot;:200000000,&quot;virtual_block_net_limit&quot;:1048576000,&quot;block_cpu _limit&quot;:200000,&quot;block_net_limit&quot;:1048576,&quot;server_version_string&quot;:&quot;v2.0.7&quot;,&quot;fork_db_he ad_block_num&quot;:4801403,&quot;fork_db_head_block_id&quot;:&quot;0049437bbe3f10cea9b1c65bad14c2895dd422 369a0079c519075850009560b3&quot;,&quot;server_full_version_string&quot;:&quot;v2.0.7-0d87dff8bee56179aa01 472dd00a089b2aa7b9fa-dirty&quot;}
+ * Closing connection 0
+</code></pre>
+<h3 id="2-1-1-2-브라우저-이용"><a class="header" href="#2-1-1-2-브라우저-이용">2-1-1-2 브라우저 이용</a></h3>
+<p>웹 브라우저에 아래 URL을 입력하여 응답 데이터를 확인한다.</p>
+<pre><code class="language-console">1 | http://103.4.48.153:18888/v1/chain/get_info
+</code></pre>
+<p><img src="spmanual/./img/2.1.1.2-url2.png" alt="url2_img" /> </p>
+<h3 id="2-1-2-중계서버-접속-확인"><a class="header" href="#2-1-2-중계서버-접속-확인">2-1-2. 중계서버 접속 확인</a></h3>
+<h4 id="2121-curl-이용"><a class="header" href="#2121-curl-이용">2.1.2.1. curl 이용</a></h4>
+<pre><code class="language-console">1 | $ curl -v http://103.4.48.154:9090/proxyServer 
+2 | * Trying 103.4.48.154...
+3 | * TCP_NODELAY set
+4 | * Connected to 103.4.48.154 (103.4.48.154) port 9090 (#0) 
+5 | &gt; GET /proxyServer HTTP/1.1
+6 | &gt; Host: 103.4.48.154:9090
+7 | &gt; User-Agent: curl/7.55.1
+8 | &gt; Accept: */*
+9 | &gt; 
+10| &lt; HTTP/1.1 302 Found
+11| &lt; Date: Tue, 23 Nov 2021 08:02:02 GMT
+12| &lt; Location: http://103.4.48.154:9090/proxyServer/ 
+13| &lt; Content-Length: 0
+14| &lt; Server: Jetty(9.4.43.v20210629)
+15| &lt; 
+16| * Connection #0 to host 103.4.48.154 left int
+
+</code></pre>
+<h4 id="2122-브라우저-이용"><a class="header" href="#2122-브라우저-이용">2.1.2.2. 브라우저 이용</a></h4>
+<pre><code class="language-console">1 | http://103.4.48.154:9090/proxyServer/
+</code></pre>
+<p><img src="spmanual/./img/brower_2.1.2.2-2.png" alt="mpm" /> </p>
+<div style="break-before: page; page-break-before: always;"></div><h3 id="3-연계절차"><a class="header" href="#3-연계절차">3. 연계절차</a></h3>
+<p>모바일 신분증 서비스 신청 및 등록 절차는 다음 그림과 같다. </p>
+<p><img src="spmanual/./img/3-Verifier (SP).png"alt="url_img" /> </p>
+<h3 id="31-wallet-did-생성"><a class="header" href="#31-wallet-did-생성">3.1. Wallet, DID 생성</a></h3>
+<p>Wallet과 DID는 수행단이 제공한 CLI 툴을 이용한다. Wallet은 생성된 키를 암호화하여 저장하는 파일이므로 SP가 안전하게 보관하여야 한다. CLI 툴로 생성한 DID는 sp.did(생성 시 파일명 지정 가능)라는 파일에 로컬로만 만들어지는 것이므로 이를 블록체인에 등록하여야만 실제 사용이 가능하다. DID 등록은 Admin 권한을 가진 자만 가능하므로 수행단에 제출하여 등록 을 의뢰하여야 한다.</p>
+<p>CLI 툴은 윈도우와 리눅스 운영체제에서 모두 실행이 가능하며 각각 아래의 단축 명령을 이용한다. </p>
+<ul>
+<li>윈도우: omni-cli.bat</li>
+<li>리눅스: <span style="color:blue">omni-cli.sh</span></li>
+</ul>
+<p>매 명령 실행 시마다 동일한 입력을 생략하기 위해 <span style="color:purple">omni-cli.properties</span>에 이를 등록할 수 있다. 설정은 아래와 같다.</p>
+<p><img src="spmanual/./img/3.1.png" alt="url_img" /> </p>
+<p>Wallet 암호는 보안을 위하여 매번 실행 시마다 입력하는 것을 권장한다.(-p 옵션을 주면 명령 실행 전 암호 입력) 그러므로 최 초 생성 시 적용한 암호는 잘 기억해 두어야 한다.</p>
+<h3 id="311-wallet-생성"><a class="header" href="#311-wallet-생성">3.1.1. Wallet 생성</a></h3>
+<pre><code class="language-console">1 | &gt; omni-cli.bat keymanager createstore -p
+2 |
+3 | Enter value for --keymanagerpass (keymanager password): 
+4 | create call
+5 | Command: keymanger-&gt;createstore
+6 | keymanagerType DEFAULT
+7 | KeyStore Generate Success:sp.wallet
+
+</code></pre>
+<p><span style="color:purple">sp.wallet</span> 파일이 생성 되었음을 확인한다.</p>
+<h3 id="312-ecc-키쌍-생성"><a class="header" href="#312-ecc-키쌍-생성">3.1.2. ECC 키쌍 생성</a></h3>
+<p>서명용 ECC 키쌍을 생성하고 키 이름을 <span style="color:purple">omni.sp</span>로 지정한다. 이름은 자유롭게 변경이 가능하며 Verifier SDK 사용 시 설정파 일에 이 이름을 지정하면 된다.</p>
+<pre><code class="language-console">1 | &gt; omni-cli.bat keymanager addkey -i omni.sp --keytype 0 -p 
+2 |
+3 | Enter value for --keymanagerpass (keymanager password):
+4 | Command: keymanger-&gt;addkey
+5 | keymanagerType DEFULT
+6 | Unlock Success
+7 | SECP256k1 key create
+8 | Base58! = zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj
+9 | HEX! = 0351aeb61260dd8b4c2090a470a52bcdc0470f40c68c637ceaaf8cdca334a096f6
+</code></pre>
+<ul>
+<li>-i: 키 인덱스
+<ul>
+<li>향후 이 키를 참조할 때 사용할 이름</li>
+</ul>
+</li>
+<li>--keytype: 키 종류 
+<ul>
+<li>0: ECC 키쌍 </li>
+<li>1: RSA 키쌍</li>
+</ul>
+</li>
+</ul>
+<h3 id="313-rsa-키쌍-생성"><a class="header" href="#313-rsa-키쌍-생성">3.1.3. RSA 키쌍 생성</a></h3>
+<p>암호화용 RSA 키쌍을 생성하고 키 이름을 omni.sp.rsa로 지정한다. 이름은 자유롭게 변경이 가능하며 Verifier SDK 사용 시 설정파일에 이 이름을 지정하면 된다.</p>
+<pre><code class="language-console">1 &gt; omni-cli.bat keymanager addkey -i omni.sp.rsa --keytype 1 -p 
+2
+3 Enter value for --keymanagerpass (keymanager password):
+4 Command: keymanger-&gt;addkey
+5 keymanagerType DEFULT
+6 Unlock Success
+7 SECP256k1 key create
+8 Base58! = zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj
+9 HEX! = 0351aeb61260dd8b4c2090a470a52bcdc0470f40c68c637ceaaf8cdca334a096f6
+
+</code></pre>
+<ul>
+<li>-i: 키 인덱스
+<ul>
+<li>향후 이 키를 참조할 때 사용할 이름</li>
+</ul>
+</li>
+<li>--keytype: 키 종류 
+<ul>
+<li>0: ECC 키쌍 </li>
+<li>1: RSA 키쌍</li>
+</ul>
+</li>
+</ul>
+<h3 id="314-키-목록-확인"><a class="header" href="#314-키-목록-확인">3.1.4. 키 목록 확인</a></h3>
+<pre><code class="language-console">1 | &gt; omni-cli.bat keymanager list -p
+2 |
+3 | Enter value for --keymanagerpass (keymanager password):
+4 | Command: keymanger-&gt;list
+5 | keymanagerType DEFULT
+6 | Unlock Success
+7 | Key Size: 2
+8 | Index1-KeyID:omni.sp
+9 | Index1-PublicKey:zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj
+10| Index2-KeyID:omni.sp.rsa
+11| Index2-PublicKey:2TuPVgMCHJy5atawrsADEzjP7MCVbyyCA89UW6Wvjp9HrBayS3H4kT7RvSwrmodxQXyi
+vW2R9wPXs166oTT27GirNbmpCPUGMofAhXv265oCwwGkDLpvR1NW23fjv9uEb8r6bJr4TcKxE6jGTnJ9GAEKn zDwFvrHoypnoneMfhdToPdmL5W3YAs7ojXKHCzL54ULoSyUndy5M3njgW1gffAbtMwMN5sBtbHhnPwyMNZcG3 DHb2epW4w2C9zYfgNQYfcVXeWeHC7VpgV32ZUJk3HLZMH3WaAYA52rSwmHVmn7NrLYsAmb34nWgpUSDK2tU2P wMjFmADGWNbr99gVXYujCYDKLrzvNU5J3ogFd6HkqPkJNiQvn7CxPTJ1v1774XASKgv8B7L8bENbNnU
+
+</code></pre>
+<h3 id="315-did-document-생성"><a class="header" href="#315-did-document-생성">3.1.5. DID Document 생성</a></h3>
+<p>DID Document를 생성하고 서명용 ECC 공개키를 추가한다.</p>
+<pre><code class="language-console"> 1 | &gt; omni-cli.bat did2 create -i omni.sp --keymethod 3 -s sp.did --controller did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab -p 
+ 2 | 
+ 3 | Enter value for --keymanagerpass (keymanager password): 
+ 4 | new did create call
+ 5 | Command: v2-&gt;create
+ 6 | keymanagerType DEFULT
+ 7 | {
+ 8 | 	&quot;authentication&quot;: [
+ 9 | 	{
+ 10| 		&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp&quot;
+ 11| 	} 
+ 12| 	],
+ 13| 	&quot;controller&quot;: &quot;did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab&quot;, 
+ 14| 	&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ&quot;, 
+ 15| 	&quot;proof&quot;: {
+ 16| 		&quot;created&quot;: &quot;2021-11-23T20:35:37&quot;,
+ 17| 		&quot;creator&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp&quot;,
+ 18| 		&quot;nonce&quot;: &quot;99933519f4f50ff1111292b9234d1641ccc0f643&quot;,
+ 19| 		&quot;signatureValue&quot;: &quot;3rbzFqkcYRQkjbwtPFhb9VvekhwVja7amzm4pNqqXqHGBV5tZUVM8rB8KYyFoCKpyv6tSPUtRcZZvaV8HUtf9VcWT&quot;,
+ 20| 		&quot;type&quot;: &quot;Secp256k1VerificationKey2018&quot;
+ 21| 		},
+ 22| 		&quot;updated&quot;: &quot;2021-11-23T20:35:37&quot;, &quot;verificationMethod&quot;: [
+ 23| 		{
+ 24| 		&quot;controller&quot;: &quot;did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab&quot;, &quot;expirationDate&quot;: &quot;2021-12-03T23:59:59&quot;,
+ 25| 		&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp&quot;, &quot;publicKeyBase58&quot;: &quot;zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj&quot;, &quot;status&quot;: &quot;valid&quot;,
+ 26| 		&quot;type&quot;: &quot;Secp256k1VerificationKey2018&quot;
+ 27| 		} 
+ 28| 	]
+ 29| 	}
+ 30| DidDocument Save: sp.did
+
+</code></pre>
+<ul>
+<li>-i
+<ul>
+<li>서명용 ECC 키 인덱스 </li>
+</ul>
+</li>
+<li>--keymethod
+<ul>
+<li>3으로 고정 </li>
+</ul>
+</li>
+<li>-s
+<ul>
+<li>생성할 DID Document 파일명</li>
+<li>원하는 파일명으로 생성 가능</li>
+</ul>
+</li>
+<li>--controller
+<ul>
+<li>DID Document 수정 권한을 가진 DID id</li>
+<li>개발환경에서는 did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab로 고정</li>
+</ul>
+</li>
+</ul>
+<h3 id="316-did-document에-rsa-공개키-추가"><a class="header" href="#316-did-document에-rsa-공개키-추가">3.1.6. DID Document에 RSA 공개키 추가</a></h3>
+<p>Wallet에 있는 암호용 RSA 공개키를 DID Document에 추가한다.</p>
+<pre><code class="language-console"> 1 | &gt; omni-cli.bat did2 addkey -i omni.sp.rsa --keymethod 4 -f sp.did -p
+ 2 | 
+ 3 | Enter value for --keymanagerpass (keymanager password): 
+ 4 | DID addkey Call......
+ 5 | Command: v2-&gt;addkey
+ 6 | keymanagerType DEFULT
+ 7 | Unlock Success 
+ 8 | {
+ 9 | 	&quot;authentication&quot;: [ 
+ 10| 		{
+ 11| 			&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp&quot; 
+ 12| 			}
+ 13| 		],
+ 14| 		&quot;controller&quot;: &quot;did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab&quot;, 
+ 15| 		&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ&quot;, 
+ 16| 		&quot;keyAgreement&quot;: [
+ 17| 			{
+ 18| 			&quot;controller&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ&quot;,
+ 19| 			&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp.rsa&quot;, 
+ 20| 			&quot;publicKeyBase58&quot;: &quot;2TuPVgMCHJy5atawrsADEzjP7MCVbyyCA89UW6Wvjp9HrBayS3H4kT7RvSw
+ 21| rmodxQXyivW2R9wPXs166oTT27GirNbmpCPUGMofAhXv265oCwwGkDLpvR1NW23fjv9uEb8r6bJr4TcKxE6jG TnJ9GAEKnzDwFvrHoypnoneMfhdToPdmL5W3YAs7ojXKHCzL54ULoSyUndy5M3njgW1gffAbtMwMN5sBtbHhn PwyMNZcG3DHb2epW4w2C9zYfgNQYfcVXeWeHC7VpgV32ZUJk3HLZMH3WaAYA52rSwmHVmn7NrLYsAmb34nWgp USDK2tU2PwMjFmADGWNbr99gVXYujCYDKLrzvNU5J3ogFd6HkqPkJNiQvn7CxPTJ1v1774XASKgv8B7L8bENb NnU&quot;,
+ 22| 		&quot;status&quot;: &quot;valid&quot;,
+ 23| 		&quot;type&quot;: &quot;RSAEncryptionKey&quot; 
+ 24| 		}
+ 25| 		], 
+ 26| 		&quot;proof&quot;: {
+ 27| 			&quot;created&quot;: &quot;2021-11-23T21:04:10&quot;,
+ 28| 			&quot;creator&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp&quot;,
+ 29| 			&quot;nonce&quot;: &quot;5c25cd7a5e703adb07889e32543fe782d5c5dd20&quot;,
+ 30| 			&quot;signatureValue&quot;: &quot;3rA4HzUDuN1FMBxeFgsNb9z3TPqSzDTSo91TYWpQvJc6w3HNauvT1Y7TjoSJQu
+ 31| 			7MNsByyGirWsv9BNTtxHEw7y9Ag&quot;,
+ 32| 			&quot;type&quot;: &quot;Secp256k1VerificationKey2018&quot;
+ 33| 			},
+ 34| 		&quot;updated&quot;: &quot;2021-11-23T21:04:10&quot;, &quot;verificationMethod&quot;: [
+ 35| 			{
+ 36| 			&quot;controller&quot;: &quot;did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab&quot;, 
+ 37| 			&quot;expirationDate&quot;: &quot;2021-12-03T23:59:59&quot;,
+ 38| 			&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp&quot;, 
+ 39| 			&quot;publicKeyBase58&quot;: &quot;zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj&quot;, 
+ 40| 			&quot;status&quot;: &quot;valid&quot;,
+ 41| 			&quot;type&quot;: &quot;Secp256k1VerificationKey2018&quot;
+ 42| 			}
+ 43| 		]
+ 44| 	}
+ 45| DidDocument Save: sp.did
+ 46| 
+</code></pre>
+<p>-i
+암호화용 RSA 키 인덱스 --keymethod
+4로 고정 -f
+DID Document 파일명 3.2. 신청서 작성
+첨부의 모바일신분증 SP 서비스 신청서.hwpx 파일을 서비스 별로 작성한다. [예시]</p>
+<ol>
+<li>모바일신분증 SP 서비스 신청서 - A 서비스.hwpx (p.1)1.기업 정보 ~10.담당자 정보 모두 작성 (p.2) 동의서 작성</li>
+<li>모바일신분증 SP 서비스 신청서 - B 서비스.hwpx
+(p.1) 2. 연계서비스 정보 ~ 4. 인증방식 부분만 작성
+3.3. 신청서 이메일 제출
+다음의 정보를 수행단 서비스연계 담당자에게 이메일로 제출한다. 제출 정보</li>
+<li>DID Document
+sp.did 파일 (파일명은 다를 수 있음)
+13</li>
+<li>서비스 신청서 담당자 연락처
+이재영 이사 - jylee@raoncorp.com 3.4. 검증서버 적용
+수행단에 의해 서비스 등록이 완료되면 다음의 정보를 이메일로 수신한다. 1. Verifier의 블록체인 계정</li>
+<li>서비스코드 (서비스 별)
+상기의 정보를 Verifier SDK 개발자에게 전달하여 코드에 적용한다. 자세한 사항은 Verifier SDK API 매뉴얼 문서를 참조한다.<code>:</code></li>
+</ol>
 
                     </main>
 
@@ -3541,46 +4165,30 @@ fn main() {
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
-        <script type="text/javascript">
+        <script>
             window.playground_copyable = true;
         </script>
 
-        <script src="ace.js" type="text/javascript" charset="utf-8"></script>
-        <script src="editor.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mode-rust.js" type="text/javascript" charset="utf-8"></script>
-        <script src="theme-dawn.js" type="text/javascript" charset="utf-8"></script>
-        <script src="theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+        <script src="ace.js"></script>
+        <script src="editor.js"></script>
+        <script src="mode-rust.js"></script>
+        <script src="theme-dawn.js"></script>
+        <script src="theme-tomorrow_night.js"></script>
 
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
 
-        <script type="text/javascript">
+        <script>
         window.addEventListener('load', function() {
             window.setTimeout(window.print, 100);
         });
