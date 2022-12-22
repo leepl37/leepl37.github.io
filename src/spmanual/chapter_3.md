@@ -5,16 +5,84 @@
 <p><img src="./img/3-Verifier (SP).png"alt="url_img" /> </p>
 
 ### 3.1. Wallet, DID 생성
-Wallet과 DID는 수행단이 제공한 CLI 툴을 이용한다. Wallet은 생성된 키를 암호화하여 저장하는 파일이므로 SP가 안전하게 보관하여야 한다. CLI 툴로 생성한 DID는 sp.did(생성 시 파일명 지정 가능)라는 파일에 로컬로만 만들어지는 것이므로 이를 블록체인에 등록하여야만 실제 사용이 가능하다. DID 등록은 Admin 권한을 가진 자만 가능하므로 수행단에 제출하여 등록 을 의뢰하여야 한다.
+
+Wallet과 DID는 수행단이 제공한 CLI 툴을 이용한다. Wallet은 생성된 키를 암호화하여 저장하는 파일이므로 SP가 안전하게 보관하여야 한다. CLI 툴로 생성한 DID는 sp.did(생성 시 파일명 지정 가능)라는 파일에 로컬로만 만들어지는 것이므로 이를 블록체인에 등록하여야만 실제 사용이 가능하다. DID 등록은 Admin 권한을 가진 자만 가능하므로 수행단에 제출하여 등록을 의뢰하여야 한다.
+
+
+Wallet&DID 생성 파일 다운로드링크 [생성파일](https://dev.mobileid.go.kr/mip/dfs/downapi/useguidedown.do)
+- SP 서버 Wallet&DID 생성 가이드 클릭 후 다운로드.
 
 
 CLI 툴은 윈도우와 리눅스 운영체제에서 모두 실행이 가능하며 각각 아래의 단축 명령을 이용한다. 
 * 윈도우: omni-cli.bat
 * 리눅스: <span style="color:blue">omni-cli.sh</span>
 
-매 명령 실행 시마다 동일한 입력을 생략하기 위해 <span style="color:purple">omni-cli.properties</span>에 이를 등록할 수 있다. 설정은 아래와 같다.
 
-<p><img src="./img/3.1.png" alt="url_img" /> </p>
+
+#### 개발/운영 구분에 따라 controller DID 변경
+
+* 개발 : did:kr:mobileid:3pnuR77qKLZWnu4kaw4qmVtGcoZt
+
+* 운영 : did:kr:mobileid:4VmgGJ3geNyyKRKupXDiCkw1kKw5
+
+
+
+#### -- for Linux
+---------------------------------------------------------------------------------
+
+```console
+
+// Wallet 생성 => sp.wallet
+
+./omni-cli.sh keymanager createstore -p
+./omni-cli.sh keymanager addkey -i omni.sp --keytype 0 -p
+./omni-cli.sh keymanager addkey -i omni.sp.rsa --keytype 1 -p
+./omni-cli.sh keymanager list -p
+
+
+// DID Document 생성 (controller did 수정 금지) => sp.did   *controller did 값은 위에 입력된 개발과 운영에 따라 구분하여 입력함
+
+./omni-cli.sh did2 create -i omni.sp --keymethod 3 -s sp.did --controller did:kr:mobileid:3pnuR77qKLZWnu4kaw4qmVtGcoZt -p
+// 키(RSA) 추가 
+./omni-cli.sh did2 addkey -i omni.sp.rsa --keymethod 4 -f sp.did -p
+
+// 패스워드 변경시
+./omni-cli.sh keymanager changepwd -m example_op.wallet -p -n
+```
+
+#### -- for Windows
+---------------------------------------------------------------------------------
+
+```console
+
+// Wallet 생성 => sp.wallet
+
+omni-cli.bat keymanager createstore -p
+omni-cli.bat keymanager addkey -i omni.sp --keytype 0 -p
+omni-cli.bat keymanager addkey -i omni.sp.rsa --keytype 1 -p
+omni-cli.bat keymanager list -p
+
+
+
+// DID Document 생성 (controller did 수정 금지) => sp.did   *controller did 값은 위에 입력된 개발과 운영에 따라 구분하여 입력함
+
+omni-cli.bat did2 create -i omni.sp --keymethod 3 -s sp.did --controller did:kr:mobileid:3pnuR77qKLZWnu4kaw4qmVtGcoZt -p
+// 키(RSA) 추가 
+omni-cli.bat did2 addkey -i omni.sp.rsa --keymethod 4 -f sp.did -p
+
+// 패스워드 변경시
+omni-cli.bat keymanager changepwd -m example_op.wallet -p -n
+
+
+```
+
+
+위 설명은 약식으로 나타낸 것이고 자세한 일련의 절차는 아래와 같다. 
+
+
+
+-- 필요한 문장인가 ?
+매 명령 실행 시마다 동일한 입력을 생략하기 위해 <span style="color:purple">omni-cli.properties</span>에 이를 등록할 수 있다. 설정은 아래와 같다.
 
 Wallet 암호는 보안을 위하여 매번 실행 시마다 입력하는 것을 권장한다.(-p 옵션을 주면 명령 실행 전 암호 입력) 그러므로 최 초 생성 시 적용한 암호는 잘 기억해 두어야 한다.
 ### 3.1.1. Wallet 생성
@@ -23,7 +91,7 @@ Wallet 암호는 보안을 위하여 매번 실행 시마다 입력하는 것을
 1 | > omni-cli.bat keymanager createstore -p
 2 |
 3 | Enter value for --keymanagerpass (keymanager password): 
-4 | create call
+4 | create call/
 5 | Command: keymanger->createstore
 6 | keymanagerType DEFAULT
 7 | KeyStore Generate Success:sp.wallet
@@ -88,8 +156,12 @@ Wallet 암호는 보안을 위하여 매번 실행 시마다 입력하는 것을
 8 | Index1-KeyID:omni.sp
 9 | Index1-PublicKey:zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj
 10| Index2-KeyID:omni.sp.rsa
-11| Index2-PublicKey:2TuPVgMCHJy5atawrsADEzjP7MCVbyyCA89UW6Wvjp9HrBayS3H4kT7RvSwrmodxQXyi
-vW2R9wPXs166oTT27GirNbmpCPUGMofAhXv265oCwwGkDLpvR1NW23fjv9uEb8r6bJr4TcKxE6jGTnJ9GAEKn zDwFvrHoypnoneMfhdToPdmL5W3YAs7ojXKHCzL54ULoSyUndy5M3njgW1gffAbtMwMN5sBtbHhnPwyMNZcG3 DHb2epW4w2C9zYfgNQYfcVXeWeHC7VpgV32ZUJk3HLZMH3WaAYA52rSwmHVmn7NrLYsAmb34nWgpUSDK2tU2P wMjFmADGWNbr99gVXYujCYDKLrzvNU5J3ogFd6HkqPkJNiQvn7CxPTJ1v1774XASKgv8B7L8bENbNnU
+11| Index2-PublicKey:
+  | 2TuPVgMCHJy5atawrsADEzjP7MCVbyyCA89UW6Wvjp9HrBayS3H4kT7RvSwrmodxQXyi
+  | vW2R9wPXs166oTT27GirNbmpCPUGMofAhXv265oCwwGkDLpvR1NW23fjv9uEb8r6bJr4TcKxE6jGTnJ9GAEKn 
+  | zDwFvrHoypnoneMfhdToPdmL5W3YAs7ojXKHCzL54ULoSyUndy5M3njgW1gffAbtMwMN5sBtbHhnPwyMNZcG3 
+  | DHb2epW4w2C9zYfgNQYfcVXeWeHC7VpgV32ZUJk3HLZMH3WaAYA52rSwmHVmn7NrLYsAmb34nWgpUSDK2tU2P 
+  | wMjFmADGWNbr99gVXYujCYDKLrzvNU5J3ogFd6HkqPkJNiQvn7CxPTJ1v1774XASKgv8B7L8bENbNnU
 
 ```
 
@@ -98,7 +170,8 @@ vW2R9wPXs166oTT27GirNbmpCPUGMofAhXv265oCwwGkDLpvR1NW23fjv9uEb8r6bJr4TcKxE6jGTnJ9
 DID Document를 생성하고 서명용 ECC 공개키를 추가한다.
 
 ```console
- 1 | > omni-cli.bat did2 create -i omni.sp --keymethod 3 -s sp.did --controller did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab -p 
+ 1 | > omni-cli.bat did2 create -i omni.sp --keymethod 3 -s sp.did 
+   |	--controller did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab -p 
  2 | 
  3 | Enter value for --keymanagerpass (keymanager password): 
  4 | new did create call
@@ -116,13 +189,17 @@ DID Document를 생성하고 서명용 ECC 공개키를 추가한다.
  16| 		"created": "2021-11-23T20:35:37",
  17| 		"creator": "did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp",
  18| 		"nonce": "99933519f4f50ff1111292b9234d1641ccc0f643",
- 19| 		"signatureValue": "3rbzFqkcYRQkjbwtPFhb9VvekhwVja7amzm4pNqqXqHGBV5tZUVM8rB8KYyFoCKpyv6tSPUtRcZZvaV8HUtf9VcWT",
+ 19| 		"signatureValue": "3rbzFqkcYRQkjbwtPFhb9VvekhwVja7amzm4pNqqXqHGBV5tZUVM8
+   |					rB8KYyFoCKpyv6tSPUtRcZZvaV8HUtf9VcWT",
  20| 		"type": "Secp256k1VerificationKey2018"
  21| 		},
  22| 		"updated": "2021-11-23T20:35:37", "verificationMethod": [
  23| 		{
- 24| 		"controller": "did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab", "expirationDate": "2021-12-03T23:59:59",
- 25| 		"id": "did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp", "publicKeyBase58": "zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj", "status": "valid",
+ 24| 		"controller": "did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab", 
+   |				"expirationDate": "2021-12-03T23:59:59",
+ 25| 		"id": "did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp", 
+   |		"publicKeyBase58": "zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj", 
+   |		"status": "valid",
  26| 		"type": "Secp256k1VerificationKey2018"
  27| 		} 
  28| 	]
@@ -170,10 +247,13 @@ Wallet에 있는 암호용 RSA 공개키를 DID Document에 추가한다.
  18| 			"controller": "did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ",
  19| 			"id": "did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp.rsa", 
  20| 			"publicKeyBase58": "2TuPVgMCHJy5atawrsADEzjP7MCVbyyCA89UW6Wvjp9HrBayS3H4kT7RvSw
- 21| rmodxQXyivW2R9wPXs166oTT27GirNbmpCPUGMofAhXv265oCwwGkDLpvR1NW23fjv9uEb8r6bJr4TcKxE6jG TnJ9GAEKnzDwFvrHoypnoneMfhdToPdmL5W3YAs7ojXKHCzL54ULoSyUndy5M3njgW1gffAbtMwMN5sBtbHhn PwyMNZcG3DHb2epW4w2C9zYfgNQYfcVXeWeHC7VpgV32ZUJk3HLZMH3WaAYA52rSwmHVmn7NrLYsAmb34nWgp USDK2tU2PwMjFmADGWNbr99gVXYujCYDKLrzvNU5J3ogFd6HkqPkJNiQvn7CxPTJ1v1774XASKgv8B7L8bENb NnU",
- 22| 		"status": "valid",
- 23| 		"type": "RSAEncryptionKey" 
- 24| 		}
+ 21| 			rmodxQXyivW2R9wPXs166oTT27GirNbmpCPUGMofAhXv265oCwwGkDLpvR1NW23fjv9uEb8r6bJr4TcKxE6jG 
+   | 			TnJ9GAEKnzDwFvrHoypnoneMfhdToPdmL5W3YAs7ojXKHCzL54ULoSyUndy5M3njgW1gffAbtMwMN5sBtbHhn 
+   |			PwyMNZcG3DHb2epW4w2C9zYfgNQYfcVXeWeHC7VpgV32ZUJk3HLZMH3WaAYA52rSwmHVmn7NrLYsAmb34nWgp 
+   | 			USDK2tU2PwMjFmADGWNbr99gVXYujCYDKLrzvNU5J3ogFd6HkqPkJNiQvn7CxPTJ1v1774XASKgv8B7L8bENb NnU",
+ 22| 			"status": "valid",
+ 23| 			"type": "RSAEncryptionKey" 
+ 24| 			}
  25| 		], 
  26| 		"proof": {
  27| 			"created": "2021-11-23T21:04:10",
@@ -189,7 +269,7 @@ Wallet에 있는 암호용 RSA 공개키를 DID Document에 추가한다.
  37| 			"expirationDate": "2021-12-03T23:59:59",
  38| 			"id": "did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp", 
  39| 			"publicKeyBase58": "zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj", 
- 40| 			"status": "valid",
+ 40|	 		"status": "valid",
  41| 			"type": "Secp256k1VerificationKey2018"
  42| 			}
  43| 		]
@@ -199,21 +279,40 @@ Wallet에 있는 암호용 RSA 공개키를 DID Document에 추가한다.
 ```
 
 
--i
-암호화용 RSA 키 인덱스 --keymethod
-4로 고정 -f
-DID Document 파일명 3.2. 신청서 작성
-첨부의 모바일신분증 SP 서비스 신청서.hwpx 파일을 서비스 별로 작성한다. [예시]
-1. 모바일신분증 SP 서비스 신청서 - A 서비스.hwpx (p.1)1.기업 정보 ~10.담당자 정보 모두 작성 (p.2) 동의서 작성
-2. 모바일신분증 SP 서비스 신청서 - B 서비스.hwpx
-(p.1) 2. 연계서비스 정보 ~ 4. 인증방식 부분만 작성
-3.3. 신청서 이메일 제출
-다음의 정보를 수행단 서비스연계 담당자에게 이메일로 제출한다. 제출 정보
-1. DID Document
-sp.did 파일 (파일명은 다를 수 있음)
-13
-2. 서비스 신청서 담당자 연락처
-이재영 이사 - jylee@raoncorp.com 3.4. 검증서버 적용
-수행단에 의해 서비스 등록이 완료되면 다음의 정보를 이메일로 수신한다. 1. Verifier의 블록체인 계정
-2. 서비스코드 (서비스 별)
-상기의 정보를 Verifier SDK 개발자에게 전달하여 코드에 적용한다. 자세한 사항은 Verifier SDK API 매뉴얼 문서를 참조한다.`:`
+* -i
+	* 암호화용 RSA 키 인덱스 
+* --keymethod
+	* 4로 고정 
+* -f
+	* DID Document 파일명 
+
+
+
+### 3.2. 신청서 작성
+
+신청서 양식 다운로드 : [개발지원센터](https://dev.mobileid.go.kr/mip/dfs/downapi/formdown.do).
+
+다운로드 후 신청서에 작성한다. 
+
+자세한 문의는 조폐공사 이승훈 과장에게 문의
+
+### 3.2.1 앱 테스트를 위한 엑셀파일 및 개인정보 동의서 작성
+
+앱 테스트를 위한 엑셀파일 작성
+
+개인정보 동의서 작성
+
+### 3.2.2 제출
+
+mid_apply@komsco.com 으로 생성한 DID 와 
+신청서, 개인정보 동의서, 작성된 엑셀을 제출한다.
+
+### 3.2.3 서비스코드와 sp계정 & 테스터 등록
+
+모바일신분증 운영단은 mid_apply@komsco.com 메일로 받은 did 파일을 블록체인 노드에 등록 후
+해당 did에 대한 서비스코드와 sp 계정을 회신한다. 
+
+모바일신분증 운영단은 mid_apply@komsco.com 메일로 받은 엑셀에 대한 정보를 가지고 앱을 다운로드 받을 수 있는
+링크를 전송하고 해당 데이터를 데이터베이스에 저장한다. 
+
+

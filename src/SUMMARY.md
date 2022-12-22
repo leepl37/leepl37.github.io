@@ -60,3 +60,4 @@
 	- [ch1](./spmanual/chapter_1.md)
 	- [ch2](./spmanual/chapter_2.md)
 	- [ch3](./spmanual/chapter_3.md)
+	- [ch4](./spmanual/chapter_4.md)
