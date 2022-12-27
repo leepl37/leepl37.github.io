@@ -61,7 +61,7 @@
 SP는 Holder에게 어떤 인터페이스와 송신모드로 VP를 제출받을지 미리 결정하여야 한다. 아래 표는 시범사업에서 선택 가능
 한 인터페이스와 송신모드 목록이다.
 
-<p><img src="./img/QR-MPM direct mode.png" alt="mpm" /> </p>
+<p><img src="./img/interface.png" alt="mpm" /> </p>
 
 
 

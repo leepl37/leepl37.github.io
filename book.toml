@@ -1,8 +1,8 @@
 [book]
 src = "src"
-title = "러스트 언어에 대한 지식 공유방"
-description = "rust by example 공식 홈페이지 번역 & 내 입맛에 맞게 주석" 
-author = "tony_lee"
+title = "tony's journey"
+description = "一切唯心造" 
+author = "tony"
 
 [output.html.playpen]
 editable = true

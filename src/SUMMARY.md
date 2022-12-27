@@ -3,6 +3,7 @@
 [Introduction](./README.md)
 
 
+- [aboutNvim&Linux](./aboutNvim/nvim.md)
 - [러스트 예제로 알아보기](./example/example.md)
 	- [Hello World 출력](./example/hello.md)
 		- [Comments, 주석](./example/hello/comment.md)
@@ -61,3 +62,5 @@
 	- [ch2](./spmanual/chapter_2.md)
 	- [ch3](./spmanual/chapter_3.md)
 	- [ch4](./spmanual/chapter_4.md)
+	- [ch5](./spmanual/chapter_5.md)
+	- [etc](./spmanual/etc.md)
