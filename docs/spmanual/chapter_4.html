@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>ch4 - tony&#x27;s journey</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="一切唯心造">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../index.html">Introduction</a></li><li class="chapter-item "><a href="../aboutNvim/nvim.html"><strong aria-hidden="true">1.</strong> aboutNvim&Linux</a></li><li class="chapter-item "><a href="../example/example.html"><strong aria-hidden="true">2.</strong> 러스트 예제로 알아보기</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/hello.html"><strong aria-hidden="true">2.1.</strong> Hello World 출력</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/hello/comment.html"><strong aria-hidden="true">2.1.1.</strong> Comments, 주석</a></li><li class="chapter-item "><a href="../example/hello/print.html"><strong aria-hidden="true">2.1.2.</strong> Formatted print, 출력에 관해</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/hello/debug_display.html"><strong aria-hidden="true">2.1.2.1.</strong> Debug & Display</a></li></ol></li><li class="chapter-item "><a href="../example/hello/testcase.html"><strong aria-hidden="true">2.1.3.</strong> TestCase: List(iter 개념과 Option 개념이 필요함)</a></li></ol></li><li class="chapter-item "><a href="../example/primitives.html"><strong aria-hidden="true">2.2.</strong> Primitives, 원시타입</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/primitives/arrays_and_slices.html"><strong aria-hidden="true">2.2.1.</strong> Arrays and Slices</a></li></ol></li><li class="chapter-item "><a href="../example/customtype.html"><strong aria-hidden="true">2.3.</strong> Custom Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/customtype/testcase.html"><strong aria-hidden="true">2.3.1.</strong> TestCase: linked-list</a></li><li class="chapter-item "><a href="../example/customtype/constants.html"><strong aria-hidden="true">2.3.2.</strong> constants</a></li></ol></li><li class="chapter-item "><a href="../example/variablebinding.html"><strong aria-hidden="true">2.4.</strong> Variable Bindings,변수 바인딩</a></li><li class="chapter-item "><a href="../example/types.html"><strong aria-hidden="true">2.5.</strong> Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/types/casting_literals.html"><strong aria-hidden="true">2.5.1.</strong> casting_and_literals</a></li><li class="chapter-item "><a href="../example/types/inference_aliasing.html"><strong aria-hidden="true">2.5.2.</strong> inference_and_aliasing</a></li></ol></li><li class="chapter-item "><a href="../example/conversion/conversion.html"><strong aria-hidden="true">2.6.</strong> Conversion</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/conversion/from_and_into.html"><strong aria-hidden="true">2.6.1.</strong> From and Into, tryFrom and tryInto</a></li><li class="chapter-item "><a href="../example/conversion/to_and_from_strings.html"><strong aria-hidden="true">2.6.2.</strong> To and from Strings</a></li></ol></li><li class="chapter-item "><a href="../example/expressions.html"><strong aria-hidden="true">2.7.</strong> Expressions</a></li><li class="chapter-item "><a href="../example/flowAndControl/flow_and_control.html"><strong aria-hidden="true">2.8.</strong> Flow and Control</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/flowAndControl/for_and_iter.html"><strong aria-hidden="true">2.8.1.</strong> for_and_iter</a></li><li class="chapter-item "><a href="../example/flowAndControl/match.html"><strong aria-hidden="true">2.8.2.</strong> match</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/flowAndControl/pointer_and_ref.html"><strong aria-hidden="true">2.8.2.1.</strong> pointers/ref</a></li><li class="chapter-item "><a href="../example/flowAndControl/guards_and_binding.html"><strong aria-hidden="true">2.8.2.2.</strong> Guards/Binding</a></li></ol></li><li class="chapter-item "><a href="../example/flowAndControl/if_let_and_while_let.html"><strong aria-hidden="true">2.8.3.</strong> if let / while let</a></li></ol></li><li class="chapter-item "><a href="../example/functions/about_funtions.html"><strong aria-hidden="true">2.9.</strong> Functions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/functions/methods.html"><strong aria-hidden="true">2.9.1.</strong> Methods</a></li><li class="chapter-item "><a href="../example/functions/closures/closures.html"><strong aria-hidden="true">2.9.2.</strong> Closures</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/functions/closures/capturing.html"><strong aria-hidden="true">2.9.2.1.</strong> Capturing</a></li><li class="chapter-item "><a href="../example/functions/closures/as_input_parameters.html"><strong aria-hidden="true">2.9.2.2.</strong> As input parameters</a></li><li class="chapter-item "><a href="../example/functions/closures/as_output_parameters.html"><strong aria-hidden="true">2.9.2.3.</strong> As output parameters</a></li><li class="chapter-item "><a href="../example/functions/closures/iterator_searching_thro_iter.html"><strong aria-hidden="true">2.9.2.4.</strong> Examples in std</a></li></ol></li></ol></li><li class="chapter-item "><a href="../example/modules/modules.html"><strong aria-hidden="true">2.10.</strong> Modules</a></li><li class="chapter-item "><a href="../example/crates/crates.html"><strong aria-hidden="true">2.11.</strong> Crates</a></li><li class="chapter-item "><a href="../example/cargo/cargo.html"><strong aria-hidden="true">2.12.</strong> Cargo</a></li><li class="chapter-item "><a href="../example/attributes/attributes.html"><strong aria-hidden="true">2.13.</strong> Attributes, 속성</a></li><li class="chapter-item "><a href="../example/generics/generics.html"><strong aria-hidden="true">2.14.</strong> Generics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/generics/generic_associated_phantom.html"><strong aria-hidden="true">2.14.1.</strong> Associated items & Phantom type parameters</a></li></ol></li><li class="chapter-item "><a href="../example/scoping/scoping.html"><strong aria-hidden="true">2.15.</strong> Scoping rules-오너쉽, 참조, 라이프타임</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/scoping/ownership_move_borrowing.html"><strong aria-hidden="true">2.15.1.</strong> Ownership Move Borrowing</a></li><li class="chapter-item "><a href="../example/scoping/lifetimes.html"><strong aria-hidden="true">2.15.2.</strong> Lifetimes</a></li></ol></li><li class="chapter-item "><a href="../example/traits.html"><strong aria-hidden="true">2.16.</strong> Traits</a></li><li class="chapter-item "><a href="../example/macro.html"><strong aria-hidden="true">2.17.</strong> macro</a></li></ol></li><li class="chapter-item "><a href="../rust_book/intro.html"><strong aria-hidden="true">3.</strong> Rust 책 정리</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust_book/generic_trait_lifetime.html"><strong aria-hidden="true">3.1.</strong> Generics Types, Traits, and Lifetimes</a></li></ol></li><li class="chapter-item "><a href="../dataStructureAndAlgorithms/intro.html"><strong aria-hidden="true">4.</strong> 데이터 구조와 알고리즘</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../dataStructureAndAlgorithms/section1.html"><strong aria-hidden="true">4.1.</strong> Section 1</a></li></ol></li><li class="chapter-item "><a href="../rustOS/intro.html"><strong aria-hidden="true">5.</strong> writing an OS in Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rustOS/freestandingRustBinary.html"><strong aria-hidden="true">5.1.</strong> A Freestanding Rust Binary</a></li></ol></li><li class="chapter-item expanded "><a href="../spmanual/start.html"><strong aria-hidden="true">6.</strong> SP MANUAL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../spmanual/chapter_1.html"><strong aria-hidden="true">6.1.</strong> ch1</a></li><li class="chapter-item "><a href="../spmanual/chapter_2.html"><strong aria-hidden="true">6.2.</strong> ch2</a></li><li class="chapter-item "><a href="../spmanual/chapter_3.html"><strong aria-hidden="true">6.3.</strong> ch3</a></li><li class="chapter-item expanded "><a href="../spmanual/chapter_4.html" class="active"><strong aria-hidden="true">6.4.</strong> ch4</a></li><li class="chapter-item "><a href="../spmanual/chapter_5.html"><strong aria-hidden="true">6.5.</strong> ch5</a></li><li class="chapter-item "><a href="../spmanual/etc.html"><strong aria-hidden="true">6.6.</strong> etc</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">tony&#x27;s journey</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h3 id="4-sp-서버-개발"><a class="header" href="#4-sp-서버-개발">4. SP 서버 개발</a></h3>
+<p>SP 라이브러리 샘플소스코드 : <a href="https://dev.mobileid.go.kr/mip/dfs/downapi/useguidedown.do">개발지원센터</a>.</p>
+<h3 id="41-설치-및-서버-구동"><a class="header" href="#41-설치-및-서버-구동">4.1 설치 및 서버 구동</a></h3>
+<ol>
+<li>Eclipse 또는 Intellij 를 사용하여 해당 프로젝트를 실행.</li>
+<li>IDE 툴에서 jdk 1.7 또는 jdk 1.8 로 설정.</li>
+<li>IDE 툴 플로그인에서 spring boot 다운 후 maven build 실행</li>
+</ol>
+<h3 id="42-applicationproperties-설정"><a class="header" href="#42-applicationproperties-설정">4.2 application.properties 설정</a></h3>
+<h4 id="1-server-settings"><a class="header" href="#1-server-settings">1. Server Settings</a></h4>
+<div class="table-wrapper"><table><thead><tr><th>key</th><th>config-value</th><th>비고</th></tr></thead><tbody>
+<tr><td>app.blockchain-server-domain</td><td>개발과 운영에 맞는 노드 주소를 설정한다.<br> <br> - 개발인 경우, app.blockchain-server-domain=https://bcdev.mobileid.go.kr:18888 <br> - 운영인 경우, app.blockchain-server-domain=https://bcdev.mobileid.go.kr:18888</td><td></td></tr>
+<tr><td>app.sp-server</td><td>해당 서버의 주소를 설정</td><td></td></tr>
+<tr><td>app.proxy-server</td><td>proxy 주소 입력</td><td>cpm 의 경우 사용</td></tr>
+<tr><td>app.push-server-domain</td><td>?</td><td></td></tr>
+</tbody></table>
+</div>
+<h4 id="2-sp--wallet-설정"><a class="header" href="#2-sp--wallet-설정">2. SP &amp; Wallet 설정</a></h4>
+<div class="table-wrapper"><table><thead><tr><th>key</th><th>config-value</th></tr></thead><tbody>
+<tr><td>app.keymanager-path</td><td>생성한 wallet을 해당 경로로 지정한다. <br> - app.keymanager-path=./example_op.wallet</td></tr>
+<tr><td>app.keymanager-password</td><td>생성 시 입력한 패스워드 입력. <br> - app.keymanager-password=raon1234</td></tr>
+<tr><td>app.sp-key-id</td><td>개발 지원 센터로 부터 안내 받은 계정 ?</td></tr>
+<tr><td>app.sp-rsa-key-id</td><td>?</td></tr>
+<tr><td>app.sp-account</td><td>개발지원센터로 부터 안내받은 계정?</td></tr>
+<tr><td>app.sp-did-path</td><td>생성한 did의 위치를 저장한다. <br> app.sp-did-path=./example_op.sp.did</td></tr>
+<tr><td>app.sp-bi-image-url</td><td>검증 시 보이는 이미지 url 주소<br> app.sp-bi-image-url=https://www.mobileid.go.kr/resources/images/main/mdl_ico_homepage.ico</td></tr>
+<tr><td>app.sp-bi-image-base64</td><td>이미지에 대한 값을 base64로 인코딩</td></tr>
+<tr><td>app.include-profile</td><td>?</td></tr>
+<tr><td>app.sp-ci</td><td>ci 값을 안내받기 위한 여부</td></tr>
+<tr><td>app.issuer-check-vc</td><td>서명 검증 여부</td></tr>
+</tbody></table>
+</div>
+<p>질문 1. zpk, sdk, log, db, boot settings ??</p>
+<p>질문 2. 테이블 형태 ? 아니면 그냥 ?</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../spmanual/chapter_3.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../spmanual/chapter_5.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../spmanual/chapter_3.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../spmanual/chapter_5.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="../ace.js"></script>
+        <script src="../editor.js"></script>
+        <script src="../mode-rust.js"></script>
+        <script src="../theme-dawn.js"></script>
+        <script src="../theme-tomorrow_night.js"></script>
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
