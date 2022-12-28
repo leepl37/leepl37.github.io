@@ -164,20 +164,7 @@
 </ul>
 </li>
 </ul>
-<div class="table-wrapper"><table><thead><tr><th>mode</th><th>image</th></tr></thead><tbody>
-<tr><td>QR MPM Direct</td><td><p><img src="./img/qrmpm_direct.png" alt="mpm" /></p></td></tr>
-<tr><td>설명</td><td>사용자가 PC Browser 이용 시, 검증자는 QR을 표시하고 모바일 신분증 앱은 QR에서 제공하는 URL에서 제출정보를 다운로드하고 검증자에게 직접 VP를 제출합니다.</td></tr>
-<tr><td>QR MPM PROXY</td><td><p><img src="./img/qrmpm_proxy.png" alt="mpm" /></p></td></tr>
-<tr><td>설명</td><td>사용자가 PC Browser 이용 시, 검증자는 QR을 표시하고 모바일 신분증 앱은 QR에서 제공하는 URL에서 제출정보를 다운로드하고 중계서버를 통해서 검증자에게 VP를 제출합니다.</td></tr>
-<tr><td>QR CPM PROXY</td><td><p><img src="./img/qrcpm-proxy_mode.png" alt="cpm" /></p></td></tr>
-<tr><td>설명</td><td>CPM기반 QR을 이용할 경우, 거래코드와 중계서버 URL을 QR로 표출하고 검증자의 디바이스는 해당 거래코드와 URL을 기반으로 제출정보를 전달하고 모바일 신분증 앱은 중계서버를 통해 VP를 제출합니다.  영지식 증명 데이터가 아닌 DID기반 VP 제출시에는 QR 표출 후 사용자 인증이 필요합니다.</td></tr>
-<tr><td>APP2APP DIRECT / INDIRECT</td><td><p><img src="./img/apptoapp_direct_indirect.png" alt="apptoapp" /></p></td></tr>
-<tr><td>설명</td><td>사용자가 모바일 신분증 앱과 서비스 앱이 동일 디바이스 내에 설치되어 있는 경우, 앱간 통신으로 제출정보를 확인하고 검증자에게 직접 VP를 제출(direct) 혹은 호출한 앱으로 반환(indirect) 합니다.</td></tr>
-<tr><td>APP2APP PROXY</td><td><p><img src="./img/apptoapp_proxy.png" alt="apptoapp" /></p></td></tr>
-<tr><td>설명</td><td>사용자가 PC Browser 이용 시, 검증자는 QR을 표시하고 모바일 신분증 앱은 QR에서 제공하는 URL에서 제출정보를다운로드하고 중계서버를 통해서 검증자에게 VP를 제출합니다.</td></tr>
-</tbody></table>
-</div>
-<h4 id="13-qr-cpm"><a class="header" href="#13-qr-cpm">1.3 QR CPM</a></h4>
+<h4 id="12-qr-cpm"><a class="header" href="#12-qr-cpm">1.2 QR CPM</a></h4>
 <ul>
 <li>
 <p>CPM 이란 Customer Presentation Mode 의 약자이며 판매자 또는 서비스 제공자가 QR 을 촬영하는 방법을 말한다. </p>
@@ -186,7 +173,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="12-apptoapp"><a class="header" href="#12-apptoapp">1.2 AppToApp</a></h4>
+<h4 id="13-apptoapp"><a class="header" href="#13-apptoapp">1.3 AppToApp</a></h4>
 <ul>
 <li>
 <p>AppToApp 이란 신분 검증을 하고자하는 App 에서 모바일 신분증 App 을 호출하여 검증하는 것을 말한다. </p>
@@ -200,7 +187,19 @@
 </ul>
 </li>
 </ul>
-
+<div class="table-wrapper"><table><thead><tr><th>mode</th><th>image</th></tr></thead><tbody>
+<tr><td>QR MPM Direct</td><td><p><img src="./img/qrmpm_direct.png" alt="mpm" /></p></td></tr>
+<tr><td>설명</td><td>사용자가 PC Browser 이용 시, 검증자는 QR을 표시하고 모바일 신분증 앱은 QR에서 제공하는 URL에서 제출정보를 다운로드하고 검증자에게 직접 VP를 제출합니다.</td></tr>
+<tr><td>QR MPM PROXY</td><td><p><img src="./img/qrmpm_proxy.png" alt="mpm" /></p></td></tr>
+<tr><td>설명</td><td>사용자가 PC Browser 이용 시, 검증자는 QR을 표시하고 모바일 신분증 앱은 QR에서 제공하는 URL에서 제출정보를 다운로드하고 중계서버를 통해서 검증자에게 VP를 제출합니다.</td></tr>
+<tr><td>QR CPM PROXY</td><td><p><img src="./img/qrcpm-proxy_mode.png" alt="cpm" /></p></td></tr>
+<tr><td>설명</td><td>CPM기반 QR을 이용할 경우, 거래코드와 중계서버 URL을 QR로 표출하고 검증자의 디바이스는 해당 거래코드와 URL을 기반으로 제출정보를 전달하고 모바일 신분증 앱은 중계서버를 통해 VP를 제출합니다.  영지식 증명 데이터가 아닌 DID기반 VP 제출시에는 QR 표출 후 사용자 인증이 필요합니다.</td></tr>
+<tr><td>APP2APP DIRECT / INDIRECT</td><td><p><img src="./img/apptoapp_direct_indirect.png" alt="apptoapp" /></p></td></tr>
+<tr><td>설명</td><td>사용자가 모바일 신분증 앱과 서비스 앱이 동일 디바이스 내에 설치되어 있는 경우, 앱간 통신으로 제출정보를 확인하고 검증자에게 직접 VP를 제출(direct) 혹은 호출한 앱으로 반환(indirect) 합니다.</td></tr>
+<tr><td>APP2APP PROXY</td><td><p><img src="./img/apptoapp_proxy.png" alt="apptoapp" /></p></td></tr>
+<tr><td>설명</td><td>사용자가 PC Browser 이용 시, 검증자는 QR을 표시하고 모바일 신분증 앱은 QR에서 제공하는 URL에서 제출정보를다운로드하고 중계서버를 통해서 검증자에게 VP를 제출합니다.</td></tr>
+</tbody></table>
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
@@ -230,22 +229,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

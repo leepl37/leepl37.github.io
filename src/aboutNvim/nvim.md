@@ -41,6 +41,10 @@ nvim 으로 rust 코드를 짜기 시작한 후로 점점 더 linux 환경과 nv
 * Undo, 일반모드에서 u 
 * Redo, 일반모드에서 ctrl + r 
 
+#### Visiul block 
+
+* ctrl + q
+* visual block 이란 다른 ide tool 에서 라인을 세로 블록으로 하고 수정이 가능하도록 하는 기능이다. 
 
 
 

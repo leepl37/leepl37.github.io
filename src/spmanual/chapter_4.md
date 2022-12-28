@@ -17,10 +17,10 @@ SP 라이브러리 샘플소스코드 : [개발지원센터](https://dev.mobilei
 
 |key | config-value| 비고|
 |-|-|-|
-|app.blockchain-server-domain| 개발과 운영에 맞는 노드 주소를 설정한다.<br> <br> - 개발인 경우, app.blockchain-server-domain=https://bcdev.mobileid.go.kr:18888 <br> - 운영인 경우, app.blockchain-server-domain=https://bcdev.mobileid.go.kr:18888|
-|app.sp-server| 해당 서버의 주소를 설정|
+|app.blockchain-server-domain| 개발과 운영에 맞는 주소를 설정한다.|
+|app.sp-server| 서비스할 주소를 입력|
 |app.proxy-server| proxy 주소 입력| cpm 의 경우 사용
-| app.push-server-domain| ?|
+| app.push-server-domain| push server 주소 입력 | push 사용 시
 
 
 
@@ -43,7 +43,6 @@ SP 라이브러리 샘플소스코드 : [개발지원센터](https://dev.mobilei
 
 질문 1. zpk, sdk, log, db, boot settings ??
 
-질문 2. 테이블 형태 ? 아니면 그냥 ?
 
 
 

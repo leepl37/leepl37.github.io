@@ -20,6 +20,22 @@
 		* Direct
 		* Proxy 
 
+#### 1.2 QR CPM 
+
+* CPM 이란 Customer Presentation Mode 의 약자이며 판매자 또는 서비스 제공자가 QR 을 촬영하는 방법을 말한다. 
+
+	* CPM 의 경우 Proxy 모드만 존재한다. 
+
+
+#### 1.3 AppToApp
+
+* AppToApp 이란 신분 검증을 하고자하는 App 에서 모바일 신분증 App 을 호출하여 검증하는 것을 말한다. 
+
+	* AppToApp 의 경우 세 가지 인터페이스가 존재
+		* Direct / Indirect 
+		* App-proxy mode 
+
+
 |mode|image|
 |-|-|
 |QR MPM Direct|<p><img src="./img/qrmpm_direct.png" alt="mpm" /></p>|
@@ -33,24 +49,6 @@
 |APP2APP PROXY|<p><img src="./img/apptoapp_proxy.png" alt="apptoapp" /></p>|
 |설명|사용자가 PC Browser 이용 시, 검증자는 QR을 표시하고 모바일 신분증 앱은 QR에서 제공하는 URL에서 제출정보를다운로드하고 중계서버를 통해서 검증자에게 VP를 제출합니다.|
 
-
-
-
-#### 1.3 QR CPM 
-
-* CPM 이란 Customer Presentation Mode 의 약자이며 판매자 또는 서비스 제공자가 QR 을 촬영하는 방법을 말한다. 
-
-	* CPM 의 경우 Proxy 모드만 존재한다. 
-
-
-
-#### 1.2 AppToApp
-
-* AppToApp 이란 신분 검증을 하고자하는 App 에서 모바일 신분증 App 을 호출하여 검증하는 것을 말한다. 
-
-	* AppToApp 의 경우 세 가지 인터페이스가 존재
-		* Direct / Indirect 
-		* App-proxy mode 
 
 
 

@@ -20,7 +20,7 @@
 	* 매칭 정보: Verifier의 블록체인 계정, VC type, 검증할 개인정보 리스트 등 
 * CLI (Command Line Interface)
 	* 명령창에서 실행 가능한 툴
-	* Wallet 및 DID 생성 DID (Decentralized ID) 탈중앙화된 신원
+	* Wallet 및 DID 생성 (Decentralized ID) 탈중앙화된 신원
 * DID (Decentralized ID) 
 	* 탈중앙화된 신원
 * DID Document (DID 문서)

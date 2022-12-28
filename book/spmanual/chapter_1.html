@@ -182,7 +182,7 @@
 <li>CLI (Command Line Interface)
 <ul>
 <li>명령창에서 실행 가능한 툴</li>
-<li>Wallet 및 DID 생성 DID (Decentralized ID) 탈중앙화된 신원</li>
+<li>Wallet 및 DID 생성 (Decentralized ID) 탈중앙화된 신원</li>
 </ul>
 </li>
 <li>DID (Decentralized ID) 
@@ -371,22 +371,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 

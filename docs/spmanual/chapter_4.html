@@ -152,10 +152,10 @@
 <h3 id="42-applicationproperties-설정"><a class="header" href="#42-applicationproperties-설정">4.2 application.properties 설정</a></h3>
 <h4 id="1-server-settings"><a class="header" href="#1-server-settings">1. Server Settings</a></h4>
 <div class="table-wrapper"><table><thead><tr><th>key</th><th>config-value</th><th>비고</th></tr></thead><tbody>
-<tr><td>app.blockchain-server-domain</td><td>개발과 운영에 맞는 노드 주소를 설정한다.<br> <br> - 개발인 경우, app.blockchain-server-domain=https://bcdev.mobileid.go.kr:18888 <br> - 운영인 경우, app.blockchain-server-domain=https://bcdev.mobileid.go.kr:18888</td><td></td></tr>
-<tr><td>app.sp-server</td><td>해당 서버의 주소를 설정</td><td></td></tr>
+<tr><td>app.blockchain-server-domain</td><td>개발과 운영에 맞는 주소를 설정한다.</td><td></td></tr>
+<tr><td>app.sp-server</td><td>서비스할 주소를 입력</td><td></td></tr>
 <tr><td>app.proxy-server</td><td>proxy 주소 입력</td><td>cpm 의 경우 사용</td></tr>
-<tr><td>app.push-server-domain</td><td>?</td><td></td></tr>
+<tr><td>app.push-server-domain</td><td>push server 주소 입력</td><td>push 사용 시</td></tr>
 </tbody></table>
 </div>
 <h4 id="2-sp--wallet-설정"><a class="header" href="#2-sp--wallet-설정">2. SP &amp; Wallet 설정</a></h4>
@@ -174,7 +174,6 @@
 </tbody></table>
 </div>
 <p>질문 1. zpk, sdk, log, db, boot settings ??</p>
-<p>질문 2. 테이블 형태 ? 아니면 그냥 ?</p>
 
                     </main>
 
@@ -205,22 +204,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
