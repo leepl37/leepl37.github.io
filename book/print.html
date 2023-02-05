@@ -1181,7 +1181,265 @@ pub fn add_to_waitlist(){}
 </li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="common-collections-ch-8"><a class="header" href="#common-collections-ch-8">COMMON COLLECTIONS, Ch 8</a></h1>
+<p>unlike the built-in array and tuple types these collections point to is stored on the heap memory.</p>
+<p>which is that the size is not determined at compile time. </p>
+<p>it means these collections can shrink and grow as the program rus. </p>
+<h4 id="well-cover"><a class="header" href="#well-cover">we'll cover..</a></h4>
+<p>create and uipdate vectors, strings, and hashmaps as well as what makes each special. </p>
+<ul>
+<li>
+<p>A vector - allows you to store a variable number of values next to each other. </p>
+</li>
+<li>
+<p>A string - is a collection of characters. </p>
+</li>
+<li>
+<p>A hashmap - allows you to associate a value with a particular key. it's a particular implementation of the more general data structure called a map. </p>
+</li>
+</ul>
+<h3 id="about-vectors"><a class="header" href="#about-vectors">About Vectors.</a></h3>
+<ul>
+<li>
+<p>vector can only store values of the same type. </p>
+</li>
+<li>
+<p>create vector, we can use Vec::new() from std lib or vec![&quot;value&quot;] macro. </p>
+<ul>
+<li>when we create vector, we need to specify what the type of vector. 
+<ul>
+<li>but some cases compiler might infer the type if we add value after create. </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>get value from vector, two methods are represent..</p>
+<ul>
+<li>vec.get(index) - return type is Option type -&gt; no compile time error always return Option.</li>
+<li>vec[index] - return type is value of that vector. -&gt; compile error occured if it does not have value. </li>
+</ul>
+</li>
+<li>
+<p>can not use mutable vector after referencing to other value.</p>
+<ul>
+<li>because adding a new elements onto the end of the vector might require allocating new memory and copying the old elements to the new space. so this might result in pointing to a deallocated memory. </li>
+</ul>
+</li>
+</ul>
+<h3 id="different-types-that-can-store-in-vector"><a class="header" href="#different-types-that-can-store-in-vector">Different types that can store in vector.</a></h3>
+<h4 id="vector-can-only-take-value-of-same-type-so-we-can-not-use-struct-type-instead-enum-that-can-be-useful-but-this-type-can-not-be-added-at-runtime-what-should-we-do----trait-object-cover-in-chapter-17"><a class="header" href="#vector-can-only-take-value-of-same-type-so-we-can-not-use-struct-type-instead-enum-that-can-be-useful-but-this-type-can-not-be-added-at-runtime-what-should-we-do----trait-object-cover-in-chapter-17">vector can only take value of same type so we can not use struct type. Instead, enum that can be useful. But this type can not be added at runtime. what should we do?  -&gt; trait object, cover in chapter 17.</a></h4>
+<h3 id="about-strings"><a class="header" href="#about-strings">About Strings.</a></h3>
+<h4 id="strings-in-rust-are-implemented-as-a-collection-of-bytes-plus-some-methods-to-provide-useful-functionality-when-those-bytes-are-interpreted-as-text"><a class="header" href="#strings-in-rust-are-implemented-as-a-collection-of-bytes-plus-some-methods-to-provide-useful-functionality-when-those-bytes-are-interpreted-as-text">strings in rust are implemented as a collection of bytes, plus some methods to provide useful functionality when those bytes are interpreted as text.</a></h4>
+<p>we'll discuss.. </p>
+<ul>
+<li>
+<p>indexing into a string and why it is difficult, what is differences between how people and computers interpret string data. </p>
+</li>
+<li>
+<p>string slices, which are references to some UTF-8 encoded string data stored elsewhere. </p>
+<ul>
+<li>string literals, for example, are stored in the program's binary and are therefore string slices. </li>
+</ul>
+</li>
+<li>
+<p>String type, which is provided by std lib is a growable, mutable, owned, UTF-8 encoded string type. </p>
+<ul>
+<li>std lib also include OsString, OsStr, CString, and CStr. </li>
+</ul>
+</li>
+<li>
+<p>create String, String::new(); or &quot;value&quot;.to_string() method, this method need to be the type that implemented the Display trait, as string literals do. </p>
+<ul>
+<li>to_string method is same as String::from(&quot;value&quot;). </li>
+</ul>
+</li>
+</ul>
+<h3 id="updating-string"><a class="header" href="#updating-string">updating string.</a></h3>
+<ul>
+<li>
+<p>s.push_str(&quot;value&quot;), took ownership of str value. </p>
+</li>
+<li>
+<p>s.push('c'), adding char. </p>
+</li>
+<li>
+<p>add(self, &amp;str) -&gt; s1 + &amp;s2.  coerce the &amp;string argument into a &amp;str. </p>
+<ul>
+<li>deref coercion which is &amp;string into &amp;string[..] </li>
+</ul>
+</li>
+<li>
+<p>using a format! macro. format!(&quot;{} - {}&quot;, s1, s2);</p>
+</li>
+</ul>
+<h3 id="indexing-into-strings"><a class="header" href="#indexing-into-strings">Indexing into Strings.</a></h3>
+<ul>
+<li>
+<p>A String is a wrapper over a Vec<u8></p>
+</li>
+<li>
+<p>depends on Unicode scalar value in string, each char use different byte size. </p>
+</li>
+<li>
+<p>char() or bytes() </p>
+</li>
+</ul>
+<h3 id="hash-maps"><a class="header" href="#hash-maps">Hash Maps</a></h3>
+<p>The type HashMap&lt;K, V&gt;</p>
+<ul>
+<li>
+<p>store their data on the heap. </p>
+</li>
+<li>
+<p>all the keys must have the same type, and all of the values must have the same type. </p>
+</li>
+<li>
+<p>use zip to create hash map. ex) teams = vec![&quot;blue&quot;,&quot;red&quot;], scores = vec![10, 20] -&gt; teams.iter().zip(scores.iter()).collect(); </p>
+</li>
+<li>
+<p>hashmap take ownership. </p>
+</li>
+<li>
+<p>only inserting a value if the key has no value. ex) entry(&quot;blue&quot;).or_insert(50); </p>
+</li>
+<li>
+<p>updating a value based on the old value. ex) entry(&quot;blue&quot;) returns value of key. and if value is not exist, insert value. </p>
+</li>
+</ul>
+<h3 id="hasing-functions"><a class="header" href="#hasing-functions">Hasing Functions</a></h3>
+<p>hashmap uses a cryptographically strong hasing function that can provide resistance to Denial of Service (Dos) attacks. This is not the fastest hashing algorithm available, but the trade-off for better security that comes with the drop in performance is worth it. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="error-handling-ch-9"><a class="header" href="#error-handling-ch-9">ERROR HANDLING, Ch 9</a></h1>
+<p>we will cover..</p>
+<ul>
+<li>
+<p>recoverable vs unrecoverable </p>
+</li>
+<li>
+<p>panic! macro and return Result&lt;T, E&gt; values. </p>
+</li>
+<li>
+<p>deciding whether to try to recover from an error or to stop execution. </p>
+</li>
+</ul>
+<h3 id="unrecoverable-errors-with-panic"><a class="header" href="#unrecoverable-errors-with-panic">unrecoverable Errors with panic!</a></h3>
+<p>when panic! macro executes, your program will print a failure message, unwind and clean up the stack, and the quit. but this process is a lot of work. the alternative is to immediately abort, which ends the program without cleaning up. </p>
+<p>at <em>Cargo.toml</em> file. </p>
+<div class="table-wrapper"><table><thead><tr><th>[profile.release]</th></tr></thead><tbody>
+<tr><td>panic = 'abort'</td></tr>
+</tbody></table>
+</div>
+<ul>
+<li>when we try to get the value of the vector that is out of index, std lib vec, calls panic! macro. 
+<ul>
+<li>like C language, it can access the memory that is not included in vector array it cause a lot of problem.</li>
+<li>use RUST_BACKTRACE=1 cargo run to see details of error where is it cause. </li>
+</ul>
+</li>
+</ul>
+<h3 id="recoverable-errors-with-result"><a class="header" href="#recoverable-errors-with-result">recoverable Errors with Result.</a></h3>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span>
+<span class="boring">fn main() {
+</span>enum Result&lt;T, E&gt; {
+	
+	Ok(T),
+	Err(E),
+	
+}
+
+<span class="boring">}</span></code></pre></pre>
+<p>in this Result struct, </p>
+<ul>
+<li>
+<p>T represents return type of a success case -&gt; Ok(T).</p>
+</li>
+<li>
+<p>E represents return type of a fail case -&gt; Err(E). </p>
+</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span>      
+<span class="boring">fn main() {
+</span>      File::open(&quot;Yeon.txt&quot;); 
+
+      // returns Ok(file) or Err(e) it is implemented in std lib, fs::File, io::ErrorKind.
+
+<span class="boring">}</span></code></pre></pre>
+<h3 id="shortcuts-for-panic-on-error--unwrap-and-expect"><a class="header" href="#shortcuts-for-panic-on-error--unwrap-and-expect">shortcuts for Panic on Error : unwrap and expect</a></h3>
+<ul>
+<li>
+<p>unwrap will return the value inside the Ok. if the value inside Result is Err(e) then it will call the panic! macro. </p>
+</li>
+<li>
+<p>using .expect(&quot;messages&quot;) convey your intent and easy to track down the source of a panic. </p>
+</li>
+</ul>
+<h3 id="propagating-the-error"><a class="header" href="#propagating-the-error">propagating the error</a></h3>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span>	
+<span class="boring">fn main() {
+</span>	fn read_file() -&gt; Result&lt;io::File, io::Error&gt; {
+		File::open(&quot;yeon&quot;)
+	}
+
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>the function that call read_file() can receive the Result&lt;T, E&gt;. 
+<ul>
+<li>we can choose what we will do after receving the result type. </li>
+</ul>
+</li>
+</ul>
+<h3 id="a-shortcut-for-propagating-errors--the--operator"><a class="header" href="#a-shortcut-for-propagating-errors--the--operator">a shortcut for propagating errors : the ? operator.</a></h3>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span>
+<span class="boring">fn main() {
+</span>fn read_username_from_file() -&gt; Result&lt;String, io::Error&gt; {
+   
+    let mut f = File::open(&quot;hello.txt&quot;)?;
+    let mut s = String::new();
+    f.read_to_string(&amp;mut s)?;
+    Ok(s)
+
+}
+
+   // chaining also works 
+   
+   File::open(&quot;hello.txt&quot;)?.read_to_string(&amp;mut s)?;
+
+<span class="boring">}</span></code></pre></pre>
+<ul>
+<li>
+<p>? convert automatically. </p>
+</li>
+<li>
+<p>? operator can only be used in function that return result type. </p>
+<ul>
+<li>Result&lt;(), Box<dyn Error>&gt; is called a trait object we will talk about this later. </li>
+</ul>
+</li>
+</ul>
+<h3 id="to-panic-or-not-to-panic"><a class="header" href="#to-panic-or-not-to-panic">To panic! or Not to panic!</a></h3>
+<ul>
+<li>
+<p>prototype code, and test panic is very useful. </p>
+</li>
+<li>
+<p>cases in which you have more information than the compiler -&gt; you can choose <em>unwarp</em> because you know what the result type is. </p>
+</li>
+</ul>
+<h3 id="guidelines-for-error-handling"><a class="header" href="#guidelines-for-error-handling">Guidelines for error handling</a></h3>
+<ul>
+<li>
+<p>the bad state is not something that's expected to happen occationally. </p>
+</li>
+<li>
+<p>your code after this point needs to rely on not being in this bad state. </p>
+</li>
+<li>
+<p>there's not a good way to encode this information in the types you use. </p>
+</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-by-example"><a class="header" href="#rust-by-example">Rust by example</a></h1>
 <p>제가 정리할 러스트 예제는 <a href="https://doc.rust-lang.org/stable/rust-by-example/">RustByExample</a>을 
 정독하며 번역과 요약을 통해 올릴 예정입니다. </p>

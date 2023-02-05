@@ -142,6 +142,133 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="common-collections-ch-8"><a class="header" href="#common-collections-ch-8">COMMON COLLECTIONS, Ch 8</a></h1>
+<p>unlike the built-in array and tuple types these collections point to is stored on the heap memory.</p>
+<p>which is that the size is not determined at compile time. </p>
+<p>it means these collections can shrink and grow as the program rus. </p>
+<h4 id="well-cover"><a class="header" href="#well-cover">we'll cover..</a></h4>
+<p>create and uipdate vectors, strings, and hashmaps as well as what makes each special. </p>
+<ul>
+<li>
+<p>A vector - allows you to store a variable number of values next to each other. </p>
+</li>
+<li>
+<p>A string - is a collection of characters. </p>
+</li>
+<li>
+<p>A hashmap - allows you to associate a value with a particular key. it's a particular implementation of the more general data structure called a map. </p>
+</li>
+</ul>
+<h3 id="about-vectors"><a class="header" href="#about-vectors">About Vectors.</a></h3>
+<ul>
+<li>
+<p>vector can only store values of the same type. </p>
+</li>
+<li>
+<p>create vector, we can use Vec::new() from std lib or vec![&quot;value&quot;] macro. </p>
+<ul>
+<li>when we create vector, we need to specify what the type of vector. 
+<ul>
+<li>but some cases compiler might infer the type if we add value after create. </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>get value from vector, two methods are represent..</p>
+<ul>
+<li>vec.get(index) - return type is Option type -&gt; no compile time error always return Option.</li>
+<li>vec[index] - return type is value of that vector. -&gt; compile error occured if it does not have value. </li>
+</ul>
+</li>
+<li>
+<p>can not use mutable vector after referencing to other value.</p>
+<ul>
+<li>because adding a new elements onto the end of the vector might require allocating new memory and copying the old elements to the new space. so this might result in pointing to a deallocated memory. </li>
+</ul>
+</li>
+</ul>
+<h3 id="different-types-that-can-store-in-vector"><a class="header" href="#different-types-that-can-store-in-vector">Different types that can store in vector.</a></h3>
+<h4 id="vector-can-only-take-value-of-same-type-so-we-can-not-use-struct-type-instead-enum-that-can-be-useful-but-this-type-can-not-be-added-at-runtime-what-should-we-do----trait-object-cover-in-chapter-17"><a class="header" href="#vector-can-only-take-value-of-same-type-so-we-can-not-use-struct-type-instead-enum-that-can-be-useful-but-this-type-can-not-be-added-at-runtime-what-should-we-do----trait-object-cover-in-chapter-17">vector can only take value of same type so we can not use struct type. Instead, enum that can be useful. But this type can not be added at runtime. what should we do?  -&gt; trait object, cover in chapter 17.</a></h4>
+<h3 id="about-strings"><a class="header" href="#about-strings">About Strings.</a></h3>
+<h4 id="strings-in-rust-are-implemented-as-a-collection-of-bytes-plus-some-methods-to-provide-useful-functionality-when-those-bytes-are-interpreted-as-text"><a class="header" href="#strings-in-rust-are-implemented-as-a-collection-of-bytes-plus-some-methods-to-provide-useful-functionality-when-those-bytes-are-interpreted-as-text">strings in rust are implemented as a collection of bytes, plus some methods to provide useful functionality when those bytes are interpreted as text.</a></h4>
+<p>we'll discuss.. </p>
+<ul>
+<li>
+<p>indexing into a string and why it is difficult, what is differences between how people and computers interpret string data. </p>
+</li>
+<li>
+<p>string slices, which are references to some UTF-8 encoded string data stored elsewhere. </p>
+<ul>
+<li>string literals, for example, are stored in the program's binary and are therefore string slices. </li>
+</ul>
+</li>
+<li>
+<p>String type, which is provided by std lib is a growable, mutable, owned, UTF-8 encoded string type. </p>
+<ul>
+<li>std lib also include OsString, OsStr, CString, and CStr. </li>
+</ul>
+</li>
+<li>
+<p>create String, String::new(); or &quot;value&quot;.to_string() method, this method need to be the type that implemented the Display trait, as string literals do. </p>
+<ul>
+<li>to_string method is same as String::from(&quot;value&quot;). </li>
+</ul>
+</li>
+</ul>
+<h3 id="updating-string"><a class="header" href="#updating-string">updating string.</a></h3>
+<ul>
+<li>
+<p>s.push_str(&quot;value&quot;), took ownership of str value. </p>
+</li>
+<li>
+<p>s.push('c'), adding char. </p>
+</li>
+<li>
+<p>add(self, &amp;str) -&gt; s1 + &amp;s2.  coerce the &amp;string argument into a &amp;str. </p>
+<ul>
+<li>deref coercion which is &amp;string into &amp;string[..] </li>
+</ul>
+</li>
+<li>
+<p>using a format! macro. format!(&quot;{} - {}&quot;, s1, s2);</p>
+</li>
+</ul>
+<h3 id="indexing-into-strings"><a class="header" href="#indexing-into-strings">Indexing into Strings.</a></h3>
+<ul>
+<li>
+<p>A String is a wrapper over a Vec<u8></p>
+</li>
+<li>
+<p>depends on Unicode scalar value in string, each char use different byte size. </p>
+</li>
+<li>
+<p>char() or bytes() </p>
+</li>
+</ul>
+<h3 id="hash-maps"><a class="header" href="#hash-maps">Hash Maps</a></h3>
+<p>The type HashMap&lt;K, V&gt;</p>
+<ul>
+<li>
+<p>store their data on the heap. </p>
+</li>
+<li>
+<p>all the keys must have the same type, and all of the values must have the same type. </p>
+</li>
+<li>
+<p>use zip to create hash map. ex) teams = vec![&quot;blue&quot;,&quot;red&quot;], scores = vec![10, 20] -&gt; teams.iter().zip(scores.iter()).collect(); </p>
+</li>
+<li>
+<p>hashmap take ownership. </p>
+</li>
+<li>
+<p>only inserting a value if the key has no value. ex) entry(&quot;blue&quot;).or_insert(50); </p>
+</li>
+<li>
+<p>updating a value based on the old value. ex) entry(&quot;blue&quot;) returns value of key. and if value is not exist, insert value. </p>
+</li>
+</ul>
+<h3 id="hasing-functions"><a class="header" href="#hasing-functions">Hasing Functions</a></h3>
+<p>hashmap uses a cryptographically strong hasing function that can provide resistance to Denial of Service (Dos) attacks. This is not the fastest hashing algorithm available, but the trade-off for better security that comes with the drop in performance is worth it. </p>
 
                     </main>
 
