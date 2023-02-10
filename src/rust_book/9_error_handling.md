@@ -119,3 +119,16 @@ fn read_username_from_file() -> Result<String, io::Error> {
 * there's not a good way to encode this information in the types you use. 
 
 
+
+### Summary 
+
+* the panic! macro signals that your program is in a state it can not handle and lets you tell the process to stop instead of trying to proceed with invalid or incorrect value. 
+
+* the result enum uses rust's type system to indicate that operations might fail in a way that your code could recover from. 
+	* it needs to handle potential success or failur. 
+
+
+
+
+
+

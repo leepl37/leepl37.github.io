@@ -15,6 +15,7 @@
 	- [MANAGING GROWING PROJECTS WITH PACKAGES, CREATES, AND MODULES, Ch 7](./rust_book/7_managing_growing_projects_with_packages_creates_and_modules.md)
 	- [COMMON COLLECTIONS, Ch 8](./rust_book/8_common_collections.md)
 	- [ERROR HANDLING, Ch 9](./rust_book/9_error_handling.md)
+	- [GENERIC TYPE, TRAITS, AND LIFETIMES, Ch, 10](./rust_book/10_generic_types_traits_and_lifetimes.md)
 - [러스트 예제로 알아보기](./example/example.md)
 	- [Hello World 출력](./example/hello.md)
 		- [Comments, 주석](./example/hello/comment.md)
