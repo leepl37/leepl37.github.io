@@ -1,8 +1,12 @@
-# Summary
+<!-- # rustTest -->
+<!-- [otherKind](.test/about.md) -->
+<!-- - [test1](./test/test.md) -->
+<!-- 	- [intest](./intest.md) -->
 
-[Introduction](./README.md)
-
+#RUST PROGRAMMING LANGUAGE
+- [Introduction](./README.md)
 - [aboutNvim&Linux](./aboutNvim/nvim.md)
+
 - [systemProgremming](./system/index.md)
 	- [lecture1](./system/lecture1.md)
 	- [lecture2](./system/lecture2.md)
@@ -16,7 +20,8 @@
 	- [COMMON COLLECTIONS, Ch 8](./rust_book/8_common_collections.md)
 	- [ERROR HANDLING, Ch 9](./rust_book/9_error_handling.md)
 	- [GENERIC TYPE, TRAITS, AND LIFETIMES, Ch, 10](./rust_book/10_generic_types_traits_and_lifetimes.md)
-- [러스트 예제로 알아보기](./example/example.md)
+
+- [Rust by example(번역)](./example/example.md)
 	- [Hello World 출력](./example/hello.md)
 		- [Comments, 주석](./example/hello/comment.md)
 		- [Formatted print, 출력에 관해](./example/hello/print.md)
@@ -60,15 +65,19 @@
 		- [Lifetimes](./example/scoping/lifetimes.md)
 	- [Traits](./example/traits.md)
 	- [macro](./example/macro.md)
-- [Rust 책 정리](./rust_book/intro.md)
+
+# Will be Deleted 
+[Rust 책 정리](./rust_book/intro.md)
 	- [Generics Types, Traits, and Lifetimes](./rust_book/generic_trait_lifetime.md)
 
+# Datestructre and algorithms
 - [데이터 구조와 알고리즘](./dataStructureAndAlgorithms/intro.md)
 	- [Section 1](./dataStructureAndAlgorithms/section1.md)
 
 - [writing an OS in Rust](./rustOS/intro.md)
 	- [A Freestanding Rust Binary](./rustOS/freestandingRustBinary.md)
 
+# SP Manual
 - [SP MANUAL](./spmanual/start.md)
 	- [ch1](./spmanual/chapter_1.md)
 	- [ch2](./spmanual/chapter_2.md)
