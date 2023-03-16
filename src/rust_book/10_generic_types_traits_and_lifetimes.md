@@ -1,10 +1,6 @@
 # GENERIC TYPE, TRAITS, AND LIFETIMES, Ch, 10
 
-Generics are abstract stand-ins for concrete types or other properties. 
-
-we will expore..
-
-* how to define your own types, functions, and methods with generics. 
+Generics are abstract stand-:ine your own types, functions, and methods with generics. 
 
 * how to use generic type in struct and enum definitions. 
 

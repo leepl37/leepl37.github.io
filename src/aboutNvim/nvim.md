@@ -16,7 +16,7 @@ nvim 으로 rust 코드를 짜기 시작한 후로 점점 더 linux 환경과 nv
 
 * 첫째줄과 다섯째줄 맨 앞의 hello 로 추가.
 * ^ 는 맨 앞이라는 정규식 의미이고 마찬가지로 $ 맨 뒤.
-
+* first character -> *. : 1st char, *.. til 2nd char .. 
 
 ```vi
 :%s/text/willchange/g
@@ -28,11 +28,29 @@ nvim 으로 rust 코드를 짜기 시작한 후로 점점 더 linux 환경과 nv
 #### 찾기(find)
 
 ```vi
+:vimgrep /pattern/g % -> current page, all lines search.   
+:vimgrep /pattern/g **/* -> directory search
 :vimgrep/text/g *.rs 
+:vimgrep pattern/g ../**/* -> upper directory
 ```
 
 * vi의 자체 기능이며 썩 만족스럽지 않다. 
 * 찾을 문구 넣고 /g 전체 *.rs 해당 파일 중에 검색. 
+
+* most used command in vimgrep 
+	* vimgrep pattern * - This command searches for pattern in all the files in the current directory and its subdirectories. The search results are displayed in a quickfix window.
+
+	* vimgrep pattern file1 file2 file3 - This command searches for pattern in the specified files (file1, file2, and file3 in this example). The search results are displayed in a quickfix window.
+	* copen - This command opens the quickfix window, which displays the search results.
+		* shortcut for cw 
+
+	* cnext - This command moves the cursor to the next search result in the quickfix window.
+	* cprev - This command moves the cursor to the previous search result in the quickfix window.
+	* cfirst - This command moves the cursor to the first search result in the quickfix window.
+	* clast - This command moves the cursor to the last search result in the quickfix window.
+	* cclose - This command closes the quickfix window.
+	* vimgrepadd pattern * - This command adds to the existing search results in the quickfix window. It searches for pattern in all the files in the current directory and its subdirectories, and adds the results to the quickfix list.
+	* vimgrepadd pattern file1 file2 file3 - This command adds to the existing search results in the quickfix window. It searches for pattern in the specified files (file1, file2, and file3 in this example), and adds the results to the quickfix list.
 
 
 
