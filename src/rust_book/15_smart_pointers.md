@@ -320,9 +320,361 @@ error[E0040]: explicit use of destructor method
 
 ### Rc<T>, the reference counted smart pointer 
 
+use Rc<T> type when we want to allocate some data on the heap for multiple parts of program to read and we can't determine at compile time which part will finish using the data last so this is why we use Rc<T> type. 
 
-use Rc<T> type when we want to allocate some date on the heap for multiple parts of program to read and we can't determine at compile time which part will finish using the data last
+* Rc<T> allows a single value to have multiple owners, and the count ensures that the value remains valid as long as any of the owners still exist. 
 
 * note that Rc<T> is only used in single thread scenario. 
+
+* what is difference just & and Rc<T> - Rc has multiple ownership 
+
+### Using Rc<T> to share data 
+
+we'll create two lists that share ownership of a third list. 
+
+<p><img src="./img/reference_count_img" alt="rc_img" width = 300 /> </p>
+
+*Example* - Two lists, b and c, sharing ownership of a third list, a
+
+```rust
+
+enum List {
+    Cons(i32, Box<List>),
+    Nil,
+}
+ use crate::List::{Cons, Nil};
+
+ fn main() {
+  let a = Cons(5,
+        Box::new(Cons(10,
+            Box::new(Nil))));
+  let b = Cons(3, Box::new(a));
+  let c = Cons(4, Box::new(a));
+}
+
+```
+
+ *example* - demonstrating we're not allowed to have two lists using Box<T> that try to share ownership of a third list
+
+
+```sh 
+
+error[E0382]: use of moved value: `a`
+  --> src/main.rs:13:30
+   |
+12 |     let b = Cons(3, Box::new(a));
+   |                              - value moved here
+13 |     let c = Cons(4, Box::new(a));
+   |                              ^ value used here after move
+   |
+   = note: move occurs because `a` has type `List`, which does not implement
+   the `Copy` trait
+
+
+```
+
+
+* a is moved into b and b owns a. when we try to use a again when creating c, we're not allowed to because a has been moved. 
+
+* we could change the definition of Cons to hold references instead, but then we would have to specify lifetime parameters. By specifying lifetime parameters, we would be specifying that every element in the list will live at least as long as the entire list. 
+
+	* the borrow checker wouldn't let us compile let a = Cons(10, &Nil); for example, because the temporary Nil value would be dropped before a could take a reference to it. 
+
+
+
+
+```rust 
+
+enum List {
+       Cons(i32, Rc<List>),
+       Nil,
+   }
+ use crate::List::{Cons, Nil};
+➊ use std::rc::Rc; // rc is not in the prelude. 
+ fn main() {
+    ➋ let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
+    ➌ let b = Cons(3, Rc::clone(&a));
+    ➍ let c = Cons(4, Rc::clone(&a));
+   }
+
+
+```
+ *example* - a definition of list that uses Rc<T> 
+
+
+* each Cons variant will now hold a value and an Rc<T> pointing to a list. when we create b, instead of taking ownership of a, we'll clone the Rc<List> that a is holding, thereby increasing the number of references from one to two and letting a and b share ownership of the data in that Rc<List>. 
+
+* we'll also clone a when creating c, increasing the number of references from two to three. 
+
+* every time we call Rc::clone, the reference count to the data within the Rc<List> will increase, and the data won't be cleaned up unless there are zero references to it. 
+
+* Rc::clone only increments the reference count and doesn't make a deep copy. 
+
+
+
+
+### Cloning an Rc<T> increases the reference count 
+
+```rs 
+let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));
+
+Rc::strong_count(&a);
+
+```
+
+* we can get reference count to call this function - Rc::string_count(&value).
+
+* also has weak_count we will take care of this in later.
+
+* Rc<List> in a has an initial reference count of 1.
+
+
+### RefCell<T> and the Interior Mutability Pattern 
+
+ *Interior mutability* is a design pattern in Rust that allows you to mutate data even when there are immutable references to that data; normally, this action is disallowed by the borrowing rules. To mutate data, the pattern uses unsafe code inside a data structure to bend Rust’s usual rules that govern mutation and borrowing. We haven’t yet covered unsafe code; we will in Chapter 19. We can use types that use the interior mutability pattern when we can ensure that the borrowing rules will be followed at runtime, even though the compiler can’t guarantee that. The unsafe code involved is then wrapped in a safe API, and the outer type is still immutable.
+
+### Enforcing Borrowing Rules at Runtime with RefCell<T> 
+
+* borrowing rules enforcing at compile time -> references and Box<T>.
+
+* checking the borrowing rules at compile time is the beest choice in the majority of cases, which is why this is Rust's default. 
+
+* The advantage of checking the borrowing rules at runtime instead is that certain memory-safe scenarios are then allowed, whereas they are disallowed by the compile-time checks.
+
+* same as Rc<T>, RefCell<T> is used in the single thread. 
+
+### Halting problem..
+
+* The RefCell<T> type is useful when you’re sure your code follows the borrowing rules but the compiler is unable to understand and guarantee that.
+
+
+### a recap of the reasons to choose Box<T>, Rc<T>, or RefCell<T>: 
+* Rc<T> enables multiple owners of the same data; Box<T> and RefCell<T> have single owners.
+* Box<T> allows immutable or mutable borrows checked at compile time; Rc<T> allows only immutable borrows checked at compile time; RefCell<T> allows immutable or mutable borrows checked at runtime. 
+* Because RefCell<T> allows mutable borrows checked at runtime, you can mutate the value inside the RefCell<T> even when the RefCell<T> is immutable.
+
+
+### Interior Mutablilty : A Mutable Borrow to an Immutable Value 
+
+* Using RefCell<T> is one way to get the ability to have interior mutability. But RefCell<T> doesn’t get around the borrowing rules completely: the borrow checker in the compiler allows this interior mutability, and the borrowing rules are checked at runtime instead. If you violate the rules, you’ll get a panic! instead of a compiler error. Let’s work through a practical example where we can use RefCell<T> to mutate an immutable value and see why that is useful. 
+
+### A Use Case for Interior Mutability: Mock Objects 
+
+* A test double is the general programming concept for a type used in place of another type during testing. Mock objects are specific types of test doubles that record what happens during a test so you can assert that the correct actions took place. Rust doesn’t have objects in the same sense as other languages have objects, and Rust doesn’t have mock object functionality built into the standard library as some other languages do. However, you can definitely create a struct that will serve the same purposes as a mock object.
+
+
+```rust
+
+pub trait Messenger {
+  fn send(&self, msg: &str);
+}
+ pub struct LimitTracker<'a, T: 'a + Messenger> {
+    messenger: &'a T,
+    value: usize,
+    max: usize,
+}
+ impl<'a, T> LimitTracker<'a, T>
+    where T: Messenger {
+    pub fn new(messenger: &T, max: usize) -> LimitTracker<T> {
+        LimitTracker {
+            messenger,
+            value: 0,
+            max,
+        }
+}
+  pub fn set_value(&mut self, value: usize) {
+       self.value = value;
+ let percentage_of_max = self.value as f64 / self.max as f64;
+ if percentage_of_max >= 1.0 {
+           self.messenger.send("Error: You are over your quota!");
+       } else if percentage_of_max >= 0.9 {
+            self.messenger.send("Urgent warning: You've used up over 90% of
+your quota!");
+        } else if percentage_of_max >= 0.75 {
+            self.messenger.send("Warning: You've used up over 75% of your
+quota!");
+        }
+    }
+}
+
+
+```
+
+
+* we are trying to make an example of RefCell<T> type. so we are using mock struct. 
+
+
+```rust 
+#[cfg(test)]
+mod tests {
+    use super::*;
+  struct MockMessenger {
+      sent_messages: Vec<String>,
+   }
+ impl MockMessenger {
+      fn new() -> MockMessenger {
+            MockMessenger { sent_messages: vec![] }
+        }
+    }
+ impl Messenger for MockMessenger {
+        fn send(&self, message: &str) {
+          self.sent_messages.push(String::from(message));
+        }
+    }
+ #[test]
+  fn it_sends_an_over_75_percent_warning_message() {
+       let mock_messenger = MockMessenger::new();
+       let mut limit_tracker = LimitTracker::new(&mock_messenger, 100);
+ limit_tracker.set_value(80);
+ assert_eq!(mock_messenger.sent_messages.len(), 1);
+    }
+}
+
+
+```
+
+* but this code does not compile because MockMessenger struct's send method is immutable ( trait messenger is using immutable self in send method )
+
+
+```rust 
+
+error[E0596]: cannot borrow immutable field 'self.sent_messages' as mutable
+  --> src/lib.rs:52:13
+   |
+51 |          fn send(&self, message: &str) {
+   |                  ----- use '&mut self' here to make mutable
+52 |              self.sent_messages.push(String::from(message));
+   |              ^^^^^^^^^^^^^^^^^^ cannot mutably borrow immutable field
+
+
+```
+
+* We also can’t take the suggestion from the error text to use &mut self instead, because then the signature of send wouldn’t match the signature in the Messenger trait definition (feel free to try it out and see what error message you get).
+
+
+
+<p><img src="./img/share_reference_cannot_understand" alt="do_not_understand" width = 800 /> </p>
+
+* I tried to changed to mut but it does not work and i can even understand why.. 
+
+
+
+```rust 
+
+mod tests {
+    use super::*;
+    use std::cell::RefCell;
+
+struct MockMessenger {
+      sent_messages: RefCell<Vec<String>>,
+
+}
+
+... 
+
+ self.sent_messages.borrow_mut().push(String::from(message));
+
+
+
+```
+
+* we can change it like this and compile with mock struct.
+
+
+### Keeping Track of Borrows at Runtime with RefCell<T>
+
+* When creating immutable and mutable references, we use the & and &mut syntax, respectively. With RefCell<T>, we use the borrow and borrow_mut methods, which are part of the safe API that belongs to RefCell<T>.
+
+* The borrow method returns the smart pointer type Ref<T>, and borrow_mut returns the smart pointer type RefMut<T>. Both types implement Deref, so we can treat them like regular references.
+
+* When a Ref<T> value goes out of scope, the count of immutable borrows goes down by one. Just like the compile-time borrowing rules, RefCell<T> lets us have many immutable borrows or one mutable borrow at any point in time.
+
+
+```rust 
+
+impl Messenger for MockMessenger {
+    fn send(&self, message: &str) {
+        let mut one_borrow = self.sent_messages.borrow_mut();
+        let mut two_borrow = self.sent_messages.borrow_mut();
+		one_borrow.push(String::from(message));
+        two_borrow.push(String::from(message));
+    }
+}
+
+```
+
+* Creating two mutable references in the same scope to see that RefCell<T> will panic. 
+
+* Notice that the code panicked with the message already borrowed: BorrowMutError. This is how RefCell<T> handles violations of the borrowing rules at runtime.
+
+* Catching borrowing errors at runtime may cause mistakes to be found later in the development process and incur a small runtime performance penalty. However, using RefCell<T> allows for the creation of mock objects that can modify themselves and provide more functionality than regular references. Despite its trade-offs, RefCell<T> can be used to achieve this.
+
+
+
+
+### Having Multiple Owners of Mutable Data by Combining Rc<T> and RefCell<T>
+
+
+Rc<T> is a type that allows multiple ownership of an immutable value, while RefCell<T> is a type that provides interior mutability, allowing for mutable access to a value even when it's immutably borrowed. Combining these types allows for multiple owners of a mutable value.
+
+However, there are some rules to follow when using this combination, such as not creating reference cycles and ensuring that all changes to the value are done through a RefCell<T> borrow. The chapter also covers how to use Rc<T> and RefCell<T> with a tree-like structure and how to avoid deadlocks when using multiple threads.
+
+Overall, this chapter provides a practical guide for combining Rc<T> and RefCell<T> to achieve multiple ownership of mutable data in Rust.
+
+
+```rust 
+
+#[derive(Debug)]
+enum List {
+    Cons(Rc<RefCell<i32>>, Rc<List>),
+    Nil,
+}
+use crate::List::{Cons, Nil};
+use std::rc::Rc;
+use std::cell::RefCell;
+
+fn main() {
+   let value = Rc::new(RefCell::new(5));
+
+   // clone value so both a and value have ownership of the value
+   // we wrap the list a in an Rc<T> so when we create lists b and c, they can both refer to a. multiple ownership 
+   let a = Rc::new(Cons(Rc::clone(&value), Rc::new(Nil))); 
+
+   let b = Cons(Rc::new(RefCell::new(6)), Rc::clone(&a));
+   let c = Cons(Rc::new(RefCell::new(10)), Rc::clone(&a));
+   *value.borrow_mut() += 10;
+   println!("a after = {:?}", a);
+   println!("b after = {:?}", b);
+   println!("c after = {:?}", c);
+}
+
+
+```
+
+
+* uses the automatic dereferencing feature we discussed in Chapter 5 (see “Where’s the -> Operator?” on page 94) to dereference the Rc<T> to the inner RefCell<T> value. The borrow_mut method returns a RefMut<T> smart pointer, and we use the dereference operator on it and change the inner value.
+
+	* Chapter 5 of "The Rust Programming Language" book introduces the ownership system in Rust and explains the automatic dereferencing feature. This feature allows us to use the . operator instead of -> to access fields and methods of a struct or an object when working with pointers. Rust automatically inserts a dereference operation when it encounters a . operator on a pointer type, but we can still use the * operator to explicitly access the pointer's inner value. Overall, this feature simplifies working with pointers in Rust.
+
+
+
+* The runtime checks of the borrowing rules protect us from data races, and it’s sometimes worth trading a bit of speed for this flexibility in our data structures.
+
+	* In Rust, a data race occurs when two or more pointers access the same memory location concurrently without proper synchronization. Data races can lead to undefined behavior and difficult-to-debug issues. Rust's ownership and borrowing system is designed to prevent data races at compile time by enforcing strict rules on how pointers are used and accessed. Rust's borrow checker ensures that a mutable reference is the only reference to a value at any given time, preventing concurrent writes, and Rust provides synchronization primitives to safely share data across threads and prevent data races. By preventing data races at compile time, Rust provides a high level of safety and reliability for concurrent programming while still allowing for high performance.
+
+
+
+* The standard library has other types that provide interior mutability, such as Cell<T>, which is similar except that instead of giving references to the inner value, the value is copied in and out of the Cell<T>. There’s also Mutex<T>, which offers interior mutability that’s safe to use across threads; we’ll discuss its use in Chapter 16. Check out the standard library docs for more details on the differences between these types.
+
+
+### Reference Cycles Can Leak Memory 
+
+ the problem of reference cycles, where two or more values refer to each other, either directly or indirectly, and can cause memory leaks. In Rust, this problem can be addressed using the Rc<T> type for shared ownership and the RefCell<T> type for interior mutability.
+
+However, combining Rc<T> and RefCell<T> can lead to reference cycles, which can cause memory leaks if not handled properly. The chapter provides guidance on how to avoid reference cycles when using these types, such as using weak references (Weak<T>) to break the cycle and using Rc::downgrade to create a weak reference from a shared reference.
+
+The chapter also emphasizes the importance of understanding reference cycles and how they can cause memory leaks, and provides practical examples to help readers identify and address reference cycles in their own Rust code. By understanding and addressing reference cycles, developers can ensure the reliability and safety of their Rust programs.
+
+
 
 

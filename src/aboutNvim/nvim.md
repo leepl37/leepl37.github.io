@@ -1,5 +1,10 @@
 # about Nvim and Linux
 
+### mac 
+
+"command + ` " - 동일한 어플리케이션 스위치 , very useful. 
+
+
 ### Nvim 
 
 nvim 으로 rust 코드를 짜기 시작한 후로 점점 더 linux 환경과 nvim에 익숙해진다. 여러모로 도움도 되고 무엇보다 잼희있다. 
