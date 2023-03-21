@@ -116,7 +116,7 @@ contrast, Cons list need size of i32 and size of List. the important thing is th
 
 store the value indirectly by storing pointer to the value. 
 
-Box<T> is a pointer, rust know much size it needs. 
+Box<T> is a pointer, Rust compiler does know how much size it needs. 
 
 so inside of List of Cons, we can put Box<T> that pointer to the value of List and so on. 
 
@@ -268,7 +268,7 @@ std lib also implement deref coersion on String struct thats why string to refer
 
 * drop trait can be useful when we release resources like files or network connections. 
 
-* drop trait is almost used to implement on smart pointer this is why we are introducting the trait in this chapter. 
+* drop trait is almost used to implement on smart pointer this is why we are introducing the trait in this chapter. 
 
 	* Box<T> needs to drop to deallocate on heap memory. 
 
@@ -675,6 +675,424 @@ However, combining Rc<T> and RefCell<T> can lead to reference cycles, which can 
 
 The chapter also emphasizes the importance of understanding reference cycles and how they can cause memory leaks, and provides practical examples to help readers identify and address reference cycles in their own Rust code. By understanding and addressing reference cycles, developers can ensure the reliability and safety of their Rust programs.
 
+
+* Rc<T>, RefCell<T> are possible to create references that can cause memory leaks. 
+
+* each item in the cycle will never reach 0, and the value will never be dropped. 
+
+
+
+### Creating a Reference Cycle. 
+
+lets look at how a reference cycle might happen and how to prevent it, starting with the definition of the List enum and a tail method. 
+
+
+```rust
+use std::rc::Rc;
+use std::cell::RefCell;
+use crate::List::{Cons, Nil};
+
+#[derive(Debug)]
+enum List {
+  Cons(i32, RefCell<Rc<List>>),
+    Nil,
+}
+
+impl List {
+  fn tail(&self) -> Option<&RefCell<Rc<List>>> {
+        match self {
+            Cons(_, item) => Some(item),
+            Nil => None,
+        }
+    }
+}
+
+
+```
+
+
+instead of changing value of i32, (example below)
+
+```rust 
+
+#[derive(Debug)]
+enum List {
+    Cons(Rc<RefCell<i32>>, Rc<List>),
+    Nil,
+}
+use crate::List::{Cons, Nil};
+use std::rc::Rc;
+use std::cell::RefCell;
+
+fn main() {
+ ➊ let value = Rc::new(RefCell::new(5));
+
+ ➋ let a = Rc::new(Cons(Rc::clone(&value), Rc::new(Nil)));
+ 
+ let b = Cons(Rc::new(RefCell::new(6)), Rc::clone(&a));
+ 
+ let c = Cons(Rc::new(RefCell::new(10)), Rc::clone(&a));
+ 
+ ➌ *value.borrow_mut() += 10;
+    println!("a after = {:?}", a);
+    println!("b after = {:?}", b);
+    println!("c after = {:?}", c);
+}
+
+
+```
+➌. We do this by calling borrow_mut on value, which uses the automatic dereferencing feature we discussed in Chapter 5 (see “Where’s the -> Operator?” on page 94) to dereference the Rc<T> to the inner RefCell<T> value. The borrow_mut method returns a RefMut<T> smart pointer, and we use the dereference operator on it and change the inner value.
+
+
+
+we're also adding a tail method to make it convenient for us to access the second item if we have a Cons variant. 
+
+
+```rust 
+
+fn main() {
+
+ 	➊ let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil))));
+
+	println!("a initial rc count = {}", Rc::strong_count(&a));
+    	
+	println!("a next item = {:?}", a.tail());
+ 
+ 	➋ let b = Rc::new(Cons(10, RefCell::new(Rc::clone(&a))));
+    
+    	println!("a rc count after b creation = {}", Rc::strong_count(&a));
+    
+    	println!("b initial rc count = {}", Rc::strong_count(&b));
+    
+    	println!("b next item = {:?}", b.tail());
+
+	➌ if let Some(link) = a.tail() {
+
+		➍ *link.borrow_mut() = Rc::clone(&b);
+
+	}
+   
+   	println!("b rc count after changing a = {}", Rc::strong_count(&b));
+   
+   	println!("a rc count after changing a = {}", Rc::strong_count(&a));
+    	// Uncomment the next line to see that we have a cycle;
+    	// it will overflow the stack.
+    	// println!("a next item = {:?}", a.tail());
+}
+
+
+```
+
+```sh 
+
+a initial rc count = 1
+
+a next item = Some(RefCell { value: Nil })
+
+a rc count after b creation = 2
+
+b initial rc count = 1
+
+b next item = Some(RefCell { value: Cons(5, RefCell { value: Nil }) })
+
+b rc count after changing a = 2
+
+a rc count after changing a = 2
+
+
+```
+
+
+* a is still referencing the Rc<List> that was in b, that Rc<List> has a count of 1 rather than 0, so the memory the Rc<List> has on the heap won't be dropped. 
+
+* the memory will just sit there with a count of 1, forever. to visualize this below.   
+<p><img src="./img/reference_cycle" alt="referenc_cycle" width = 300 /> </p>
+
+
+* Creating reference cycles is not easily done, but it’s not impossible either. If you have RefCell<T> values that contain Rc<T> values or similar nested combinations of types with interior mutability and reference counting, you must ensure that you don’t create cycles; you can’t rely on Rust to catch them. Creating a reference cycle would be a logic bug in your program that you should use automated tests, code reviews, and other software development practices to minimize.
+
+* another solution for avoiding reference cycles is reorganizing your data structures so that some references express ownership and some reference don't. as a result, you can have cycles made up of some ownership relationships and some noe-ownership relationships, and only the ownership relationships affect whether or not a value can be dropped. Cons<i32, RefCell<Rc<List>>) always want to own their list, so reorganizing the data structrue isn't possible. 
+
+* lets look at an example using graphs made up of parent nodes and child nodes to see when non-ownership relationships are an appropriate way to prevent reference cycles. 
+
+
+### Preventing Reference Cycles : Turning an Rc<T> into a Weak<T> 
+
+* strong_count - only cleaned up if its strong_count is 0.
+	* you can share ownership of an Rc<T> instance. 
+
+* weak reference - Rc::downgrade -> smart pointer of type Weak<T> 
+	* instead of increasing the strong_count in the Rc<T> instance by 1. 
+	* increases the weak_count by 1. 
+	* the difference with strong_count is the weak_count doesn't need to be 0 for the Rc<T> instance to be cleaned up.
+	* do not express an ownership relationship. 
+		* this means that they will not cause a reference cycle because any cycle involving some weak references will be broken once the strong reference count of values involved is 0. 
+
+	* the value that Weak<T> references might have been dropped, to do anything with the value that a Weak<T> is pointing to, you must make sure the value still exists. 
+		* calling the upgrade method on a Weak<T> will return the result of Some or None. 
+
+
+As an example, rather than using a list whose items know only about the next item, we will create a tree whose items know about their children items and their parent items. 
+
+
+
+### Creating a Tree Data Structure: A Node with Child Nodes. 
+
+we will build a tree with nodes that know about their child nodes. we will create a struct named **Node** that holds its own i32 value as well as references to its children **Node** values: 
+
+```rust 
+
+
+use std::rc::Rc;
+use std::cell::RefCell;
+
+#[derive(Debug)]
+
+struct Node {
+    value: i32,
+    children: RefCell<Vec<Rc<Node>>>,
+}
+
+
+```
+
+* Node to own its children, and want to share that ownership with variables so we can access each **Node** in the tree directly. 
+
+* To do this we define the Vec<T> items to be values of type Rc<Node>. 
+
+* also want to modify which nodes are children of another node, so we have a RefCell<T> in children around the Vec<Rc<Node>>. 
+
+
+```rust 
+
+fn main() {
+
+	let leaf = Rc::new(Node {
+        		value: 3,
+		        children: RefCell::new(vec![]),
+		    });
+
+
+	let branch = Rc::new(Node {
+       			 value: 5,
+	   	         children: RefCell::new(vec![Rc::clone(&leaf)]),
+			 });
+}
+
+
+```
+
+
+* can get from branch to leaf through branch.children otherwise can not. 
+
+
+
+### Adding a Reference from a Child to Its Parent 
+
+* can not contain an Rc<T> because that would create a reference cycle with leaf.parent pointing to branch and branch.children pointing to leaf, which would cause their strong_count values to never be 0.
+
+* a parent node should own its children: if a parent node is dropped, its child nodes should be dropped as well. 
+
+* a child should not own its parent: if we drop a child node, the parent should still exist. 
+
+* we will use Weak<T>.
+
+```rs 
+
+use std::rc::{Rc, Weak};
+use std::cell::RefCell;
+
+#[derive(Debug)]
+struct Node {
+    value: i32,
+    parent: RefCell<Weak<Node>>,
+    children: RefCell<Vec<Rc<Node>>>,
+}
+
+```
+
+* A node will be able to refer to its parent node but does not own its parent(Weak<T> type).
+
+
+
+
+```rs 
+fn main() {
+
+	let leaf = Rc::new(Node {
+	        value: 3,
+	     ➊ parent: RefCell::new(Weak::new()),
+	        children: RefCell::new(vec![]),
+	    });
+	  ➋ println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+	
+	let branch = Rc::new(Node {
+	        value: 5,
+	     ➌ parent: RefCell::new(Weak::new()),
+	        children: RefCell::new(vec![Rc::clone(&leaf)]),
+	    });
+	   ➍ *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
+	 ➎ println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+}
+
+
+```
+
+* 1. leaf starts out without a prarent, that's why its empty Weak<Node> reference instance. 
+
+* try to get a reference to the parent of leaf by using the upgrade method, we get a None value. 
+
+* Weak reference is from Rc::downgrade(&T). 
+
+* when we call parent node (Weak<T> type), using leaf.parent.borrow().upgrade() method. 
+	
+	* then we can avoid reference cycle. 
+
+
+### Visualizing Changes to string_count and weak_count 
+
+
+
+```rs 
+
+fn main() {
+    let leaf = Rc::new(Node {
+        value: 3,
+        parent: RefCell::new(Weak::new()),
+        children: RefCell::new(vec![]),
+    });
+ 
+ ➊ println!(
+       "leaf strong = {}, weak = {}",
+       Rc::strong_count(&leaf),
+       Rc::weak_count(&leaf),
+   );
+
+
+➋ {
+       let branch = Rc::new(Node {
+           value: 5,
+           parent: RefCell::new(Weak::new()),
+           children: RefCell::new(vec![Rc::clone(&leaf)]),
+       });
+	
+	*leaf.parent.borrow_mut() = Rc::downgrade(&branch);
+ 	
+	➌ println!(
+           "branch strong = {}, weak = {}",
+           Rc::strong_count(&branch),
+           Rc::weak_count(&branch),
+      );
+ 	
+	➍ println!(
+          "leaf strong = {}, weak = {}",
+          Rc::strong_count(&leaf),
+          Rc::weak_count(&leaf),
+      );
+➎ }
+ 
+ 	➏ println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+	➐ println!(
+       
+       		"leaf strong = {}, weak = {}",
+       		Rc::strong_count(&leaf),
+       		Rc::weak_count(&leaf),
+	);
+
+}
+
+```
+
+* 1. after **leaf** is created, its Rc<Node> has a strong count of 1 and a weak count of 0. 
+
+* 2. inner scope, 3. branch strong count is 1 for init(Rc::new) and weak count also is 1 (leaf.parent.borrow_mut() = Rc::downgrade(&branch))
+
+* 4. leaf has 2 strong count ( default for leaf, and children for branch ) otherwise weak count is still 0( there is no weak reference for leaf )
+
+* 5 after branch goes out of scope, leaf.parent.borrow().upgrade() is None. 
+
+* 6 leaf.parent.borrow().upgrade() is accessing the parent weak<T> ( converting a pointer from a type with weaker shared ownership to a type with stronger shared owndership)
+
+* 7 strong_count for leaf is 1, originally it was 2 ( branch is droped, it had children for leaf)
+
+* weak_count is still 0.
+
+
+### What is upgrading and downgrading ?
+
+* upgrade refers to converting a pointer from a type with weaker shared ownership to a type with stronger shared ownership. 
+
+	* ex) converting a `&mut T` reference to an `Rc<T>` smart pointer would be an upgrade because the `Rc<T>` pointer provides shared ownership whereas the `&mut T` reference does not. 
+
+```sh 
+
+In Rust, smart pointers provide different levels of shared ownership. Some smart pointers allow multiple references to the same data while others only allow one mutable reference.
+
+When you convert from one type of smart pointer to another, you may be changing the level of shared ownership.
+
+For example, let's say you have a mutable reference to some data:
+
+let mut data = "hello".to_string();
+let mut_ref = &mut data;
+
+If you convert this mutable reference to an Rc pointer, you are upgrading the level of shared ownership. This is because the Rc pointer allows multiple immutable references to the same data, whereas the mutable reference only allows one mutable reference at a time. Here's an example:
+
+use std::rc::Rc;
+
+let rc_ref = Rc::new(*mut_ref);
+
+In this code, *mut_ref dereferences the mutable reference to get the underlying data, and then the Rc::new function creates an Rc pointer to that data.
+
+Conversely, if you convert an Rc pointer to a mutable reference, you are downgrading the level of shared ownership. This is because the mutable reference allows only one mutable reference at a time, whereas the Rc pointer allows multiple immutable references. Here's an example:
+
+let mut_ref_again = Rc::get_mut(&mut rc_ref).unwrap();
+
+In this code, the Rc::get_mut method returns a mutable reference to the data inside the Rc pointer. If the Rc pointer has only one reference to the data (i.e., there are no other immutable references), this method will succeed and return a mutable reference. If there are other immutable references, this method will fail and return None.
+
+
+So, upgrading and downgrading refer to the change in level of shared ownership when you convert from one type of smart pointer to another.
+
+
+
+```
+
+### what is weak referece ?
+
+* it refers to an object without increasing its reference count. 
+
+* it is useful where you want to refer to an object, but you do not want to prevent it from being dropped when it is no longer need. 
+
+* can create a weak reference from a strong reference by calling the 'downgrade' method on the strong reference. 
+
+* using weak reference, you can call the 'upgrade' method on it. it returns Option<&T>. 
+
+* downgrade makes it weak<T> and upgrade makes it just Rc<T>.
+
+
+### downgrade reference weak<T> ?
+
+In Rust, the term "downgrade" is typically used when converting a strong reference (Rc<T>) to a weak reference (Weak<T>), not when converting a type.
+
+When a Rc<T> is converted to a Weak<T> using the Rc::downgrade() method, the resulting Weak<T> reference does not keep the reference count of the original Rc<T> pointer. Instead, it provides a non-owning, weak reference to the same object.
+
+The resulting Weak<T> reference is weaker than the original Rc<T> reference, in the sense that it does not prevent the object from being dropped or deallocated. However, it is still a reference to the same object, and can be upgraded back to a strong reference using the upgrade() method.
+
+So, to answer your question directly, converting a strong reference to a weak reference using Rc::downgrade() does not change the type of the reference. It creates a new Weak<T> reference that points to the same object as the original Rc<T> reference, but with weaker ownership semantics.
+
+### Summary 
+
+* the Box<T> type has a known size and points to data allocated on the heap. 
+
+* Rc<T> type keeps track of the number of references to data on the heap so that data can have multiple owners. 
+
+* RefCell<T> type with its interior mutablility gives us a type that we can use when we need an immutable type but need to change an inner value of that type; it also enforces the borrowing rules at runtime instead of at compile time. 
+
+* Dref and Drop traits, which enable a lot of the functionality of smart pointers. 
+
+* reference cycles and that can cause memory leaks and how to prevent them using Weak<T>.
+
+
+more interest [more about smart pointer](https://doc.rust-lang.org/stable/nomicon/)
 
 
 

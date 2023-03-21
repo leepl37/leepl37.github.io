@@ -1,8 +1,8 @@
  ### Hi guys.
 
-I'm a guy who really like to study about computer programming. 
+I'm a guy who like to study about computer programming. 
 
-specifically **Rust programming. 
+specifically * Rust programming *. 
 
 this blog is about me, and Rust. 
 

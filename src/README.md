@@ -1,9 +1,9 @@
- ### Hi guys.
+ ### Hi.
 
-I'm a guy who really like to study about computer programming. 
+I'm a guy who like to study about computer programming language. 
 
-specifically ** Rust. 
+specifically *Rust*. 
 
 this blog is about me, and Rust. 
 
-tonypl3737@gmail.com 
+<!-- tonypl3737@gmail.com  -->
