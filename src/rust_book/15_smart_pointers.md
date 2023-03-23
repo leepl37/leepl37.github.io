@@ -297,7 +297,7 @@ one example is when using smart pointers that manage locks: you might want to fo
 
 but rust does not let you call the Drop trait's drop method manually; instead you have to call the std::mem::drop function if you want to drop value before the end of the its scope. 
 
-and also using value.drop() method ealy is not allowed.  
+and also using value.drop() method early is not allowed.  
 
 ```sh 
 
@@ -310,7 +310,7 @@ error[E0040]: explicit use of destructor method
 
 ```
 * destructor is the general programming term for a function that cleans up an instance. 
-* it causes double free error. rust would still automatically call drop on the value at the end of main. 
+* it causes double free error. rust would still automatically call drop on the value at the end of main or scope.  
 
 
 ```rs 
@@ -437,7 +437,7 @@ Rc::strong_count(&a);
 
 * borrowing rules enforcing at compile time -> references and Box<T>.
 
-* checking the borrowing rules at compile time is the beest choice in the majority of cases, which is why this is Rust's default. 
+* checking the borrowing rules at compile time is the best choice in the majority of cases, which is why this is Rust's default. 
 
 * The advantage of checking the borrowing rules at runtime instead is that certain memory-safe scenarios are then allowed, whereas they are disallowed by the compile-time checks.
 
@@ -557,6 +557,11 @@ error[E0596]: cannot borrow immutable field 'self.sent_messages' as mutable
 
 * I tried to changed to mut but it does not work and i can even understand why.. 
 
+solved.
+
+* the Messensger and LimitTracker and methods are the source code can not change and test code the MockMessenger is implements that for test. 
+
+* in this case we use RefCell for change immutable value to mutable. 
 
 
 ```rust 
@@ -605,7 +610,7 @@ impl Messenger for MockMessenger {
 
 * Creating two mutable references in the same scope to see that RefCell<T> will panic. 
 
-* Notice that the code panicked with the message already borrowed: BorrowMutError. This is how RefCell<T> handles violations of the borrowing rules at runtime.
+* Notice that the code panic with the message already borrowed: BorrowMutError. This is how RefCell<T> handles violations of the borrowing rules at runtime.
 
 * Catching borrowing errors at runtime may cause mistakes to be found later in the development process and incur a small runtime performance penalty. However, using RefCell<T> allows for the creation of mock objects that can modify themselves and provide more functionality than regular references. Despite its trade-offs, RefCell<T> can be used to achieve this.
 
@@ -822,8 +827,7 @@ a rc count after changing a = 2
 	* you can share ownership of an Rc<T> instance. 
 
 * weak reference - Rc::downgrade -> smart pointer of type Weak<T> 
-	* instead of increasing the strong_count in the Rc<T> instance by 1. 
-	* increases the weak_count by 1. 
+	* instead of increasing the strong_count in the Rc<T> instance by 1 increases the weak_count by 1. 
 	* the difference with strong_count is the weak_count doesn't need to be 0 for the Rc<T> instance to be cleaned up.
 	* do not express an ownership relationship. 
 		* this means that they will not cause a reference cycle because any cycle involving some weak references will be broken once the strong reference count of values involved is 0. 
@@ -940,13 +944,13 @@ fn main() {
 
 * 1. leaf starts out without a prarent, that's why its empty Weak<Node> reference instance. 
 
-* try to get a reference to the parent of leaf by using the upgrade method, we get a None value. 
+* 2. try to get a reference to the parent of leaf by using the upgrade method, we get a None value. 
 
-* Weak reference is from Rc::downgrade(&T). 
+* 4. Weak reference is from Rc::downgrade(&T). 
 
-* when we call parent node (Weak<T> type), using leaf.parent.borrow().upgrade() method. 
+* 5. when we call parent node (Weak<T> type), using leaf.parent.borrow().upgrade() method. 
 	
-	* then we can avoid reference cycle. 
+* we can avoid reference cycle. weak reference can be dropped and never drop any relation reference becuase its weak!  
 
 
 ### Visualizing Changes to string_count and weak_count 

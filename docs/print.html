@@ -2006,10 +2006,164 @@ str
 <ul>
 <li>memoization or lazy evaluation. 
 <ul>
-<li>create struct that will hold the closure and the resulting value of calling the closure. the struct will execute the closure only if we need the resulting value, and it will cache the resulting value so the rest of our code doesn't have to be responsible for saving and reusing the result. </li>
+<li>
+<p>create struct that will hold the closure and the resulting value of calling the closure. the struct will execute the closure only if we need the resulting value, and it will cache the resulting value so the rest of our code doesn't have to be responsible for saving and reusing the result. </p>
+</li>
+<li>
+<p>Memoization refers to the technique of caching the results of a function call so that subsequent calls with the same arguments can be returned quickly from the cache instead of recomputing the result. This can be useful in cases where a function is computationally expensive or has side effects that can be avoided with caching. Memoization can be implemented using a HashMap or a similar data structure in Rust.</p>
+</li>
 </ul>
 </li>
 </ul>
+<p>Lazy evaluation, on the other hand, refers to the evaluation of an expression only when its value is actually needed, rather than eagerly evaluating it before it is needed. This can be useful for optimizing performance and reducing memory usage in cases where not all values need to be computed or stored at once. In Rust, lazy evaluation can be implemented using closures, iterators, and the lazy_static crate.</p>
+<p>Both memoization and lazy evaluation can be powerful techniques for optimizing Rust code, but they are best used judiciously and in cases where they provide a clear benefit.</p>
+<pre><code class="language-rs">
+struct Cacher&lt;T&gt; 
+   where T: Fn(u32) -&gt; u32 {
+   	calculation : T, 
+   	value : Option&lt;u32&gt;, 
+   }
+
+
+</code></pre>
+<ul>
+<li>
+<p>Note </p>
+<p><em>functions can implement all three of the Fn traits, too. If what we want to do doesn not require capturing a value from the environment, we can use a function rather than a clousre where we need something that implements an Fn trait</em></p>
+</li>
+</ul>
+<pre><code class="language-rs">impl&lt;T&gt; Cacher&lt;T&gt;
+  ➊ where T: Fn(u32) -&gt; u32
+{
+  ➋ fn new(calculation: T) -&gt; Cacher&lt;T&gt; {
+      ➌ Cacher {
+             calculation,
+             value: None,
+         }
+     }
+ ➍ fn value(&amp;mut self, arg: u32) -&gt; u32 {
+         match self.value {
+         ➎ Some(v) =&gt; v,
+         ➏ None =&gt; {
+                let v = (self.calculation)(arg);
+                self.value = Some(v);
+                v
+           },
+         }
+  }
+}
+
+
+</code></pre>
+<pre><code class="language-rs">
+
+fn generate_workout(intensity: u32, random_number: u32) {
+  ➊ let mut expensive_result = Cacher::new(|num| {
+         println!(&quot;calculating slowly...&quot;);
+         thread::sleep(Duration::from_secs(2));
+         num
+     });
+
+
+    if intensity &lt; 25 {
+         println!(
+             &quot;Today, do {} pushups!&quot;,
+          ➋ expensive_result.value(intensity)
+         );
+         println!(
+             &quot;Next, do {} situps!&quot;,
+          ➌ expensive_result.value(intensity)
+         );
+     } else {
+         if random_number == 3 {
+             println!(&quot;Take a break today! Remember to stay hydrated!&quot;);
+         } else {
+             println!(
+                 &quot;Today, run for {} minutes!&quot;,
+              ➍ expensive_result.value(intensity)
+             );
+	 }
+    }
+}
+
+
+</code></pre>
+<h3 id="limitations-of-the-cacher-implementation"><a class="header" href="#limitations-of-the-cacher-implementation">Limitations of the cacher implementation</a></h3>
+<ul>
+<li>
+<p>problem is that the first time we called c.value with 1, the Cacher instance saved Some(1) in self.value. Thereafter, no matter what we pass in to the value method, it will always return 1.</p>
+</li>
+<li>
+<p>to fix this problem using a hash map -&gt; the key will the are <strong>arg</strong> values that are passed in, and the value of key will be the result of caluation. </p>
+</li>
+</ul>
+<h3 id="capturing-the-environment-with-closures"><a class="header" href="#capturing-the-environment-with-closures">Capturing the environment with closures</a></h3>
+<pre><code class="language-rs">
+fn main() {
+
+	let x = 4; 
+
+	let equal_to_x = |z| z == x; 
+
+	let y = 4; 
+
+	assert!(equal_to_x(y));
+
+}
+
+
+</code></pre>
+<ul>
+<li>
+<p>when a closure captures a value from its environment, it uses memory to store the values for use in the closure body</p>
+</li>
+<li>
+<p>but this case is overhead so we do not want to pay in more common cases where we want to execute code such as funtions. </p>
+</li>
+</ul>
+<h4 id="three-ways-of-capturing"><a class="header" href="#three-ways-of-capturing">three ways of capturing</a></h4>
+<ul>
+<li>
+<p>taking ownership, borrowing mutably, and borrowing immutably. </p>
+<ul>
+<li>
+<p><strong>FnOnce</strong> : taking ownership of a variable, it can be called only once. </p>
+</li>
+<li>
+<p><strong>FnMut</strong> : mutably borrows values, can change the environment. </p>
+</li>
+<li>
+<p><strong>Fn</strong> : borrows values from the environment immutably. </p>
+</li>
+</ul>
+</li>
+<li>
+<p>rust infers which trait to use based on how the closure uses the values from the environment. </p>
+</li>
+<li>
+<p>take ownership of the values, move keyword force to take the value of ownership. </p>
+<ul>
+<li>this technique is mostyly useful when passing a closure to a new thread to move the data so it's owned by the new thread </li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-rs">
+fn main() {
+ 
+	 let x = vec![1, 2, 3];
+	 
+	 let equal_to_x = move |z| z == x;
+	 
+	 // this print macro does not work because x has been moved. 
+	 println!(&quot;can't use x here: {:?}&quot;, x);
+
+	 let y = vec![1, 2, 3];
+	 
+	 assert!(equal_to_x(y));
+}
+
+</code></pre>
+<h3 id="processing-a-series-of-items-with-iterators"><a class="header" href="#processing-a-series-of-items-with-iterators">Processing a Series of Items with Iterators</a></h3>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="smart-pointers-ch-15"><a class="header" href="#smart-pointers-ch-15">SMART POINTERS, ch 15</a></h1>
 <p>a pointer is a general concept for a variable that contains an address in memory. 
 this pointer is point at some other data. </p>
@@ -2282,7 +2436,7 @@ impl Drop for CustomSmartPointer {
 however, you might want to clean up a value early. </p>
 <p>one example is when using smart pointers that manage locks: you might want to force the drop method that release the lock to run so other code in the same scope can acquire the lock. </p>
 <p>but rust does not let you call the Drop trait's drop method manually; instead you have to call the std::mem::drop function if you want to drop value before the end of the its scope. </p>
-<p>and also using value.drop() method ealy is not allowed.</p>
+<p>and also using value.drop() method early is not allowed.</p>
 <pre><code class="language-sh">
 error[E0040]: explicit use of destructor method
   --&gt; src/main.rs:14:7
@@ -2294,7 +2448,7 @@ error[E0040]: explicit use of destructor method
 </code></pre>
 <ul>
 <li>destructor is the general programming term for a function that cleans up an instance. </li>
-<li>it causes double free error. rust would still automatically call drop on the value at the end of main. </li>
+<li>it causes double free error. rust would still automatically call drop on the value at the end of main or scope.</li>
 </ul>
 <pre><code class="language-rs">
 	 drop(value) // from std::mem::drop , it works. for early droping value 
@@ -2411,7 +2565,7 @@ Rc::strong_count(&amp;a);
 <p>borrowing rules enforcing at compile time -&gt; references and Box<T>.</p>
 </li>
 <li>
-<p>checking the borrowing rules at compile time is the beest choice in the majority of cases, which is why this is Rust's default. </p>
+<p>checking the borrowing rules at compile time is the best choice in the majority of cases, which is why this is Rust's default. </p>
 </li>
 <li>
 <p>The advantage of checking the borrowing rules at runtime instead is that certain memory-safe scenarios are then allowed, whereas they are disallowed by the compile-time checks.</p>
@@ -2530,6 +2684,15 @@ mod tests {
 <ul>
 <li>I tried to changed to mut but it does not work and i can even understand why.. </li>
 </ul>
+<p>solved.</p>
+<ul>
+<li>
+<p>the Messensger and LimitTracker and methods are the source code can not change and test code the MockMessenger is implements that for test. </p>
+</li>
+<li>
+<p>in this case we use RefCell for change immutable value to mutable. </p>
+</li>
+</ul>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span>
 <span class="boring">fn main() {
@@ -2582,7 +2745,7 @@ struct MockMessenger {
 <p>Creating two mutable references in the same scope to see that RefCell<T> will panic. </p>
 </li>
 <li>
-<p>Notice that the code panicked with the message already borrowed: BorrowMutError. This is how RefCell<T> handles violations of the borrowing rules at runtime.</p>
+<p>Notice that the code panic with the message already borrowed: BorrowMutError. This is how RefCell<T> handles violations of the borrowing rules at runtime.</p>
 </li>
 <li>
 <p>Catching borrowing errors at runtime may cause mistakes to be found later in the development process and incur a small runtime performance penalty. However, using RefCell<T> allows for the creation of mock objects that can modify themselves and provide more functionality than regular references. Despite its trade-offs, RefCell<T> can be used to achieve this.</p>
@@ -2782,10 +2945,7 @@ a rc count after changing a = 2
 <p>weak reference - Rc::downgrade -&gt; smart pointer of type Weak<T> </p>
 <ul>
 <li>
-<p>instead of increasing the strong_count in the Rc<T> instance by 1. </p>
-</li>
-<li>
-<p>increases the weak_count by 1. </p>
+<p>instead of increasing the strong_count in the Rc<T> instance by 1 increases the weak_count by 1. </p>
 </li>
 <li>
 <p>the difference with strong_count is the weak_count doesn't need to be 0 for the Rc<T> instance to be cleaned up.</p>
@@ -2911,16 +3071,22 @@ struct Node {
 </ol>
 </li>
 <li>
-<p>try to get a reference to the parent of leaf by using the upgrade method, we get a None value. </p>
+<ol start="2">
+<li>try to get a reference to the parent of leaf by using the upgrade method, we get a None value. </li>
+</ol>
 </li>
 <li>
-<p>Weak reference is from Rc::downgrade(&amp;T). </p>
+<ol start="4">
+<li>Weak reference is from Rc::downgrade(&amp;T). </li>
+</ol>
 </li>
 <li>
-<p>when we call parent node (Weak<T> type), using leaf.parent.borrow().upgrade() method. </p>
-<ul>
-<li>then we can avoid reference cycle. </li>
-</ul>
+<ol start="5">
+<li>when we call parent node (Weak<T> type), using leaf.parent.borrow().upgrade() method. </li>
+</ol>
+</li>
+<li>
+<p>we can avoid reference cycle. weak reference can be dropped and never drop any relation reference becuase its weak!</p>
 </li>
 </ul>
 <h3 id="visualizing-changes-to-string_count-and-weak_count"><a class="header" href="#visualizing-changes-to-string_count-and-weak_count">Visualizing Changes to string_count and weak_count</a></h3>

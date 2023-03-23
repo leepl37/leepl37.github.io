@@ -413,7 +413,7 @@ impl Drop for CustomSmartPointer {
 however, you might want to clean up a value early. </p>
 <p>one example is when using smart pointers that manage locks: you might want to force the drop method that release the lock to run so other code in the same scope can acquire the lock. </p>
 <p>but rust does not let you call the Drop trait's drop method manually; instead you have to call the std::mem::drop function if you want to drop value before the end of the its scope. </p>
-<p>and also using value.drop() method ealy is not allowed.</p>
+<p>and also using value.drop() method early is not allowed.</p>
 <pre><code class="language-sh">
 error[E0040]: explicit use of destructor method
   --&gt; src/main.rs:14:7
@@ -425,7 +425,7 @@ error[E0040]: explicit use of destructor method
 </code></pre>
 <ul>
 <li>destructor is the general programming term for a function that cleans up an instance. </li>
-<li>it causes double free error. rust would still automatically call drop on the value at the end of main. </li>
+<li>it causes double free error. rust would still automatically call drop on the value at the end of main or scope.</li>
 </ul>
 <pre><code class="language-rs">
 	 drop(value) // from std::mem::drop , it works. for early droping value 
@@ -542,7 +542,7 @@ Rc::strong_count(&amp;a);
 <p>borrowing rules enforcing at compile time -&gt; references and Box<T>.</p>
 </li>
 <li>
-<p>checking the borrowing rules at compile time is the beest choice in the majority of cases, which is why this is Rust's default. </p>
+<p>checking the borrowing rules at compile time is the best choice in the majority of cases, which is why this is Rust's default. </p>
 </li>
 <li>
 <p>The advantage of checking the borrowing rules at runtime instead is that certain memory-safe scenarios are then allowed, whereas they are disallowed by the compile-time checks.</p>
@@ -661,6 +661,15 @@ mod tests {
 <ul>
 <li>I tried to changed to mut but it does not work and i can even understand why.. </li>
 </ul>
+<p>solved.</p>
+<ul>
+<li>
+<p>the Messensger and LimitTracker and methods are the source code can not change and test code the MockMessenger is implements that for test. </p>
+</li>
+<li>
+<p>in this case we use RefCell for change immutable value to mutable. </p>
+</li>
+</ul>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span>
 <span class="boring">fn main() {
@@ -713,7 +722,7 @@ struct MockMessenger {
 <p>Creating two mutable references in the same scope to see that RefCell<T> will panic. </p>
 </li>
 <li>
-<p>Notice that the code panicked with the message already borrowed: BorrowMutError. This is how RefCell<T> handles violations of the borrowing rules at runtime.</p>
+<p>Notice that the code panic with the message already borrowed: BorrowMutError. This is how RefCell<T> handles violations of the borrowing rules at runtime.</p>
 </li>
 <li>
 <p>Catching borrowing errors at runtime may cause mistakes to be found later in the development process and incur a small runtime performance penalty. However, using RefCell<T> allows for the creation of mock objects that can modify themselves and provide more functionality than regular references. Despite its trade-offs, RefCell<T> can be used to achieve this.</p>
@@ -913,10 +922,7 @@ a rc count after changing a = 2
 <p>weak reference - Rc::downgrade -&gt; smart pointer of type Weak<T> </p>
 <ul>
 <li>
-<p>instead of increasing the strong_count in the Rc<T> instance by 1. </p>
-</li>
-<li>
-<p>increases the weak_count by 1. </p>
+<p>instead of increasing the strong_count in the Rc<T> instance by 1 increases the weak_count by 1. </p>
 </li>
 <li>
 <p>the difference with strong_count is the weak_count doesn't need to be 0 for the Rc<T> instance to be cleaned up.</p>
@@ -1042,16 +1048,22 @@ struct Node {
 </ol>
 </li>
 <li>
-<p>try to get a reference to the parent of leaf by using the upgrade method, we get a None value. </p>
+<ol start="2">
+<li>try to get a reference to the parent of leaf by using the upgrade method, we get a None value. </li>
+</ol>
 </li>
 <li>
-<p>Weak reference is from Rc::downgrade(&amp;T). </p>
+<ol start="4">
+<li>Weak reference is from Rc::downgrade(&amp;T). </li>
+</ol>
 </li>
 <li>
-<p>when we call parent node (Weak<T> type), using leaf.parent.borrow().upgrade() method. </p>
-<ul>
-<li>then we can avoid reference cycle. </li>
-</ul>
+<ol start="5">
+<li>when we call parent node (Weak<T> type), using leaf.parent.borrow().upgrade() method. </li>
+</ol>
+</li>
+<li>
+<p>we can avoid reference cycle. weak reference can be dropped and never drop any relation reference becuase its weak!</p>
 </li>
 </ul>
 <h3 id="visualizing-changes-to-string_count-and-weak_count"><a class="header" href="#visualizing-changes-to-string_count-and-weak_count">Visualizing Changes to string_count and weak_count</a></h3>
