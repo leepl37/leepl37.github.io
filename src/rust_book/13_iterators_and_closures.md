@@ -202,11 +202,175 @@ fn main() {
 ### Processing a Series of Items with Iterators 
 
 
+An iterators is responsible for the logic of iterating over each item an determining when the sequence has finished. 
+
+In Rust, iterators are **lazy**, they have no effect until you call methods that consume the iterator to use it up. 
+
+```rs 
+
+let v1 = vec![1,2,3];
+
+// creating iterator using iter() method that implemented on Vec<T>
+let v1_iter = v1.iter();
+
+```
+
+### The Iterator Trait and the next Method 
 
 
+```rs 
+
+pub trait Iterator {
+	type Item;
+	
+	fn next(&mut self) -> Option<Self::Item> {
+		//elided
+	}
+
+}
+
+```
 
 
+* type Item and Self::Item, defining an associated type with this trait. 
 
+* talk about associated types in depth in chapter 19.
+
+* Implementing the Iterator trait requires that you also define an Item type, and this Item type is used in the return type of the next mehtod. 
+
+* the **Iterator** trait only requires implementors to define one method: the **next** method, which returns one item of the iterator. 
+
+* calling the **next** method on an iterator chages internal state so it needs to be mutable. 
+
+* iterators uses to keep track of where it is in the sequence. 
+
+* this called consumes or uses up the iterator. 
+
+* each call to **next** eats up an item from the iterator. 
+
+* iter_mut() - take mutable reference, into_iter() - take ownership, iter() - reference.
+
+
+### Methods That Consume the Iterator.
+
+* Methods that call **next** are refered to as **consuming adaptors**.  
+
+* also **sum method**. 
+
+### Methods That Produce Otehr Iterators. 
+
+* change iteraotrs into different kinds of iterators, **iterator adaptors** 
+
+* iterators are lazy, you need to call one of the consuming adaptor methods to get iterator adaptors.
+
+```rs 
+
+let v1 = vec![1,2,3];
+
+v1.iter().map(|x| x + 1);
+
+```
+
+* warning - unused `std::iter::Map` which must be used: iterator adaptors are lazy and do nothing unless consumed.
+
+* to fix this issue, we need to call **collect()** method. 
+	* consume the new iterator and create a vector. 
+
+### Using Closures That Capture Their Environment. 
+
+
+```rs 
+#[derive(PartialEq, Debug)]
+   struct Shoe {
+       size: u32,
+       style: String,
+   }
+ ➊ fn shoes_in_my_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
+    ➋ shoes.into_iter()
+        ➌ .filter(|s| s.size == shoe_size
+        ➍ .collect()
+   }
+    #[test]
+   fn filters_by_size() {
+       let shoes = vec![
+           Shoe { size: 10, style: String::from("sneaker") },
+           Shoe { size: 13, style: String::from("sandal") },
+           Shoe { size: 10, style: String::from("boot") },
+       ];
+    let in_my_size = shoes_in_my_size(shoes, 10);
+       assert_eq!(
+           in_my_size,
+           vec![
+               Shoe { size: 10, style: String::from("sneaker") },
+               Shoe { size: 10, style: String::from("boot") },
+           ]
+      );
+   }
+
+
+```
+
+* **filter()** method example.
+
+### Creating Our Own Iterators with the Iterator Trait. 
+
+```rs 
+
+struct Counter {
+    count: u32,
+}
+
+
+impl Counter {
+    fn new() -> Counter {
+        Counter { count: 0 }
+    }
+}
+
+
+impl Iterator for Counter {
+    	
+	type Item = u32;
+
+	fn next(&mut self) -> Option<Self::Item> {
+	        if self.count < 5 {
+	            self.count += 1;
+	            Some(self.count)
+	        } else {
+	            None
+	        }
+	    }
+}
+
+
+```
+
+
+### Using Otehr Iterator Triat Methods 
+
+```rs 
+
+	fn using_other_iterator_trait_methods() {
+
+		let sum: u32 = Counter::new().zip(Counter::new().skip(1))
+                                 .map(|(a, b)| a * b)
+                                 .filter(|x| x % 3 == 0)
+                                 .sum();
+    
+    		assert_eq!(18, sum);
+	}
+
+```
+
+
+### Comparing Performance : Looks vs. Iterators 
+
+Iterators are one of Rust's zero-cose abstractions, no additional runtime overhead. 
+
+
+### Summary 
+
+* Closures and iterators contribute to Rust's capability to clearly express high-level ideas at low-level perfromance. 
 
 
 
