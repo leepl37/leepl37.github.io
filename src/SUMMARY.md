@@ -23,7 +23,9 @@
 	- [FUNCTIONAL LANGUAGE FEATRUES : ITERATORS AND CLOSURES, ch 13](./rust_book/13_iterators_and_closures.md)
 	- [MORE ABOUT CARGO AND CREATES.IO, ch 14](./rust_book/14_more_about_cargo_and_creates_io.md)
 	- [SMART POINTERS, ch 15](./rust_book/15_smart_pointers.md)
-	
+	- [Fearless Concurrency, Ch 16](./rust_book/16_fearless_concurrency.md)
+	- [Object Oriented programming, Ch 17](./rust_book/17_object-oriented_programming_features_of_rust.md)
+
 - [Rust by example(번역)](./example/example.md)
 	- [Hello World 출력](./example/hello.md)
 		- [Comments, 주석](./example/hello/comment.md)
@@ -69,16 +71,16 @@
 	- [Traits](./example/traits.md)
 	- [macro](./example/macro.md)
 
-# Will be Deleted 
-[Rust 책 정리](./rust_book/intro.md)
-	- [Generics Types, Traits, and Lifetimes](./rust_book/generic_trait_lifetime.md)
+<!-- # Will be Deleted  -->
+<!-- [Rust 책 정리](./rust_book/intro.md) -->
+<!-- 	- [Generics Types, Traits, and Lifetimes](./rust_book/generic_trait_lifetime.md) -->
 
-# Datestructre and algorithms
+<!-- # Datestructre and algorithms -->
 - [데이터 구조와 알고리즘](./dataStructureAndAlgorithms/intro.md)
 	- [Section 1](./dataStructureAndAlgorithms/section1.md)
 
-- [writing an OS in Rust](./rustOS/intro.md)
-	- [A Freestanding Rust Binary](./rustOS/freestandingRustBinary.md)
+<!-- - [writing an OS in Rust](./rustOS/intro.md) -->
+<!-- 	- [A Freestanding Rust Binary](./rustOS/freestandingRustBinary.md) -->
 
 # SP Manual
 - [SP MANUAL](./spmanual/start.md)

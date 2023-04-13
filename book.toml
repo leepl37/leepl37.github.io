@@ -6,7 +6,7 @@ author = "tony"
 
 [output.html.playpen]
 editable = true
-editor = "ace"
+editor = ""
 
 [output.html.fold]
 enable = true
