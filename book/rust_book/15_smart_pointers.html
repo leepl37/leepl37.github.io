@@ -841,35 +841,57 @@ fn main() {
 </code></pre></pre>
 <p>➌. We do this by calling borrow_mut on value, which uses the automatic dereferencing feature we discussed in Chapter 5 (see “Where’s the -&gt; Operator?” on page 94) to dereference the Rc<T> to the inner RefCell<T> value. The borrow_mut method returns a RefMut<T> smart pointer, and we use the dereference operator on it and change the inner value.</p>
 <p>we're also adding a tail method to make it convenient for us to access the second item if we have a Cons variant. </p>
-<pre><pre class="playground"><code class="language-rust edition2021">
+<pre><pre class="playground"><code class="language-rust  editable edition2021">
+
+use std::rc::Rc;
+use std::cell::RefCell;
+use crate::List::{Cons, Nil};
+
+
+#[derive(Debug)]
+enum List {
+    Cons(i32, RefCell&lt;Rc&lt;List&gt;&gt;),
+    Nil,
+}
+
+impl List {
+  fn tail(&amp;self) -&gt; Option&lt;&amp;RefCell&lt;Rc&lt;List&gt;&gt;&gt; {
+        match self {
+            Cons(_, item) =&gt; Some(item),
+            Nil =&gt; None,
+        }
+    }
+}
 fn main() {
 
- 	➊ let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil))));
 
+	// 1
+	let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil))));
+	
 	println!(&quot;a initial rc count = {}&quot;, Rc::strong_count(&amp;a));
-    	
+	
 	println!(&quot;a next item = {:?}&quot;, a.tail());
- 
- 	➋ let b = Rc::new(Cons(10, RefCell::new(Rc::clone(&amp;a))));
-    
-    	println!(&quot;a rc count after b creation = {}&quot;, Rc::strong_count(&amp;a));
-    
-    	println!(&quot;b initial rc count = {}&quot;, Rc::strong_count(&amp;b));
-    
-    	println!(&quot;b next item = {:?}&quot;, b.tail());
+	// 2 
+	let b = Rc::new(Cons(10, RefCell::new(Rc::clone(&amp;a))));
+	
+	println!(&quot;a rc count after b creation = {}&quot;, Rc::strong_count(&amp;a));
+	
+	println!(&quot;b initial rc count = {}&quot;, Rc::strong_count(&amp;b));
+	
+	println!(&quot;b next item = {:?}&quot;, b.tail());
+	// 3 
+	if let Some(link) = a.tail() {
+	// 4 
+	*link.borrow_mut() = Rc::clone(&amp;b);
 
-	➌ if let Some(link) = a.tail() {
+}
 
-		➍ *link.borrow_mut() = Rc::clone(&amp;b);
-
-	}
-   
-   	println!(&quot;b rc count after changing a = {}&quot;, Rc::strong_count(&amp;b));
-   
-   	println!(&quot;a rc count after changing a = {}&quot;, Rc::strong_count(&amp;a));
-    	// Uncomment the next line to see that we have a cycle;
-    	// it will overflow the stack.
-    	// println!(&quot;a next item = {:?}&quot;, a.tail());
+	println!(&quot;b rc count after changing a = {}&quot;, Rc::strong_count(&amp;b));
+	
+	println!(&quot;a rc count after changing a = {}&quot;, Rc::strong_count(&amp;a));
+	// Uncomment the next line to see that we have a cycle;
+	// it will overflow the stack.
+	// println!(&quot;a next item = {:?}&quot;, a.tail());
 }
 
 </code></pre></pre>
@@ -972,7 +994,18 @@ struct Node {
 <p>also want to modify which nodes are children of another node, so we have a RefCell<T> in children around the Vec&lt;Rc<Node>&gt;. </p>
 </li>
 </ul>
-<pre><pre class="playground"><code class="language-rust edition2021">
+<pre><pre class="playground"><code class="language-rust  editable edition2021">
+use std::rc::Rc;
+use std::cell::RefCell;
+
+#[derive(Debug)]
+
+struct Node {
+    value: i32,
+    children: RefCell&lt;Vec&lt;Rc&lt;Node&gt;&gt;&gt;,
+}
+
+
 fn main() {
 
 	let leaf = Rc::new(Node {
@@ -989,7 +1022,7 @@ fn main() {
 
 </code></pre></pre>
 <ul>
-<li>can get from branch to leaf through branch.children otherwise can not. </li>
+<li>can get from branch to leaf through branch.children otherwise can not.(can not get the parent information) </li>
 </ul>
 <h3 id="adding-a-reference-from-a-child-to-its-parent"><a class="header" href="#adding-a-reference-from-a-child-to-its-parent">Adding a Reference from a Child to Its Parent</a></h3>
 <ul>
@@ -1021,26 +1054,41 @@ struct Node {
 <ul>
 <li>A node will be able to refer to its parent node but does not own its parent(Weak<T> type).</li>
 </ul>
-<pre><code class="language-rs">fn main() {
+<pre><pre class="playground"><code class="language-rust  editable edition2021">
+use std::rc::{Rc, Weak};
+use std::cell::RefCell;
 
-	let leaf = Rc::new(Node {
-	        value: 3,
-	     ➊ parent: RefCell::new(Weak::new()),
-	        children: RefCell::new(vec![]),
-	    });
-	  ➋ println!(&quot;leaf parent = {:?}&quot;, leaf.parent.borrow().upgrade());
-	
-	let branch = Rc::new(Node {
-	        value: 5,
-	     ➌ parent: RefCell::new(Weak::new()),
-	        children: RefCell::new(vec![Rc::clone(&amp;leaf)]),
-	    });
-	   ➍ *leaf.parent.borrow_mut() = Rc::downgrade(&amp;branch);
-	 ➎ println!(&quot;leaf parent = {:?}&quot;, leaf.parent.borrow().upgrade());
+#[derive(Debug)]
+struct Node {
+    value: i32,
+    parent: RefCell&lt;Weak&lt;Node&gt;&gt;,
+    children: RefCell&lt;Vec&lt;Rc&lt;Node&gt;&gt;&gt;,
 }
 
 
-</code></pre>
+fn main() {
+	// 1 
+	   let leaf = Rc::new(Node {
+	        value: 3,
+	      parent: RefCell::new(Weak::new()),
+	        children: RefCell::new(vec![]),
+	    });
+	    // 2 
+	    println!(&quot;leaf parent = {:?}&quot;, leaf.parent.borrow().upgrade());
+	
+	    let branch = Rc::new(Node {
+	        value: 5,
+	     parent: RefCell::new(Weak::new()),
+	        children: RefCell::new(vec![Rc::clone(&amp;leaf)]),
+	    });
+	    // 4 
+	   *leaf.parent.borrow_mut() = Rc::downgrade(&amp;branch);
+	 
+	    // 5
+	    println!(&quot;leaf parent = {:?}&quot;, leaf.parent.borrow().upgrade());
+}
+
+</code></pre></pre>
 <ul>
 <li>
 <ol>
@@ -1067,22 +1115,32 @@ struct Node {
 </li>
 </ul>
 <h3 id="visualizing-changes-to-string_count-and-weak_count"><a class="header" href="#visualizing-changes-to-string_count-and-weak_count">Visualizing Changes to string_count and weak_count</a></h3>
-<pre><code class="language-rs">
+<pre><pre class="playground"><code class="language-rust  editable edition2021">
+use std::rc::{Rc, Weak};
+use std::cell::RefCell;
+
+#[derive(Debug)]
+struct Node {
+    value: i32,
+    parent: RefCell&lt;Weak&lt;Node&gt;&gt;,
+    children: RefCell&lt;Vec&lt;Rc&lt;Node&gt;&gt;&gt;,
+}
+
 fn main() {
     let leaf = Rc::new(Node {
         value: 3,
         parent: RefCell::new(Weak::new()),
         children: RefCell::new(vec![]),
     });
- 
- ➊ println!(
+ // 1
+ println!(
        &quot;leaf strong = {}, weak = {}&quot;,
        Rc::strong_count(&amp;leaf),
        Rc::weak_count(&amp;leaf),
    );
 
-
-➋ {
+// 2
+{
        let branch = Rc::new(Node {
            value: 5,
            parent: RefCell::new(Weak::new()),
@@ -1090,22 +1148,25 @@ fn main() {
        });
 	
 	*leaf.parent.borrow_mut() = Rc::downgrade(&amp;branch);
- 	
-	➌ println!(
+ 	// 3
+	 println!(
            &quot;branch strong = {}, weak = {}&quot;,
            Rc::strong_count(&amp;branch),
            Rc::weak_count(&amp;branch),
       );
- 	
-	➍ println!(
+        // 4 	
+	println!(
           &quot;leaf strong = {}, weak = {}&quot;,
           Rc::strong_count(&amp;leaf),
           Rc::weak_count(&amp;leaf),
       );
-➎ }
- 
- 	➏ println!(&quot;leaf parent = {:?}&quot;, leaf.parent.borrow().upgrade());
-	➐ println!(
+ }
+// 5  
+	// 6 
+ 	println!(&quot;leaf parent = {:?}&quot;, leaf.parent.borrow().upgrade());
+	
+	// 7 
+	println!(
        
        		&quot;leaf strong = {}, weak = {}&quot;,
        		Rc::strong_count(&amp;leaf),
@@ -1113,8 +1174,7 @@ fn main() {
 	);
 
 }
-
-</code></pre>
+</code></pre></pre>
 <ul>
 <li>
 <ol>
