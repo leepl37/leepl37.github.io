@@ -25,7 +25,7 @@
 	- [SMART POINTERS, ch 15](./rust_book/15_smart_pointers.md)
 	- [Fearless Concurrency, Ch 16](./rust_book/16_fearless_concurrency.md)
 	- [Object Oriented programming, Ch 17](./rust_book/17_object-oriented_programming_features_of_rust.md)
-
+	- [Advanced Features, Ch 19](./rust_book/19_advanced_features.md)
 - [Rust by example(번역)](./example/example.md)
 	- [Hello World 출력](./example/hello.md)
 		- [Comments, 주석](./example/hello/comment.md)
