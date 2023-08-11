@@ -3,15 +3,19 @@
 <!-- - [test1](./test/test.md) -->
 <!-- 	- [intest](./intest.md) -->
 
-#RUST PROGRAMMING LANGUAGE
+# I LOVE RUST
 - [Introduction](./README.md)
-- [aboutNvim&Linux](./aboutNvim/nvim.md)
+
+<!--- [aboutNvim&Linux](./aboutNvim/nvim.md) -->
+
+- [writing_OS_with_Rust](./rustOS/intro.md)
+    - [rust_binary_and_kernel_and_VGA_text](./rustOS/freestandingRustBinary.md)
 
 - [systemProgremming](./system/index.md)
 	- [lecture1](./system/lecture1.md)
 	- [lecture2](./system/lecture2.md)
 
-- [The Rust Programming Language](./rust_book/intro.md)
+- [Summary of The Rust Programming Language](./rust_book/intro.md)
 	- [Common Programming Concepts, Ch3](./rust_book/3_common_programming_concepts.md)
 	- [UNDERSTANDING OWNERSHIP, Ch4](./rust_book/4_understanding_ownership.md)
 	- [USING STRUCTS TO STRUCTURE RELATED DATA, Ch5](./rust_book/5_using_structs_to_structure_related_data.md)
@@ -26,6 +30,7 @@
 	- [Fearless Concurrency, Ch 16](./rust_book/16_fearless_concurrency.md)
 	- [Object Oriented programming, Ch 17](./rust_book/17_object-oriented_programming_features_of_rust.md)
 	- [Advanced Features, Ch 19](./rust_book/19_advanced_features.md)
+
 - [Rust by example(번역)](./example/example.md)
 	- [Hello World 출력](./example/hello.md)
 		- [Comments, 주석](./example/hello/comment.md)
@@ -34,7 +39,6 @@
 		- [TestCase: List(iter 개념과 Option 개념이 필요함)](./example/hello/testcase.md)	
 	- [Primitives, 원시타입](./example/primitives.md)
 		- [Arrays and Slices](./example/primitives/arrays_and_slices.md)
-
 	- [Custom Types](./example/customtype.md)
 		- [TestCase: linked-list](./example/customtype/testcase.md)
 		- [constants](./example/customtype/constants.md)
@@ -82,6 +86,8 @@
 <!-- - [writing an OS in Rust](./rustOS/intro.md) -->
 <!-- 	- [A Freestanding Rust Binary](./rustOS/freestandingRustBinary.md) -->
 
+
+<!--
 # SP Manual
 - [SP MANUAL](./spmanual/start.md)
 	- [ch1](./spmanual/chapter_1.md)
@@ -90,3 +96,4 @@
 	- [ch4](./spmanual/chapter_4.md)
 	- [ch5](./spmanual/chapter_5.md)
 	- [etc](./spmanual/etc.md)
+-->
