@@ -86,6 +86,7 @@
 <!-- - [writing an OS in Rust](./rustOS/intro.md) -->
 <!-- 	- [A Freestanding Rust Binary](./rustOS/freestandingRustBinary.md) -->
 
+- [SP_manual](./spManual/createDid.md)
 
 <!--
 # SP Manual
