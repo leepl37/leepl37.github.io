@@ -21,49 +21,49 @@
   - 윈도우 : `create_doc_window.bat` 
 
 <p><img src="./images/step1.png" alt="steps" /> </p>
-개발 및 운영에 따라 `1` 또는 `2` 를 선택.
+개발 및 운영에 따라 `1` 또는 `2` 를 선택
 
   ### Step 2. 패스워드 입력
 
 <p><img src="./images/step2.png" alt="steps" /> </p>
 
-`wallet` 생성에 필요한 비밀번호를 입력.(예시: `komsco1`)
+`wallet` 생성에 필요한 비밀번호를 입력(예시: `komsco1`)
  
 
   ### Step 3. ECC KEY 입력
 
 <p><img src="./images/step3.png" alt="steps" /> </p>
 
-`wallet` 에 추가할 ECC KEY ID를 입력.(예시: `komsco.sp`) 
-  - 확장자는 `.sp`. 
-  - default 값으로 하고 싶은 경우 `enter` 입력. 
+`wallet` 에 추가할 ECC KEY ID를 입력(예시: `komsco.sp`) 
+  - 확장자는 `.sp` 
+  - default 값으로 하고 싶은 경우 `enter` 입력
 
   ### Step 4. RSA KEY 입력
 
 <p><img src="./images/step4.png" alt="steps" /> </p>
 
-`wallet` 에 추가할 RSA KEY ID를 입력.(예시: `komsco.sp.rsa`) 
-  - 확장자는 `.sp.rsa`. 
-  - default 값으로 하고 싶은 경우 `enter` 를 입력. 
+`wallet` 에 추가할 RSA KEY ID를 입력(예시: `komsco.sp.rsa`) 
+  - 확장자는 `.sp.rsa` 
+  - default 값으로 하고 싶은 경우 `enter` 를 입력
 
   ### Step 5. DID Document 파일명 입력
 
 <p><img src="./images/step5.png" alt="steps" /> </p>
 
-`DID Document` 파일명을 입력.(예시: `komsco.did`) 
-  - 확장자는 `.did`. 
-  - default 값으로 하고 싶은 경우 `enter` 를 입력. 
+`DID Document` 파일명을 입력(예시: `komsco.did`) 
+  - 확장자는 `.did` 
+  - default 값으로 하고 싶은 경우 `enter` 를 입력
 
 
   ### Step 6. 메시지 확인 
 
 <p><img src="./images/finish.png" alt="steps" /> </p>
 
-위와 같은 메시지가 나오면 성공적으로 생성됨. 
+위와 같은 메시지가 나오면 성공적으로 생성됨 
 
   ### Step 7. 생성 파일 확인
 
 <p><img src="./images/result.png" alt="steps" /> </p>
 
-- 해당 경로에서 `*.did` 와 `*.wallet` 파일을 확인 가능. 
+- 해당 경로에서 `*.did` 와 `*.wallet` 파일을 확인 가능 
 
