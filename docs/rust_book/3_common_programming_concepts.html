@@ -167,29 +167,133 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="common-programming-concepts-ch3"><a class="header" href="#common-programming-concepts-ch3">Common Programming Concepts, ch3</a></h1>
-<p>keyword </p>
+<h2 id="summary"><a class="header" href="#summary">Summary:</a></h2>
+<p>this chapter introduces essential programming concepts that are common not only in Rust but also in many other languages.
+The chapter covers variables, data types, functions, comments, and control flow.</p>
+<h3 id="key-concepts"><a class="header" href="#key-concepts">key Concepts:</a></h3>
+<h4 id="1variables-and-mutablility"><a class="header" href="#1variables-and-mutablility">1.Variables and Mutablility</a></h4>
 <ul>
-<li>
-<p>Scalar types - integers, floating-point numbers, booleans and characters. </p>
+<li><code>Variables</code> and <code>Mutability</code>:
+<ul>
+<li><code>Variables</code> are immutable by default in Rust. </li>
+<li>To make a variable mutable, use the <code>mut</code> keyword.</li>
+</ul>
+</li>
+</ul>
+<h5 id="example"><a class="header" href="#example">Example:</a></h5>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
+	
+	
+	let x = 5; // Immutable variable
+	
+	let mut y = 6; // Mutable variable
+
+	// x += 1; //Not allowed.
+	y += 1; //Allowed because y is mutable
+
+	println!(&quot; result of `y` : {}&quot;, y);
+
+}</code></pre></pre>
+<h4 id="2-data-types"><a class="header" href="#2-data-types">2. Data Types:</a></h4>
+<ul>
+<li>Scalar - integers, floating-point numbers, Booleans and characters. 
 <ul>
 <li>int - signed, unsigned : 8 ~ 128 bit and isize, usize. </li>
 </ul>
 </li>
-<li>
-<p>Compound Types - tuples and arrays </p>
+<li>Compound - tuples, arrays 
+<ul>
+<li>Can take user-defined <code>struct</code> and <code>enumeration</code>. </li>
+</ul>
 </li>
-<li>
-<p>statements and expressions</p>
+</ul>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
+	
+	let a: i32 = 10;
+	
+	let b = 3.14; // Type inference 
+
+	let x : i32 = -1;
+
+	let y : u32 = 1;
+
+	let pi: f64 = 3.14159265359;
+
+	let is_true : bool = true;
+
+	let c : char = 'a';
+
+	//Tuples : can contain mutiple values of different types.
+	let person : (i32, f64, &amp;str) = (25, 5.9, &quot;Ho&quot;);
+
+	//Arrays : only contains the same type.
+	let numbers : [i32, 3] = [3,2,1];
+}
+</code></pre></pre>
+<h4 id="3-functions"><a class="header" href="#3-functions">3. Functions:</a></h4>
+<ul>
+<li>Functions are defined using the <code>fn</code> keyword.</li>
+<li>Parameters must have their types explicitly annotated.</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust edition2021">
+fn add(x : i32, y : i32) -&gt; i32 {
+	 x + y 
+}
+
+fn main() {
+	 println!(&quot; x + y = {}&quot;, add(3, 5));
+}
+</code></pre></pre>
+<h4 id="4-comments"><a class="header" href="#4-comments">4. Comments:</a></h4>
+<ul>
+<li>Single-line comments start with <code>//</code></li>
+<li>Multi-line comments are rarely used but start with <code>/*</code> and end with <code>*/</code>.</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust edition2021">
+fn main() {
+	
+	// This is a single-line comment
+
+	/* This is a 
+		 muti-line comment */
+
+}</code></pre></pre>
+<h5 id="5-control-flow"><a class="header" href="#5-control-flow">5. Control Flow:</a></h5>
+<ul>
+<li><code>if-else</code>, <code>loop</code>, <code>while</code>, and <code>for</code> are available for control flow.</li>
+</ul>
+<h5 id="6-statements-and-expressions"><a class="header" href="#6-statements-and-expressions">6. Statements and Expressions</a></h5>
 <ul>
 <li>
-<p>statements are instructions that perform some action and do not return a value. </p>
+<p>Statements: These are instructions that perform some action and do not return a value. They usually end with a semicolon(<code>;</code>).</p>
 </li>
 <li>
-<p>expressions evaluate to a resulting value. </p>
-</li>
+<p>Expressions : These are pieces of code that evaluate to a value and do not end with a semicolon. </p>
+<ul>
+<li>Expressions can be part of a statement. </li>
 </ul>
 </li>
 </ul>
+<pre><pre class="playground"><code class="language-rust edition2021">
+fn main() {
+
+		let x = 5; //Statement : This initializes the variable `x` with the value 5.
+
+		let y = (x + 1); // Expression : ` x + 1 ` evaluates to a value (6 in this case).
+		
+		
+		let x1 = 5;  // statement
+
+		let y1 = {
+				let z = 3;  // statement
+				z + 1 // expression
+		}; // this block is also an ??
+
+		println!(&quot; y = {}&quot;, y1);
+
+
+}
+</code></pre></pre>
 
                     </main>
 
@@ -220,22 +324,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
