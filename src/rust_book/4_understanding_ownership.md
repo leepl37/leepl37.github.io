@@ -1,3 +1,11 @@
+<img src="./img/ownership/ownership_01.jpg" alter="ownership images">
+
+<img src="./img/ownership/ownership_02.jpg" alter="ownership images">
+
+<img src="./img/ownership/ownership_03.jpg" alter="ownership images">
+
+<img src="./img/ownership/ownership_04.jpg" alter="ownership images">
+
 # UNDERSTANDING OWNERSHIP, ch4
 
 it enables Rust to make memory safety guarntees without needing a garbage collector. 
@@ -30,7 +38,7 @@ but rust use different kind of system.
 ```rust
 fn main() {
 	{
-		let s = "Yeon Kyeong";
+		let s = "who are you?";
 		println!("{}", s); 
 	}  // s variable will be dropped after this scope 
 }

@@ -1,3 +1,6 @@
+
+<img src="./img/enum/enum_01.jpg" alter="enum images">
+
 # ENUMS AND PATTERN MATCHING, Ch6
 
 ### this chapter covers... 
