@@ -88,7 +88,6 @@
 
 - [SP_manual](./spManual/createDid.md)
 
-<!--
 # SP Manual
 - [SP MANUAL](./spmanual/start.md)
 	- [ch1](./spmanual/chapter_1.md)
@@ -97,4 +96,3 @@
 	- [ch4](./spmanual/chapter_4.md)
 	- [ch5](./spmanual/chapter_5.md)
 	- [etc](./spmanual/etc.md)
--->
