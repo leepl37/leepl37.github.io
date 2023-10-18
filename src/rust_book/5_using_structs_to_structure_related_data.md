@@ -1,3 +1,7 @@
+
+<img src="./img/struct/struct_01.jpg" alter="struct images">
+<img src="./img/struct/struct_02.jpg" alter="struct images">
+
 # USING STRUCTS TO STRUCTURE RELATED DATA, ch5
 
 Custome data type. 

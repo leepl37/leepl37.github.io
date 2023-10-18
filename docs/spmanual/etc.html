@@ -1,0 +1,435 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>etc - tony</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="一切唯心造">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item "><a href="../rustOS/intro.html"><strong aria-hidden="true">2.</strong> writing_OS_with_Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rustOS/freestandingRustBinary.html"><strong aria-hidden="true">2.1.</strong> rust_binary_and_kernel_and_VGA_text</a></li></ol></li><li class="chapter-item "><a href="../system/index.html"><strong aria-hidden="true">3.</strong> systemProgremming</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../system/lecture1.html"><strong aria-hidden="true">3.1.</strong> lecture1</a></li><li class="chapter-item "><a href="../system/lecture2.html"><strong aria-hidden="true">3.2.</strong> lecture2</a></li></ol></li><li class="chapter-item "><a href="../rust_book/intro.html"><strong aria-hidden="true">4.</strong> Summary of The Rust Programming Language</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust_book/3_common_programming_concepts.html"><strong aria-hidden="true">4.1.</strong> Common Programming Concepts, Ch3</a></li><li class="chapter-item "><a href="../rust_book/4_understanding_ownership.html"><strong aria-hidden="true">4.2.</strong> UNDERSTANDING OWNERSHIP, Ch4</a></li><li class="chapter-item "><a href="../rust_book/5_using_structs_to_structure_related_data.html"><strong aria-hidden="true">4.3.</strong> USING STRUCTS TO STRUCTURE RELATED DATA, Ch5</a></li><li class="chapter-item "><a href="../rust_book/6_enums_and_pattern_matching.html"><strong aria-hidden="true">4.4.</strong> ENUMS AND PATTERN MATCHING, Ch6</a></li><li class="chapter-item "><a href="../rust_book/7_managing_growing_projects_with_packages_creates_and_modules.html"><strong aria-hidden="true">4.5.</strong> MANAGING GROWING PROJECTS WITH PACKAGES, CREATES, AND MODULES, Ch 7</a></li><li class="chapter-item "><a href="../rust_book/8_common_collections.html"><strong aria-hidden="true">4.6.</strong> COMMON COLLECTIONS, Ch 8</a></li><li class="chapter-item "><a href="../rust_book/9_error_handling.html"><strong aria-hidden="true">4.7.</strong> ERROR HANDLING, Ch 9</a></li><li class="chapter-item "><a href="../rust_book/10_generic_types_traits_and_lifetimes.html"><strong aria-hidden="true">4.8.</strong> GENERIC TYPE, TRAITS, AND LIFETIMES, Ch, 10</a></li><li class="chapter-item "><a href="../rust_book/13_iterators_and_closures.html"><strong aria-hidden="true">4.9.</strong> FUNCTIONAL LANGUAGE FEATRUES : ITERATORS AND CLOSURES, ch 13</a></li><li class="chapter-item "><a href="../rust_book/14_more_about_cargo_and_creates_io.html"><strong aria-hidden="true">4.10.</strong> MORE ABOUT CARGO AND CREATES.IO, ch 14</a></li><li class="chapter-item "><a href="../rust_book/15_smart_pointers.html"><strong aria-hidden="true">4.11.</strong> SMART POINTERS, ch 15</a></li><li class="chapter-item "><a href="../rust_book/16_fearless_concurrency.html"><strong aria-hidden="true">4.12.</strong> Fearless Concurrency, Ch 16</a></li><li class="chapter-item "><a href="../rust_book/17_object-oriented_programming_features_of_rust.html"><strong aria-hidden="true">4.13.</strong> Object Oriented programming, Ch 17</a></li><li class="chapter-item "><a href="../rust_book/19_advanced_features.html"><strong aria-hidden="true">4.14.</strong> Advanced Features, Ch 19</a></li></ol></li><li class="chapter-item "><a href="../example/example.html"><strong aria-hidden="true">5.</strong> Rust by example(번역)</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/hello.html"><strong aria-hidden="true">5.1.</strong> Hello World 출력</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/hello/comment.html"><strong aria-hidden="true">5.1.1.</strong> Comments, 주석</a></li><li class="chapter-item "><a href="../example/hello/print.html"><strong aria-hidden="true">5.1.2.</strong> Formatted print, 출력에 관해</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/hello/debug_display.html"><strong aria-hidden="true">5.1.2.1.</strong> Debug & Display</a></li></ol></li><li class="chapter-item "><a href="../example/hello/testcase.html"><strong aria-hidden="true">5.1.3.</strong> TestCase: List(iter 개념과 Option 개념이 필요함)</a></li></ol></li><li class="chapter-item "><a href="../example/primitives.html"><strong aria-hidden="true">5.2.</strong> Primitives, 원시타입</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/primitives/arrays_and_slices.html"><strong aria-hidden="true">5.2.1.</strong> Arrays and Slices</a></li></ol></li><li class="chapter-item "><a href="../example/customtype.html"><strong aria-hidden="true">5.3.</strong> Custom Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/customtype/testcase.html"><strong aria-hidden="true">5.3.1.</strong> TestCase: linked-list</a></li><li class="chapter-item "><a href="../example/customtype/constants.html"><strong aria-hidden="true">5.3.2.</strong> constants</a></li></ol></li><li class="chapter-item "><a href="../example/variablebinding.html"><strong aria-hidden="true">5.4.</strong> Variable Bindings,변수 바인딩</a></li><li class="chapter-item "><a href="../example/types.html"><strong aria-hidden="true">5.5.</strong> Types</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/types/casting_literals.html"><strong aria-hidden="true">5.5.1.</strong> casting_and_literals</a></li><li class="chapter-item "><a href="../example/types/inference_aliasing.html"><strong aria-hidden="true">5.5.2.</strong> inference_and_aliasing</a></li></ol></li><li class="chapter-item "><a href="../example/conversion/conversion.html"><strong aria-hidden="true">5.6.</strong> Conversion</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/conversion/from_and_into.html"><strong aria-hidden="true">5.6.1.</strong> From and Into, tryFrom and tryInto</a></li><li class="chapter-item "><a href="../example/conversion/to_and_from_strings.html"><strong aria-hidden="true">5.6.2.</strong> To and from Strings</a></li></ol></li><li class="chapter-item "><a href="../example/expressions.html"><strong aria-hidden="true">5.7.</strong> Expressions</a></li><li class="chapter-item "><a href="../example/flowAndControl/flow_and_control.html"><strong aria-hidden="true">5.8.</strong> Flow and Control</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/flowAndControl/for_and_iter.html"><strong aria-hidden="true">5.8.1.</strong> for_and_iter</a></li><li class="chapter-item "><a href="../example/flowAndControl/match.html"><strong aria-hidden="true">5.8.2.</strong> match</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/flowAndControl/pointer_and_ref.html"><strong aria-hidden="true">5.8.2.1.</strong> pointers/ref</a></li><li class="chapter-item "><a href="../example/flowAndControl/guards_and_binding.html"><strong aria-hidden="true">5.8.2.2.</strong> Guards/Binding</a></li></ol></li><li class="chapter-item "><a href="../example/flowAndControl/if_let_and_while_let.html"><strong aria-hidden="true">5.8.3.</strong> if let / while let</a></li></ol></li><li class="chapter-item "><a href="../example/functions/about_funtions.html"><strong aria-hidden="true">5.9.</strong> Functions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/functions/methods.html"><strong aria-hidden="true">5.9.1.</strong> Methods</a></li><li class="chapter-item "><a href="../example/functions/closures/closures.html"><strong aria-hidden="true">5.9.2.</strong> Closures</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/functions/closures/capturing.html"><strong aria-hidden="true">5.9.2.1.</strong> Capturing</a></li><li class="chapter-item "><a href="../example/functions/closures/as_input_parameters.html"><strong aria-hidden="true">5.9.2.2.</strong> As input parameters</a></li><li class="chapter-item "><a href="../example/functions/closures/as_output_parameters.html"><strong aria-hidden="true">5.9.2.3.</strong> As output parameters</a></li><li class="chapter-item "><a href="../example/functions/closures/iterator_searching_thro_iter.html"><strong aria-hidden="true">5.9.2.4.</strong> Examples in std</a></li></ol></li></ol></li><li class="chapter-item "><a href="../example/modules/modules.html"><strong aria-hidden="true">5.10.</strong> Modules</a></li><li class="chapter-item "><a href="../example/crates/crates.html"><strong aria-hidden="true">5.11.</strong> Crates</a></li><li class="chapter-item "><a href="../example/cargo/cargo.html"><strong aria-hidden="true">5.12.</strong> Cargo</a></li><li class="chapter-item "><a href="../example/attributes/attributes.html"><strong aria-hidden="true">5.13.</strong> Attributes, 속성</a></li><li class="chapter-item "><a href="../example/generics/generics.html"><strong aria-hidden="true">5.14.</strong> Generics</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/generics/generic_associated_phantom.html"><strong aria-hidden="true">5.14.1.</strong> Associated items & Phantom type parameters</a></li></ol></li><li class="chapter-item "><a href="../example/scoping/scoping.html"><strong aria-hidden="true">5.15.</strong> Scoping rules-오너쉽, 참조, 라이프타임</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../example/scoping/ownership_move_borrowing.html"><strong aria-hidden="true">5.15.1.</strong> Ownership Move Borrowing</a></li><li class="chapter-item "><a href="../example/scoping/lifetimes.html"><strong aria-hidden="true">5.15.2.</strong> Lifetimes</a></li></ol></li><li class="chapter-item "><a href="../example/traits.html"><strong aria-hidden="true">5.16.</strong> Traits</a></li><li class="chapter-item "><a href="../example/macro.html"><strong aria-hidden="true">5.17.</strong> macro</a></li></ol></li><li class="chapter-item "><a href="../dataStructureAndAlgorithms/intro.html"><strong aria-hidden="true">6.</strong> 데이터 구조와 알고리즘</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../dataStructureAndAlgorithms/section1.html"><strong aria-hidden="true">6.1.</strong> Section 1</a></li></ol></li><li class="chapter-item "><a href="../spManual/createDid.html"><strong aria-hidden="true">7.</strong> SP_manual</a></li><li class="chapter-item affix "><li class="part-title">SP Manual</li><li class="chapter-item expanded "><a href="../spmanual/start.html"><strong aria-hidden="true">8.</strong> SP MANUAL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../spmanual/chapter_1.html"><strong aria-hidden="true">8.1.</strong> ch1</a></li><li class="chapter-item "><a href="../spmanual/chapter_2.html"><strong aria-hidden="true">8.2.</strong> ch2</a></li><li class="chapter-item "><a href="../spmanual/chapter_3.html"><strong aria-hidden="true">8.3.</strong> ch3</a></li><li class="chapter-item "><a href="../spmanual/chapter_4.html"><strong aria-hidden="true">8.4.</strong> ch4</a></li><li class="chapter-item "><a href="../spmanual/chapter_5.html"><strong aria-hidden="true">8.5.</strong> ch5</a></li><li class="chapter-item expanded "><a href="../spmanual/etc.html" class="active"><strong aria-hidden="true">8.6.</strong> etc</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">tony</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="부록"><a class="header" href="#부록">부록</a></h1>
+<p>매 명령 실행 시마다 동일한 입력을 생략하기 위해 <span style="color:purple">omni-cli.properties</span>에 이를 등록할 수 있다. 설정은 아래와 같다.</p>
+<p>Wallet 암호는 보안을 위하여 매번 실행 시마다 입력하는 것을 권장한다.(-p 옵션을 주면 명령 실행 전 암호 입력) 그러므로 최 초 생성 시 적용한 암호는 잘 기억해 두어야 한다.</p>
+<h3 id="wallet-생성"><a class="header" href="#wallet-생성">Wallet 생성</a></h3>
+<pre><code class="language-console">1 | &gt; omni-cli.bat keymanager createstore -p
+2 |
+3 | Enter value for --keymanagerpass (keymanager password): 
+4 | create call/
+5 | Command: keymanger-&gt;createstore
+6 | keymanagerType DEFAULT
+7 | KeyStore Generate Success:sp.wallet
+
+</code></pre>
+<p><span style="color:purple">sp.wallet</span> 파일이 생성 되었음을 확인한다.</p>
+<h3 id="ecc-키쌍-생성"><a class="header" href="#ecc-키쌍-생성">ECC 키쌍 생성</a></h3>
+<p>서명용 ECC 키쌍을 생성하고 키 이름을 <span style="color:purple">omni.sp</span>로 지정한다. 이름은 자유롭게 변경이 가능하며 Verifier SDK 사용 시 설정파 일에 이 이름을 지정하면 된다.</p>
+<pre><code class="language-console">1 | &gt; omni-cli.bat keymanager addkey -i omni.sp --keytype 0 -p 
+2 |
+3 | Enter value for --keymanagerpass (keymanager password):
+4 | Command: keymanger-&gt;addkey
+5 | keymanagerType DEFULT
+6 | Unlock Success
+7 | SECP256k1 key create
+8 | Base58! = zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj
+9 | HEX! = 0351aeb61260dd8b4c2090a470a52bcdc0470f40c68c637ceaaf8cdca334a096f6
+</code></pre>
+<ul>
+<li>-i: 키 인덱스
+<ul>
+<li>향후 이 키를 참조할 때 사용할 이름</li>
+</ul>
+</li>
+<li>--keytype: 키 종류 
+<ul>
+<li>0: ECC 키쌍 </li>
+<li>1: RSA 키쌍</li>
+</ul>
+</li>
+</ul>
+<h3 id="rsa-키쌍-생성"><a class="header" href="#rsa-키쌍-생성">RSA 키쌍 생성</a></h3>
+<p>암호화용 RSA 키쌍을 생성하고 키 이름을 omni.sp.rsa로 지정한다. 이름은 자유롭게 변경이 가능하며 Verifier SDK 사용 시 설정파일에 이 이름을 지정하면 된다.</p>
+<pre><code class="language-console">1 &gt; omni-cli.bat keymanager addkey -i omni.sp.rsa --keytype 1 -p 
+2
+3 Enter value for --keymanagerpass (keymanager password):
+4 Command: keymanger-&gt;addkey
+5 keymanagerType DEFULT
+6 Unlock Success
+7 SECP256k1 key create
+8 Base58! = zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj
+9 HEX! = 0351aeb61260dd8b4c2090a470a52bcdc0470f40c68c637ceaaf8cdca334a096f6
+
+</code></pre>
+<ul>
+<li>-i: 키 인덱스
+<ul>
+<li>향후 이 키를 참조할 때 사용할 이름</li>
+</ul>
+</li>
+<li>--keytype: 키 종류 
+<ul>
+<li>0: ECC 키쌍 </li>
+<li>1: RSA 키쌍</li>
+</ul>
+</li>
+</ul>
+<h3 id="키-목록-확인"><a class="header" href="#키-목록-확인">키 목록 확인</a></h3>
+<pre><code class="language-console">1 | &gt; omni-cli.bat keymanager list -p
+2 |
+3 | Enter value for --keymanagerpass (keymanager password):
+4 | Command: keymanger-&gt;list
+5 | keymanagerType DEFULT
+6 | Unlock Success
+7 | Key Size: 2
+8 | Index1-KeyID:omni.sp
+9 | Index1-PublicKey:zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj
+10| Index2-KeyID:omni.sp.rsa
+11| Index2-PublicKey:
+  | 2TuPVgMCHJy5atawrsADEzjP7MCVbyyCA89UW6Wvjp9HrBayS3H4kT7RvSwrmodxQXyi
+  | vW2R9wPXs166oTT27GirNbmpCPUGMofAhXv265oCwwGkDLpvR1NW23fjv9uEb8r6bJr4TcKxE6jGTnJ9GAEKn 
+  | zDwFvrHoypnoneMfhdToPdmL5W3YAs7ojXKHCzL54ULoSyUndy5M3njgW1gffAbtMwMN5sBtbHhnPwyMNZcG3 
+  | DHb2epW4w2C9zYfgNQYfcVXeWeHC7VpgV32ZUJk3HLZMH3WaAYA52rSwmHVmn7NrLYsAmb34nWgpUSDK2tU2P 
+  | wMjFmADGWNbr99gVXYujCYDKLrzvNU5J3ogFd6HkqPkJNiQvn7CxPTJ1v1774XASKgv8B7L8bENbNnU
+
+</code></pre>
+<h3 id="did-document-생성"><a class="header" href="#did-document-생성">DID Document 생성</a></h3>
+<p>DID Document를 생성하고 서명용 ECC 공개키를 추가한다.</p>
+<pre><code class="language-console"> 1 | &gt; omni-cli.bat did2 create -i omni.sp --keymethod 3 -s sp.did 
+   |	--controller did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab -p 
+ 2 | 
+ 3 | Enter value for --keymanagerpass (keymanager password): 
+ 4 | new did create call
+ 5 | Command: v2-&gt;create
+ 6 | keymanagerType DEFULT
+ 7 | {
+ 8 | 	&quot;authentication&quot;: [
+ 9 | 	{
+ 10| 		&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp&quot;
+ 11| 	} 
+ 12| 	],
+ 13| 	&quot;controller&quot;: &quot;did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab&quot;, 
+ 14| 	&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ&quot;, 
+ 15| 	&quot;proof&quot;: {
+ 16| 		&quot;created&quot;: &quot;2021-11-23T20:35:37&quot;,
+ 17| 		&quot;creator&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp&quot;,
+ 18| 		&quot;nonce&quot;: &quot;99933519f4f50ff1111292b9234d1641ccc0f643&quot;,
+ 19| 		&quot;signatureValue&quot;: &quot;3rbzFqkcYRQkjbwtPFhb9VvekhwVja7amzm4pNqqXqHGBV5tZUVM8
+   |					rB8KYyFoCKpyv6tSPUtRcZZvaV8HUtf9VcWT&quot;,
+ 20| 		&quot;type&quot;: &quot;Secp256k1VerificationKey2018&quot;
+ 21| 		},
+ 22| 		&quot;updated&quot;: &quot;2021-11-23T20:35:37&quot;, &quot;verificationMethod&quot;: [
+ 23| 		{
+ 24| 		&quot;controller&quot;: &quot;did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab&quot;, 
+   |				&quot;expirationDate&quot;: &quot;2021-12-03T23:59:59&quot;,
+ 25| 		&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp&quot;, 
+   |		&quot;publicKeyBase58&quot;: &quot;zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj&quot;, 
+   |		&quot;status&quot;: &quot;valid&quot;,
+ 26| 		&quot;type&quot;: &quot;Secp256k1VerificationKey2018&quot;
+ 27| 		} 
+ 28| 	]
+ 29| 	}
+ 30| DidDocument Save: sp.did
+
+</code></pre>
+<ul>
+<li>-i
+<ul>
+<li>서명용 ECC 키 인덱스 </li>
+</ul>
+</li>
+<li>--keymethod
+<ul>
+<li>3으로 고정 </li>
+</ul>
+</li>
+<li>-s
+<ul>
+<li>생성할 DID Document 파일명</li>
+<li>원하는 파일명으로 생성 가능</li>
+</ul>
+</li>
+<li>--controller
+<ul>
+<li>DID Document 수정 권한을 가진 DID id</li>
+<li>개발환경에서는 did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab로 고정</li>
+</ul>
+</li>
+</ul>
+<h3 id="did-document에-rsa-공개키-추가"><a class="header" href="#did-document에-rsa-공개키-추가">DID Document에 RSA 공개키 추가</a></h3>
+<p>Wallet에 있는 암호용 RSA 공개키를 DID Document에 추가한다.</p>
+<pre><code class="language-console"> 1 | &gt; omni-cli.bat did2 addkey -i omni.sp.rsa --keymethod 4 -f sp.did -p
+ 2 | 
+ 3 | Enter value for --keymanagerpass (keymanager password): 
+ 4 | DID addkey Call......
+ 5 | Command: v2-&gt;addkey
+ 6 | keymanagerType DEFULT
+ 7 | Unlock Success 
+ 8 | {
+ 9 | 	&quot;authentication&quot;: [ 
+ 10| 		{
+ 11| 			&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp&quot; 
+ 12| 			}
+ 13| 		],
+ 14| 		&quot;controller&quot;: &quot;did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab&quot;, 
+ 15| 		&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ&quot;, 
+ 16| 		&quot;keyAgreement&quot;: [
+ 17| 			{
+ 18| 			&quot;controller&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ&quot;,
+ 19| 			&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp.rsa&quot;, 
+ 20| 			&quot;publicKeyBase58&quot;: &quot;2TuPVgMCHJy5atawrsADEzjP7MCVbyyCA89UW6Wvjp9HrBayS3H4kT7RvSw
+ 21| 			rmodxQXyivW2R9wPXs166oTT27GirNbmpCPUGMofAhXv265oCwwGkDLpvR1NW23fjv9uEb8r6bJr4TcKxE6jG 
+   | 			TnJ9GAEKnzDwFvrHoypnoneMfhdToPdmL5W3YAs7ojXKHCzL54ULoSyUndy5M3njgW1gffAbtMwMN5sBtbHhn 
+   |			PwyMNZcG3DHb2epW4w2C9zYfgNQYfcVXeWeHC7VpgV32ZUJk3HLZMH3WaAYA52rSwmHVmn7NrLYsAmb34nWgp 
+   | 			USDK2tU2PwMjFmADGWNbr99gVXYujCYDKLrzvNU5J3ogFd6HkqPkJNiQvn7CxPTJ1v1774XASKgv8B7L8bENb NnU&quot;,
+ 22| 			&quot;status&quot;: &quot;valid&quot;,
+ 23| 			&quot;type&quot;: &quot;RSAEncryptionKey&quot; 
+ 24| 			}
+ 25| 		], 
+ 26| 		&quot;proof&quot;: {
+ 27| 			&quot;created&quot;: &quot;2021-11-23T21:04:10&quot;,
+ 28| 			&quot;creator&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp&quot;,
+ 29| 			&quot;nonce&quot;: &quot;5c25cd7a5e703adb07889e32543fe782d5c5dd20&quot;,
+ 30| 			&quot;signatureValue&quot;: &quot;3rA4HzUDuN1FMBxeFgsNb9z3TPqSzDTSo91TYWpQvJc6w3HNauvT1Y7TjoSJQu
+ 31| 			7MNsByyGirWsv9BNTtxHEw7y9Ag&quot;,
+ 32| 			&quot;type&quot;: &quot;Secp256k1VerificationKey2018&quot;
+ 33| 			},
+ 34| 		&quot;updated&quot;: &quot;2021-11-23T21:04:10&quot;, &quot;verificationMethod&quot;: [
+ 35| 			{
+ 36| 			&quot;controller&quot;: &quot;did:omn:3UGo7s2S3gC7doT7Ud3uo3rRJnab&quot;, 
+ 37| 			&quot;expirationDate&quot;: &quot;2021-12-03T23:59:59&quot;,
+ 38| 			&quot;id&quot;: &quot;did:kr:mobileid:43eiB4Qorv2hV93Bg7eKHdkUAYHZ#omni.sp&quot;, 
+ 39| 			&quot;publicKeyBase58&quot;: &quot;zBoekah8ZZAFPuystRhsKSi1biBY2TMzxSy4JcopqVoj&quot;, 
+ 40|	 		&quot;status&quot;: &quot;valid&quot;,
+ 41| 			&quot;type&quot;: &quot;Secp256k1VerificationKey2018&quot;
+ 42| 			}
+ 43| 		]
+ 44| 	}
+ 45| DidDocument Save: sp.did
+ 46| 
+</code></pre>
+<ul>
+<li>-i
+<ul>
+<li>암호화용 RSA 키 인덱스 </li>
+</ul>
+</li>
+<li>--keymethod
+<ul>
+<li>4로 고정 </li>
+</ul>
+</li>
+<li>-f
+<ul>
+<li>DID Document 파일명 </li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../spmanual/chapter_5.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../spmanual/chapter_5.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="../ace.js"></script>
+        <script src="../editor.js"></script>
+        <script src="../mode-rust.js"></script>
+        <script src="../theme-dawn.js"></script>
+        <script src="../theme-tomorrow_night.js"></script>
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

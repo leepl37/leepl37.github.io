@@ -444,30 +444,138 @@ std : 룰 이름 / analysis.o 디펜던시 추가 </li>
 </ul>
 <h3 id="아-개인적으로-이-책을-정말-좋아한다"><a class="header" href="#아-개인적으로-이-책을-정말-좋아한다">아 개인적으로 이 책을 정말 좋아한다.</a></h3>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="common-programming-concepts-ch3"><a class="header" href="#common-programming-concepts-ch3">Common Programming Concepts, ch3</a></h1>
-<p>keyword </p>
+<h2 id="summary"><a class="header" href="#summary">Summary:</a></h2>
+<p>this chapter introduces essential programming concepts that are common not only in Rust but also in many other languages.
+The chapter covers variables, data types, functions, comments, and control flow.</p>
+<h3 id="key-concepts"><a class="header" href="#key-concepts">key Concepts:</a></h3>
+<h4 id="1variables-and-mutablility"><a class="header" href="#1variables-and-mutablility">1.Variables and Mutablility</a></h4>
 <ul>
-<li>
-<p>Scalar types - integers, floating-point numbers, booleans and characters. </p>
+<li><code>Variables</code> and <code>Mutability</code>:
+<ul>
+<li><code>Variables</code> are immutable by default in Rust. </li>
+<li>To make a variable mutable, use the <code>mut</code> keyword.</li>
+</ul>
+</li>
+</ul>
+<h5 id="example-1"><a class="header" href="#example-1">Example:</a></h5>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
+	
+	
+	let x = 5; // Immutable variable
+	
+	let mut y = 6; // Mutable variable
+
+	// x += 1; //Not allowed.
+	y += 1; //Allowed because y is mutable
+
+	println!(&quot; result of `y` : {}&quot;, y);
+
+}</code></pre></pre>
+<h4 id="2-data-types"><a class="header" href="#2-data-types">2. Data Types:</a></h4>
+<ul>
+<li>Scalar - integers, floating-point numbers, Booleans and characters. 
 <ul>
 <li>int - signed, unsigned : 8 ~ 128 bit and isize, usize. </li>
 </ul>
 </li>
-<li>
-<p>Compound Types - tuples and arrays </p>
+<li>Compound - tuples, arrays 
+<ul>
+<li>Can take user-defined <code>struct</code> and <code>enumeration</code>. </li>
+</ul>
 </li>
-<li>
-<p>statements and expressions</p>
+</ul>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
+	
+	let a: i32 = 10;
+	
+	let b = 3.14; // Type inference 
+
+	let x : i32 = -1;
+
+	let y : u32 = 1;
+
+	let pi: f64 = 3.14159265359;
+
+	let is_true : bool = true;
+
+	let c : char = 'a';
+
+	//Tuples : can contain mutiple values of different types.
+	let person : (i32, f64, &amp;str) = (25, 5.9, &quot;Ho&quot;);
+
+	//Arrays : only contains the same type.
+	let numbers : [i32, 3] = [3,2,1];
+}
+</code></pre></pre>
+<h4 id="3-functions"><a class="header" href="#3-functions">3. Functions:</a></h4>
+<ul>
+<li>Functions are defined using the <code>fn</code> keyword.</li>
+<li>Parameters must have their types explicitly annotated.</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust edition2021">
+fn add(x : i32, y : i32) -&gt; i32 {
+	 x + y 
+}
+
+fn main() {
+	 println!(&quot; x + y = {}&quot;, add(3, 5));
+}
+</code></pre></pre>
+<h4 id="4-comments"><a class="header" href="#4-comments">4. Comments:</a></h4>
+<ul>
+<li>Single-line comments start with <code>//</code></li>
+<li>Multi-line comments are rarely used but start with <code>/*</code> and end with <code>*/</code>.</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust edition2021">
+fn main() {
+	
+	// This is a single-line comment
+
+	/* This is a 
+		 muti-line comment */
+
+}</code></pre></pre>
+<h5 id="5-control-flow"><a class="header" href="#5-control-flow">5. Control Flow:</a></h5>
+<ul>
+<li><code>if-else</code>, <code>loop</code>, <code>while</code>, and <code>for</code> are available for control flow.</li>
+</ul>
+<h5 id="6-statements-and-expressions"><a class="header" href="#6-statements-and-expressions">6. Statements and Expressions</a></h5>
 <ul>
 <li>
-<p>statements are instructions that perform some action and do not return a value. </p>
+<p>Statements: These are instructions that perform some action and do not return a value. They usually end with a semicolon(<code>;</code>).</p>
 </li>
 <li>
-<p>expressions evaluate to a resulting value. </p>
-</li>
+<p>Expressions : These are pieces of code that evaluate to a value and do not end with a semicolon. </p>
+<ul>
+<li>Expressions can be part of a statement. </li>
 </ul>
 </li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="understanding-ownership-ch4"><a class="header" href="#understanding-ownership-ch4">UNDERSTANDING OWNERSHIP, ch4</a></h1>
+<pre><pre class="playground"><code class="language-rust edition2021">
+fn main() {
+
+		let x = 5; //Statement : This initializes the variable `x` with the value 5.
+
+		let y = (x + 1); // Expression : ` x + 1 ` evaluates to a value (6 in this case).
+		
+		
+		let x1 = 5;  // statement
+
+		let y1 = {
+				let z = 3;  // statement
+				z + 1 // expression
+		}; // this block is also an ??
+
+		println!(&quot; y = {}&quot;, y1);
+
+
+}
+</code></pre></pre>
+<div style="break-before: page; page-break-before: always;"></div><img src="rust_book/./img/ownership/ownership_01.jpg" alter="ownership images">
+<img src="rust_book/./img/ownership/ownership_02.jpg" alter="ownership images">
+<img src="rust_book/./img/ownership/ownership_03.jpg" alter="ownership images">
+<img src="rust_book/./img/ownership/ownership_04.jpg" alter="ownership images">
+<h1 id="understanding-ownership-ch4"><a class="header" href="#understanding-ownership-ch4">UNDERSTANDING OWNERSHIP, ch4</a></h1>
 <p>it enables Rust to make memory safety guarntees without needing a garbage collector. </p>
 <p>in this chapter, we will talk about </p>
 <ul>
@@ -492,7 +600,7 @@ but rust use different kind of system.</p>
 </ul>
 <pre><pre class="playground"><code class="language-rust edition2021">fn main() {
 	{
-		let s = &quot;Yeon Kyeong&quot;;
+		let s = &quot;who are you?&quot;;
 		println!(&quot;{}&quot;, s); 
 	}  // s variable will be dropped after this scope 
 }</code></pre></pre>
@@ -614,9 +722,11 @@ A data race is similar to a race condtion and happens when these three behaviors
 <p>Another data that does not have ownership is the slice. 
 Slices let you reference a contiguous sequence of elements in a collection. </p>
 <p>-&gt; String slices.  its same &amp;String and &amp;str.</p>
-<h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
+<h3 id="summary-1"><a class="header" href="#summary-1">Summary</a></h3>
 <p>Ownership, borrowing, and slices ensure memory safety in Rust at compile time. </p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="using-structs-to-structure-related-data-ch5"><a class="header" href="#using-structs-to-structure-related-data-ch5">USING STRUCTS TO STRUCTURE RELATED DATA, ch5</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><img src="rust_book/./img/struct/struct_01.jpg" alter="struct images">
+<img src="rust_book/./img/struct/struct_02.jpg" alter="struct images">
+<h1 id="using-structs-to-structure-related-data-ch5"><a class="header" href="#using-structs-to-structure-related-data-ch5">USING STRUCTS TO STRUCTURE RELATED DATA, ch5</a></h1>
 <p>Custome data type. </p>
 <p>Struct and Enums are the building blocks for creating new types in your program's domain to take full advantage of rust's compile time type checking. </p>
 <ul>
@@ -670,7 +780,8 @@ Slices let you reference a contiguous sequence of elements in a collection. </p>
 </ul>
 </li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="enums-and-pattern-matching-ch6"><a class="header" href="#enums-and-pattern-matching-ch6">ENUMS AND PATTERN MATCHING, Ch6</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><img src="rust_book/./img/enum/enum_01.jpg" alter="enum images">
+<h1 id="enums-and-pattern-matching-ch6"><a class="header" href="#enums-and-pattern-matching-ch6">ENUMS AND PATTERN MATCHING, Ch6</a></h1>
 <h3 id="this-chapter-covers"><a class="header" href="#this-chapter-covers">this chapter covers...</a></h3>
 <ul>
 <li>
@@ -1154,7 +1265,7 @@ pub fn add_to_waitlist(){}
 	
 <span class="boring">}</span></code></pre></pre>
 <p>this technique lets you move modules to new files as they grow in size. </p>
-<h3 id="summary-1"><a class="header" href="#summary-1">Summary</a></h3>
+<h3 id="summary-2"><a class="header" href="#summary-2">Summary</a></h3>
 <ul>
 <li>
 <p>organize your packages into crates </p>
@@ -1432,7 +1543,7 @@ pub fn add_to_waitlist(){}
 <p>there's not a good way to encode this information in the types you use. </p>
 </li>
 </ul>
-<h3 id="summary-2"><a class="header" href="#summary-2">Summary</a></h3>
+<h3 id="summary-3"><a class="header" href="#summary-3">Summary</a></h3>
 <ul>
 <li>
 <p>the panic! macro signals that your program is in a state it can not handle and lets you tell the process to stop instead of trying to proceed with invalid or incorrect value. </p>
@@ -1916,7 +2027,7 @@ str
 }
 
 </code></pre>
-<h3 id="summary-3"><a class="header" href="#summary-3">Summary</a></h3>
+<h3 id="summary-4"><a class="header" href="#summary-4">Summary</a></h3>
 <ul>
 <li>
 <p>Trait and trait bounds ensure that even though the types are generic, they will have the behavior the code needs. </p>
@@ -2283,7 +2394,7 @@ impl Iterator for Counter {
 </code></pre>
 <h3 id="comparing-performance--looks-vs-iterators"><a class="header" href="#comparing-performance--looks-vs-iterators">Comparing Performance : Looks vs. Iterators</a></h3>
 <p>Iterators are one of Rust's zero-cose abstractions, no additional runtime overhead. </p>
-<h3 id="summary-4"><a class="header" href="#summary-4">Summary</a></h3>
+<h3 id="summary-5"><a class="header" href="#summary-5">Summary</a></h3>
 <ul>
 <li>Closures and iterators contribute to Rust's capability to clearly express high-level ideas at low-level perfromance. </li>
 </ul>
@@ -2773,7 +2884,7 @@ Installing ~/.cargo/bin/rg
 
 </code></pre>
 <p>you can use <strong>rg --help</strong></p>
-<h3 id="summary-5"><a class="header" href="#summary-5">Summary</a></h3>
+<h3 id="summary-6"><a class="header" href="#summary-6">Summary</a></h3>
 <ul>
 <li>
 <p>customizing builds with profile. </p>
@@ -3941,7 +4052,7 @@ So, upgrading and downgrading refer to the change in level of shared ownership w
 <p>When a Rc<T> is converted to a Weak<T> using the Rc::downgrade() method, the resulting Weak<T> reference does not keep the reference count of the original Rc<T> pointer. Instead, it provides a non-owning, weak reference to the same object.</p>
 <p>The resulting Weak<T> reference is weaker than the original Rc<T> reference, in the sense that it does not prevent the object from being dropped or deallocated. However, it is still a reference to the same object, and can be upgraded back to a strong reference using the upgrade() method.</p>
 <p>So, to answer your question directly, converting a strong reference to a weak reference using Rc::downgrade() does not change the type of the reference. It creates a new Weak<T> reference that points to the same object as the original Rc<T> reference, but with weaker ownership semantics.</p>
-<h3 id="summary-6"><a class="header" href="#summary-6">Summary</a></h3>
+<h3 id="summary-7"><a class="header" href="#summary-7">Summary</a></h3>
 <ul>
 <li>
 <p>the Box<T> type has a known size and points to data allocated on the heap. </p>
@@ -4341,7 +4452,7 @@ if you tried to tranfer it across thread, both threads need to be updated count.
 <p>we will talk about unsafe code in chapter 19 and building new concurrent type without those need to be careful thought. </p>
 </li>
 </ul>
-<h3 id="summary-7"><a class="header" href="#summary-7">summary</a></h3>
+<h3 id="summary-8"><a class="header" href="#summary-8">summary</a></h3>
 <ul>
 <li>
 <p>handler, join : block thread until it finished.</p>
@@ -4461,7 +4572,7 @@ fn main() {
 <p>there are no generic type parameters. </p>
 </li>
 </ul>
-<h3 id="example-1"><a class="header" href="#example-1">example</a></h3>
+<h3 id="example-2"><a class="header" href="#example-2">example</a></h3>
 <pre><pre class="playground"><code class="language-rust  editable edition2021">
 fn main() {
 
@@ -4717,7 +4828,7 @@ let mut post = Post::new();
 
 </code></pre></pre>
 <p>Rust is capable of implementing objects-oriented patterns, other patterns, such as encoding state into the type system, are available in Rust. </p>
-<h3 id="summary-8"><a class="header" href="#summary-8">summary</a></h3>
+<h3 id="summary-9"><a class="header" href="#summary-9">summary</a></h3>
 <p>Rust can use trait objects to implement some object-oriented features and patterns, which can improve code maintainability at the expense of runtime performance. 
 Rust has other unique features such as ownership that traditional object-oriented languages lack, and these features should be considered when choosing the best design pattern. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="advanced-features-ch-19"><a class="header" href="#advanced-features-ch-19">Advanced Features, Ch 19</a></h1>
